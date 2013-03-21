@@ -4,7 +4,7 @@
 # - rename the used signals according to the project
 
 # clock pin for Basys2 Board
-#NET "mclk" LOC = "B8"; # Bank = 0, Signal name = MCLK
+NET clk LOC = "B8"; # Bank = 0, Signal name = MCLK
 #NET "uclk" LOC = "M6"; # Bank = 2, Signal name = UCLK
 #NET "mclk" CLOCK_DEDICATED_ROUTE = FALSE;
 #NET "uclk" CLOCK_DEDICATED_ROUTE = FALSE;
@@ -30,19 +30,19 @@
 
 # Pin assignment for DispCtl
 # Connected to Basys2 onBoard 7seg display
-NET segmentCode(0) LOC = "L14"; # Bank = 1, Signal name = CA
-NET segmentCode(1) LOC = "H12"; # Bank = 1, Signal name = CB
-NET segmentCode(2) LOC = "N14"; # Bank = 1, Signal name = CC
-NET segmentCode(3) LOC = "N11"; # Bank = 2, Signal name = CD
-NET segmentCode(4) LOC = "P12"; # Bank = 2, Signal name = CE
-NET segmentCode(5) LOC = "L13"; # Bank = 1, Signal name = CF
-NET segmentCode(6) LOC = "M12"; # Bank = 1, Signal name = CG
-NET segmentCode(7) LOC = "N13"; # Bank = 1, Signal name = DP
+NET segments(0) LOC = "L14"; # Bank = 1, Signal name = CA
+NET segments(1) LOC = "H12"; # Bank = 1, Signal name = CB
+NET segments(2) LOC = "N14"; # Bank = 1, Signal name = CC
+NET segments(3) LOC = "N11"; # Bank = 2, Signal name = CD
+NET segments(4) LOC = "P12"; # Bank = 2, Signal name = CE
+NET segments(5) LOC = "L13"; # Bank = 1, Signal name = CF
+NET segments(6) LOC = "M12"; # Bank = 1, Signal name = CG
+NET segments(7) LOC = "N13"; # Bank = 1, Signal name = DP
 
-NET segmentSelect(3) LOC = "K14"; # Bank = 1, Signal name = AN3
-NET segmentSelect(2) LOC = "M13"; # Bank = 1, Signal name = AN2
-NET segmentSelect(1) LOC = "J12"; # Bank = 1, Signal name = AN1
-NET segmentSelect(0) LOC = "F12"; # Bank = 1, Signal name = AN0
+NET display(3) LOC = "K14"; # Bank = 1, Signal name = AN3
+NET display(2) LOC = "M13"; # Bank = 1, Signal name = AN2
+NET display(1) LOC = "J12"; # Bank = 1, Signal name = AN1
+NET display(0) LOC = "F12"; # Bank = 1, Signal name = AN0
 
 # Pin assignment for LEDs
 #NET "Led<7>" LOC = "G1" ; # Bank = 3, Signal name = LD7
@@ -55,16 +55,16 @@ NET segmentSelect(0) LOC = "F12"; # Bank = 1, Signal name = AN0
 #NET "Led<0>" LOC = "M5" ;  # Bank = 2, Signal name = LD0#
 
 # Pin assignment for SWs
-#NET "sw<7>" LOC = "N3";  # Bank = 2, Signal name = SW7
-#NET "sw<6>" LOC = "E2";  # Bank = 3, Signal name = SW6
-#NET "sw<5>" LOC = "F3";  # Bank = 3, Signal name = SW5
-#NET "sw<4>" LOC = "G3";  # Bank = 3, Signal name = SW4
-NET hexIn(3) LOC = "B4";  # Bank = 3, Signal name = SW3
-NET hexIn(2) LOC = "K3";  # Bank = 3, Signal name = SW2
-NET hexIn(1) LOC = "L3";  # Bank = 3, Signal name = SW1
-NET hexIn(0) LOC = "P11";  # Bank = 2, Signal name = SW0
+NET digit3(3) LOC = "N3";  # Bank = 2, Signal name = SW7
+NET digit3(2) LOC = "E2";  # Bank = 3, Signal name = SW6
+NET digit3(1) LOC = "F3";  # Bank = 3, Signal name = SW5
+NET digit3(0) LOC = "G3";  # Bank = 3, Signal name = SW4
+NET digit0(3) LOC = "B4";  # Bank = 3, Signal name = SW3
+NET digit0(2) LOC = "K3";  # Bank = 3, Signal name = SW2
+NET digit0(1) LOC = "L3";  # Bank = 3, Signal name = SW1
+NET digit0(0) LOC = "P11";  # Bank = 2, Signal name = SW0
 
-#NET "btn<3>" LOC = "A7";  # Bank = 1, Signal name = BTN3
+NET reset LOC = "A7";  # Bank = 1, Signal name = BTN3
 #NET "btn<2>" LOC = "M4";  # Bank = 0, Signal name = BTN2
 #NET "btn<1>" LOC = "C11"; # Bank = 2, Signal name = BTN1
 #NET "btn<0>" LOC = "G12"; # Bank = 0, Signal name = BTN0

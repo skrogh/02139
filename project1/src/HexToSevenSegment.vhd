@@ -30,9 +30,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity HexToSevenSegment is
-port( hexIn : std_logic_vector(3 downto 0);
-		segmentCode : out std_logic_vector(7 downto 0);
-		segmentSelect : out std_logic_vector(3 downto 0));
+port( hexIn : in std_logic_vector(3 downto 0);
+		segmentCode : out std_logic_vector(7 downto 0)
+		);
 end HexToSevenSegment;
 
 architecture Behavioral of HexToSevenSegment is
@@ -51,12 +51,10 @@ begin
 						"10011000" when "1001",
 						"10001000" when "1010",
 						"10000011" when "1011",
-						"10100111" when "1100",
+						"11000110" when "1100",
 						"10100001" when "1101",
 						"10000110" when "1110",
 						"10001110" when "1111",
 						"XXXXXXXX" when others;
-	segmentSelect <= "1110";
-
 end Behavioral;
 
