@@ -69,7 +69,7 @@ begin
 	
 	
 	-- Current digit:
-	process( shownDigit, digit0, digit1, digit2, digit3  ) begin
+	process( shownDigit, digit0, digit1, digit2, digit3 ) begin
 		currentDigit <= "1111";
 		case shownDigit is
 			when dig0 =>
@@ -85,28 +85,29 @@ begin
 	
 	-- Hex Decoder:
 	decoder: HexToSevenSegment port map(
-		hexIn => currentDigit,
-		segmentCode => segments
-	);
+			hexIn => currentDigit,
+			segmentCode => segments
+			);
+	
 	-- Tick generator:
 	slopoke: SlowClock port map(
-		clk => clk,
-		reset => reset,
-		tickOut => tick
-	);
+			clk => clk,
+			reset => reset,
+			tickOut => tick
+			);
 	
 	-- Display chooser:
 	process( shownDigit ) begin
 		display <= "1111";
 		case shownDigit is
 			when dig0 =>
-				display <= "0111";
-			when dig1 =>
-				display <= "1011";
-			when dig2 =>
-				display <= "1101";
-			when dig3 =>
 				display <= "1110";
+			when dig1 =>
+				display <= "1101";
+			when dig2 =>
+				display <= "1011";
+			when dig3 =>
+				display <= "0111";
 		end case;
 	end process;
 	

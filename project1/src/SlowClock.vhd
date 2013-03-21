@@ -39,7 +39,7 @@ end SlowClock;
 
 architecture Behavioral of SlowClock is
 	constant CLK_FREQ : integer := 50000000;--50000000; -- 50 MHz
-	constant BLINK_FREQ : integer := 100;--1; -- 100 Hz
+	constant BLINK_FREQ : integer := 4000;--1; -- 100 Hz
 	constant CNT_MAX : integer := CLK_FREQ/BLINK_FREQ-1;
 	signal cnt, cnt_reg : unsigned( 30 downto 0 );
 	signal tick : std_logic;
