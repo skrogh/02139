@@ -31,10 +31,11 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity SlowClock is
 	port (
-		clk : in std_logic;
+		clk_50 : in std_logic;
+		sel_man : in std_logic;
+		clk_man : in std_logic;
 		reset : in std_logic;
-		tickOut : out std_logic
-	);
+		tickOut : out std_logic );
 end SlowClock;
 
 architecture Behavioral of SlowClock is
@@ -45,9 +46,12 @@ architecture Behavioral of SlowClock is
 	signal tick : std_logic;
 
 begin	
-	process ( cnt_reg ) begin
+	process ( cnt_reg, sel_man, clk_man ) begin
 		tick <= '0';
-		if cnt_reg = CNT_MAX then
+		cnt <= (others => '0');
+		if sel_man = '1' then
+			tick <= clk_man;
+		elsif cnt_reg = CNT_MAX then
 			cnt <= ( others => '0' );
 			tick <= '1';
 		else
@@ -55,10 +59,10 @@ begin
 		end if;
 	end process;
 	
-	process ( clk, reset ) begin
+	process ( clk_50, reset ) begin
 		if reset='1' then
 			cnt_reg <= (others => '0');
-		elsif rising_edge(clk) then
+		elsif rising_edge(clk_50) then
 			cnt_reg <= cnt;
 		end if;
 	end process;

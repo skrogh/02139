@@ -7,7 +7,7 @@ entity CCPU is
 		   coin5 : in std_logic;
 		   reset : in std_logic;
 		   buy : in std_logic;
-		   price : in std_logic_vector( 5 downto 0 );
+		   price : in std_logic_vector( 6 downto 0 );
 	  	   clk : in std_logic;
 		   release_can : out std_logic;
 		   alarm_signal : out std_logic;
@@ -25,7 +25,7 @@ architecture behavioural of CCPU is
 begin
 
 	total_out <= total_reg;
-	price_out <= '0' & price;
+	price_out <= price;
 	
 	process( clk, reset )
 	begin	

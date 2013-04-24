@@ -47,7 +47,6 @@ architecture Behavioral of SegmentMultiplexer is
 	type DIGIT is ( dig0, dig1, dig2, dig3 );
 	signal shownDigit, shownDigitN : DIGIT;
 	signal currentDigit : STD_LOGIC_VECTOR( 3 downto 0 );
-	signal tick : STD_LOGIC;
 
 	component HexToSevenSegment is
 		port(
@@ -56,13 +55,6 @@ architecture Behavioral of SegmentMultiplexer is
 		);
 	end component;
 	
-	component SlowClock is
-		port(
-			clk				: in	STD_LOGIC;
-			reset				: in	STD_LOGIC;
-			tickOut			: out	STD_LOGIC
-		);
-	end component;
 
 begin
 	
@@ -89,12 +81,6 @@ begin
 			segmentCode => segments
 			);
 	
-	-- Tick generator:
-	slopoke: SlowClock port map(
-			clk => clk,
-			reset => reset,
-			tickOut => tick
-			);
 	
 	-- Display chooser:
 	process( shownDigit ) begin
@@ -128,13 +114,11 @@ begin
 	end process;
 	
 	-- Clk and tick logic:
-	process ( clk, tick, reset ) begin
+	process ( clk, reset ) begin
 		if reset = '1' then
 				shownDigit <= dig0;
 		elsif rising_edge( clk ) then
-			if tick = '1' then
 				shownDigit <= shownDigitN;
-			end if;
 		end if;
 	end process;
 
