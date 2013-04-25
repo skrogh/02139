@@ -31,6 +31,7 @@ architecture struct of vending_machine is
   signal sync_coin2     : std_logic;
   signal sync_coin5     : std_logic;
   signal sync_buy       : std_logic;
+  signal sync_reset		: std_logic;
   signal sum            : std_logic_vector(6 downto 0);
   signal sync_price     : std_logic_vector( 6 downto 0 );
   signal internal_price : std_logic_vector(6 downto 0);
@@ -96,7 +97,7 @@ begin  -- struct
       clk_50  => clk_50,
       clk_man => clk_man,
       sel_man => sel_man,
-		reset => reset,
+		reset => sync_reset,
       tickOut => clk);
 
   InputSync : InputSynchronizer
@@ -106,7 +107,7 @@ begin  -- struct
               coin2 => coin2,
               coin5 => coin5,
               price => price,
-              sync_reset => open,
+              sync_reset => sync_reset,
               sync_buy => sync_buy,
               sync_coin2 => sync_coin2,
               sync_coin5 => sync_coin5,
@@ -115,7 +116,7 @@ begin  -- struct
   CPU : CCPU
     port map( coin2 => sync_coin2,
               coin5 => sync_coin5,
-              reset => reset,
+              reset => sync_reset,
               buy => sync_buy,
               price => sync_price,
 				  clk => clk,
@@ -127,7 +128,7 @@ begin  -- struct
     port map( num1 => internal_price,
               num2 => sum,
               clk => clk,
-				  reset => reset,
+				  reset => sync_reset,
               segments => seven_segment,
               display => digit_select);
 

@@ -30,14 +30,14 @@ NET clk_50 LOC = "B8"; # Bank = 0, Signal name = MCLK
 
 # Pin assignment for DispCtl
 # Connected to Basys2 onBoard 7seg display
-NET seven_segments(0) LOC = "L14"; # Bank = 1, Signal name = CA
-NET seven_segments(1) LOC = "H12"; # Bank = 1, Signal name = CB
-NET seven_segments(2) LOC = "N14"; # Bank = 1, Signal name = CC
-NET seven_segments(3) LOC = "N11"; # Bank = 2, Signal name = CD
-NET seven_segments(4) LOC = "P12"; # Bank = 2, Signal name = CE
-NET seven_segments(5) LOC = "L13"; # Bank = 1, Signal name = CF
-NET seven_segments(6) LOC = "M12"; # Bank = 1, Signal name = CG
-NET seven_segments(7) LOC = "N13"; # Bank = 1, Signal name = DP
+NET seven_segment(0) LOC = "L14"; # Bank = 1, Signal name = CA
+NET seven_segment(1) LOC = "H12"; # Bank = 1, Signal name = CB
+NET seven_segment(2) LOC = "N14"; # Bank = 1, Signal name = CC
+NET seven_segment(3) LOC = "N11"; # Bank = 2, Signal name = CD
+NET seven_segment(4) LOC = "P12"; # Bank = 2, Signal name = CE
+NET seven_segment(5) LOC = "L13"; # Bank = 1, Signal name = CF
+NET seven_segment(6) LOC = "M12"; # Bank = 1, Signal name = CG
+NET seven_segment(7) LOC = "N13"; # Bank = 1, Signal name = DP
 
 NET digit_select(3) LOC = "K14"; # Bank = 1, Signal name = AN3
 NET digit_select(2) LOC = "M13"; # Bank = 1, Signal name = AN2
@@ -57,8 +57,8 @@ NET release_can LOC = "M5" ;  # Bank = 2, Signal name = LD0#
 # Pin assignment for SWs
 NET reset LOC = "N3";  # Bank = 2, Signal name = SW7
 #NET num1(6) LOC = "E2";  # Bank = 3, Signal name = SW6
-#NET num1(5) LOC = "F3";  # Bank = 3, Signal name = SW5
-NET sel_man LOC = "G3";  # Bank = 3, Signal name = SW4
+NET sel_man LOC = "F3";  # Bank = 3, Signal name = SW5
+NET price(4) LOC = "G3";  # Bank = 3, Signal name = SW4
 NET price(3) LOC = "B4";  # Bank = 3, Signal name = SW3
 NET price(2) LOC = "K3";  # Bank = 3, Signal name = SW2
 NET price(1) LOC = "L3";  # Bank = 3, Signal name = SW1
