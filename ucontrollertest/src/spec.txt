@@ -1,0 +1,91 @@
+Flags:
+C:	Carry
+
+ST:	Stack
+SP:	Stack pointer
+
+Rd:	destinatrion register
+Rs:	source register
+k:	immediate (4bit)
+K:	byte (8bit)
+
+name:	Operands	Function		Flags
+
+Arithmetics:
+add	Rd, Rs		Rd = Rd + Rs		C
+			C = (Rd + Rs) > 0xFF
+addc	Rd, Rs		Rd = Rd + Rs + C	C
+			C = (Rd + Rs + C) > 0xFF
+addi	Rd, k		Rd = Rd + k		C
+			C = (Rd + k) > 0xFF
+sub	Rd, Rs		Rd = Rd - Rs		C
+			C = Rs > Rd
+subi	Rd, k		Rd = Rd - k		C
+			C = k > Rd
+subc	Rd, Rs		Rd = Rd - Rs - C	C
+			C = Rs - C > Rd
+inv	Rd		Rd = - Rd
+inc;	see addi
+dec;	see subi
+zer	Rd		C = Rd == 0		C
+multiply?
+divide?
+
+Boolean
+and	Rd, Rs		Rd = Rd & Rs
+andi	Rd, k		Rd = Rd(0..3) & k
+or	Rd, Rs		Rd = Rd | Rs
+ori	Rd		Rd = Rd(0..3) | k
+xor	Rd, Rs		Rd = Rd xor Rs
+not	Rd, Rs		Rd = !Rd
+sbr;	see ori
+cbr	Rd, k		Rd = Rd(0..3) & !k
+shl	Rd		Rd(n+1) = Rd(n)		C
+			Rd(0) = 0
+			C = Rd(7)
+shr	Rd		Rd(n) = Rd(n+1)		C
+			Rd(7) = 0
+			C = Rd(0)	
+shl	Rd		Rd(n+1) = Rd(n)		C
+			Rd(0) = C
+			C = Rd(7)
+shr	Rd		Rd(n) = Rd(n+1)		C
+			Rd(7) = C
+			C = Rd(0)		
+
+Nibble manipulation:
+swn	Rd, (Rs?)	Rd(4..7) = Rd(0..3)
+			Rd(0..3) = Rd(4..7)
+shn	Rd, k		Rd(0..3) = k
+sln	Rd, k		Rd(4..7) = k
+
+Moving:
+mov	Rd, Rs		Rd = Rs
+loi	Rd, Rs		Rd = RAM(Rs)
+lod	Rd, k		Rd = RAM(k)
+loz	K		R0 = RAM(K)
+
+Jumps n calls:
+jmpp	K		PC = PC + K
+jmpn	K		PC = Pc - K
+jmpa	K		PC = K
+jmpx	Rd, Rs		PC = (Rd(0..7)..Rs(0..7))	
+
+Compare:
+com; see sub, subc, subi, zer, shl
+brap	K		C=0: PC = PC + 1
+			C=1: PC = PC + K
+
+bran	K		C=0: PC = PC + 1
+			C=1: PC = PC - K 
+
+stack:
+push			ST(SP) = PC + 1
+			SP = SP + 1
+pop			PC = ST(SP)
+			SP = SP - 1
+pusr	Rd		ST(SP) = Rs
+			SP = SP + 1
+popr	Rd		Rd = ST(SP)
+			SP = SP - 1
+
