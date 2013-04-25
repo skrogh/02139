@@ -1,0 +1,15 @@
+MOV reg1, reg2 ;move contents of reg2 into reg1
+MOV reg1, 5 ;move 5 (binary) into reg1
+MOV reg1, 0xADDR ;move contents of memory address ADDR into reg1
+ADD reg1, reg2 ;add contents of reg1 and reg2, store in reg1
+ADD reg1, 5 ;add binary 5 to contents and store in reg1 
+ADD reg1, 0xADDR ;add contents of memory address ADDR to reg1, store reg1
+SUB ; same as add
+CMP reg1, reg2 ; compares reg1 with reg2 lt, gt, eq regs set
+JEQ loc ; jump to loc if eq = 1
+JLT loc ; jump to loc if lt = 1
+JGT loc ; jump to loc if let = 1
+JNE loc ; eq = 0
+
+:marker ; set program marker
+JMP marker ; jump to marker
