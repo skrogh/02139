@@ -29,7 +29,13 @@ begin
     --ff process
     process( clk, reset )
     begin
-		  if rising_edge( clk ) then
+		  if reset = '1' then
+				reset_r <= '1';
+				buy_r <= '0';
+            coin2_r <= '0';
+            coin5_r <= '0';
+            price_r <= "00000";
+		  elsif rising_edge( clk ) then
             reset_r <= reset;
             buy_r <= buy;
             coin2_r <= coin2;
