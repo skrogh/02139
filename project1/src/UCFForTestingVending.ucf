@@ -39,10 +39,11 @@ NET seven_segment(5) LOC = "L13"; # Bank = 1, Signal name = CF
 NET seven_segment(6) LOC = "M12"; # Bank = 1, Signal name = CG
 NET seven_segment(7) LOC = "N13"; # Bank = 1, Signal name = DP
 
-NET digit_select(0) LOC = "K14"; # Bank = 1, Signal name = AN3
-NET digit_select(1) LOC = "M13"; # Bank = 1, Signal name = AN2
-NET digit_select(2) LOC = "J12"; # Bank = 1, Signal name = AN1
-NET digit_select(3) LOC = "F12"; # Bank = 1, Signal name = AN0
+
+NET digit_select(3) LOC = "K14"; # Bank = 1, Signal name = AN3
+NET digit_select(2) LOC = "M13"; # Bank = 1, Signal name = AN2
+NET digit_select(1) LOC = "J12"; # Bank = 1, Signal name = AN1
+NET digit_select(0) LOC = "F12"; # Bank = 1, Signal name = AN0
 
 # Pin assignment for LEDs
 #NET "Led<7>" LOC = "G1" ; # Bank = 3, Signal name = LD7

@@ -3,8 +3,8 @@ public class lol {
 
 	
 	public static void main(String[] args) {
-		for ( int i = 0; i < 100; i++ ) {
-			System.out.println( "\"" + toBCD(i%10) + "\" " + "WHEN " + "\"" + toBinary(i) + "\",");
+		for ( int i = 0; i < 256; i++ ) {
+			System.out.println( "\"" + toBinary((int)(Math.random() * 256)) + "\" " + "WHEN " + "\"" + toBinary(i) + "\",");
 		}
 		
 		System.out.println(toBinary(16));
@@ -19,9 +19,9 @@ public class lol {
 			num /= 2;
 		}
 		
-		for( int i = 0; i < 7; i++ ) {
+		for( int i = 0; i < 8; i++ ) {
 			i = out.length();
-			if(i>=7)
+			if(i>=8)
 				break;
 			out = out + "0";
 		}

@@ -35,6 +35,6 @@ architecture structural of BCD4DISPLAY is
 begin
 	BCD1: Bit7ToBCD port map(num1, D1, D0);
 	BCD2: Bit7ToBCD port map(num2, D3, D2);
-	seq: SegmentMultiplexer port map(clk, reset, D3, D2, D1, D0, segments, display);
+	seq: SegmentMultiplexer port map(clk, reset, D0, D1, D2, D3, segments, display);
 	
 end structural;
