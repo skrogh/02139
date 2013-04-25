@@ -7,12 +7,12 @@ entity CCPU is
 		   coin5 : in std_logic;
 		   reset : in std_logic;
 		   buy : in std_logic;
-		   price : in std_logic_vector( 6 downto 0 );
+		   price : in std_logic_vector( 4 downto 0 );
 	  	   clk : in std_logic;
 		   release_can : out std_logic;
 		   alarm_signal : out std_logic;
 		   total_out : out std_logic_vector( 6 downto 0 );
-		   price_out : out std_logic_vector( 6 downto 0 ) );
+		   price_out : out std_logic_vector( 4 downto 0 ) );
 				 
 	end CCPU;
 	

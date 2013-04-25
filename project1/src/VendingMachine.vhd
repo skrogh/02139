@@ -33,8 +33,9 @@ architecture struct of vending_machine is
   signal sync_buy       : std_logic;
   signal sync_reset		: std_logic;
   signal sum            : std_logic_vector(6 downto 0);
-  signal sync_price     : std_logic_vector( 6 downto 0 );
-  signal internal_price : std_logic_vector(6 downto 0);
+  signal sync_price     : std_logic_vector( 4 downto 0 );
+  signal internal_price : std_logic_vector(4 downto 0);
+  signal price_to_disp 	: std_logic_vector( 6 downto 0 );
 
 ------------------------------------------------------------------------
 -- Clock divider component declaration
@@ -53,12 +54,12 @@ architecture struct of vending_machine is
           coin5 : in std_logic;
           reset : in std_logic;
           buy : in std_logic;
-          price : in std_logic_vector( 6 downto 0 );
+          price : in std_logic_vector( 4 downto 0 );
           clk : in std_logic;
           release_can : out std_logic;
           alarm_signal : out std_logic;
           total_out : out std_logic_vector( 6 downto 0 );
-          price_out : out std_logic_vector( 6 downto 0 ) );       
+          price_out : out std_logic_vector( 4 downto 0 ) );       
     end component;
 
   component InputSynchronizer is
@@ -68,11 +69,11 @@ architecture struct of vending_machine is
           coin2 : in std_logic;
           coin5 : in std_logic;
           price : in std_logic_vector( 4 downto 0 );
-          sync_reset : out std_logic;
           sync_buy : out std_logic;
+			 sync_reset : out std_logic;
           sync_coin2 : out std_logic;
           sync_coin5 : out std_logic;
-          sync_price : out std_logic_vector( 6 downto 0 ) );
+          sync_price : out std_logic_vector( 4 downto 0 ) );
   end component;
 
   component BCD4Display is
@@ -125,13 +126,13 @@ begin  -- struct
               total_out => sum,
               price_out => internal_price);
   Display : BCD4Display
-    port map( num1 => internal_price,
+    port map( num1 => price_to_disp,
               num2 => sum,
               clk => clk,
 				  reset => sync_reset,
               segments => seven_segment,
               display => digit_select);
-
+	price_to_disp <= "00" & internal_price;
 
 ------------------------------------------------------------------------
 -- Complete the remaining three component instantiations
