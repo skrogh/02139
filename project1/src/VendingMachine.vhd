@@ -98,7 +98,7 @@ begin  -- struct
       clk_50  => clk_50,
       clk_man => clk_man,
       sel_man => sel_man,
-		reset => sync_reset,
+		reset => '0',
       tickOut => clk);
 
   InputSync : InputSynchronizer
