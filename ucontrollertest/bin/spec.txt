@@ -79,10 +79,10 @@ jmpx	Rd, Rs		PC = (Rd(0..7)..Rs(0..7))
 
 Compare:
 com; see sub, subc, subi, zer, shl
-brnp	K		C=0: PC = PC + 1
+brap	K		C=0: PC = PC + 1
 			C=1: PC = PC + K
 
-brnn	K		C=0: PC = PC + 1
+bran	K		C=0: PC = PC + 1
 			C=1: PC = PC - K 
 
 stack:
@@ -122,8 +122,8 @@ Jumps n calls:
 
 Compare:
 
-1000	brnp	K		C=0: PC = PC + 1
+1000	brap	K		C=0: PC = PC + 1
 			C=1: PC = PC + K
 
-1001	brnn	K		C=0: PC = PC + 1
+1001	bran	K		C=0: PC = PC + 1
 			C=1: PC = PC - K 

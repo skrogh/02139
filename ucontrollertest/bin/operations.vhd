@@ -64,18 +64,8 @@ begin
 				OP_D_N <= OP_SC & OP_D(3 downto 0);
 			when	"00101"	=>	-- RES set register to all 0's
 				OP_D_N <= "00000000"; -- others => 0 not working
-			when	"00110"	=>	-- MOC set register D to content of S
-				OP_D_N <= OP_S;	
-			when	"00111"	=>	-- JMPA absolute jump.
-				PC_N <= "00" & OP_DC & OP_SC;
-			when	"01000"	=>	-- BRNP absolute jump.
-				if C(0) = '1' then
-					PC_N <= std_logic_vector( unsigned( PC_INT ) + unsigned( OP_DC & OP_SC ) );
-				end if;
-			when	"01001"	=>	-- BRNN absolute jump.
-				if C(0) = '1' then
-					PC_N <= std_logic_vector( unsigned( PC_INT ) - unsigned( OP_DC & OP_SC ) );
-				end if;
+			when	"00110"	=>	-- JMPA absolute jump.
+				PC_N <= "0000000000";
 			when others => 
 				PC_N <= PC_INT; -- don't continue	
 			end case;
