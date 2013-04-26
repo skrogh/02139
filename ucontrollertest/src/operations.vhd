@@ -40,10 +40,11 @@ begin
 	end process;
 	
 	-- Combinatorical logic
-	process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC ) begin
+	process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER ) begin
 		OP_D_N <= OP_D;
 		PC_N <= std_logic_vector( unsigned( PC_INT ) + 1 ); -- Incriment program counter pr default;
-		C_E <= '1';
+		C_N <= (others => '0'); -- Don't care ok?
+		C_E <= '0';
 		ADDER <= (others => '0'); -- Don't care ok?
 		case OP is
 			when  "00000"  => -- NOP no operation
@@ -51,12 +52,12 @@ begin
 				ADDER <= std_logic_vector( unsigned( "0" & OP_D ) + unsigned( OP_S ) );
 				OP_D_N <= ADDER(7 downto 0);
 				C_E <= '1';
-				C <= ADDER(8 downto 8);
+				C_N <= ADDER(8 downto 8);
 			when	"00010"	=>	-- SUB subtract
 				ADDER <= std_logic_vector( unsigned( "0" & OP_D ) - unsigned( OP_S ) ); --Or with + ! + 1?
 				OP_D_N <= ADDER(7 downto 0);
 				C_E <= '1';
-				C <= ADDER(8 downto 8);	
+				C_N <= ADDER(8 downto 8);	
 			when	"00011"	=>	-- SLN set lower nibble
 				OP_D_N <= OP_D(7 downto 4) & OP_SC;
 			when	"00100"	=>	-- SHN set higher nibble
