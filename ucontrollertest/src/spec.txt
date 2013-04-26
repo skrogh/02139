@@ -1,5 +1,7 @@
-Flags:
+Flags/Registers:
 C:	Carry
+
+
 
 ST:	Stack
 SP:	Stack pointer
@@ -10,6 +12,9 @@ k:	immediate (4bit)
 K:	byte (8bit)
 
 name:	Operands	Function		Flags
+
+MIC:
+nop						
 
 Arithmetics:
 add	Rd, Rs		Rd = Rd + Rs		C
@@ -58,6 +63,7 @@ swn	Rd, (Rs?)	Rd(4..7) = Rd(0..3)
 			Rd(0..3) = Rd(4..7)
 shn	Rd, k		Rd(0..3) = k
 sln	Rd, k		Rd(4..7) = k
+res	Rd		Rd = 0
 
 Moving:
 mov	Rd, Rs		Rd = Rs
@@ -89,3 +95,35 @@ pusr	Rd		ST(SP) = Rs
 popr	Rd		Rd = ST(SP)
 			SP = SP - 1
 
+
+
+
+For first test:
+
+Mic:
+0	nop
+
+Arithmetics:
+01	add	Rd, Rs		Rd = Rd + Rs		C
+			C = (Rd + Rs) > 0xFF
+10	sub	Rd, Rs		Rd = Rd - Rs		C
+			C = Rs > Rd
+
+Nibble manipulation:
+11	sln	Rd, k		Rd(0..3) = k
+100	shn	Rd, k		Rd(4..7) = k
+101	res	Rd		Rd = 0
+
+Moving:
+110	mov	Rd, Rs		Rd = Rs
+
+Jumps n calls:
+111	jmpa	K		PC = K
+
+Compare:
+
+1000	brap	K		C=0: PC = PC + 1
+			C=1: PC = PC + K
+
+1001	bran	K		C=0: PC = PC + 1
+			C=1: PC = PC - K 
