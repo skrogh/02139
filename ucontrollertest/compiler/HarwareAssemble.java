@@ -9,7 +9,7 @@ public class HarwareAssemble {
 	public static String[] regR = new String[16];
 	
 	public static String[] operations = {
-		"nop", "add", "sub", "sln", "shn", "res", "mov", "jmpa", "brap", "bran"
+		"nop", "add", "sub", "sln", "shn", "res", "mov", "jmpa", "brnp", "brnn"
 	};
 	public static String[] operationsR = {
 		"00000", "00001", "00010", "00011", "00100", "00101", "00110", "00111", "01000", "01001"
@@ -25,20 +25,23 @@ public class HarwareAssemble {
 			while (regR[i].length() < 4 )
 				regR[i] = "0" + regR[i];
 		}
-		addLine( "sln", "r0", 4 );
-		addLine( "shn", "r0", 7 );
-		addLine( "sln", "r1", 2 );
-		addLine( "shn", "r1", 3 );
-		addLine( "add", "r1", "r0");
-		addLine( "mov r0 r1" );
-		addLine( "nop", 0 );
-		addLine( "nop", 0 );
-		addLine( "nop", 0 );
-		addLine( "nop", 0 );
-		addLine( "nop", 0 );
-		addLine( "nop", 0 );
-		addLine( "nop", 0 );
-		addLine( "jmpa", 0 );
+		addLine( "sln", "r0", 0xF ); // counter register LSM
+		addLine( "shn", "r0", 0xF ); // MSB
+		
+		addLine( "sln", "r2", 0x1 ); // compare register LSM
+		addLine( "shn", "r2", 0x0 ); // MSB
+	
+		addLine( "mov", "r1", "r0" ); // move for comparison
+		addLine( "sub", "r1", "r2" ); // compare
+		addLine( "brnp", 3 ); // jump two lines if r0 = 0
+		addLine( "sub", "r0", "r2" ); // subtract 1 from r0
+		addLine( "jmpa", 4 ); // jump to line 4
+			//dummy finish code
+		addLine( "sln", "r2", 0xA ); // compare register LSM
+		addLine( "shn", "r2", 0xA ); // MSB
+		
+		
+		
 		
 		//Print result
 		System.out.println( code );
