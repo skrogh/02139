@@ -1,6 +1,10 @@
 Flags/Registers:
 C:	Carry
 
+I/O regiters:
+TG(8):	Toggle switches
+LD(8):	LEDs over toggles
+
 
 
 ST:	Stack
@@ -119,11 +123,21 @@ Moving:
 
 Jumps n calls:
 111	jmpa	K		PC = K
+1000	jmpp	K		PC = +K
+1001	jmpn	K		PC = -K
 
 Compare:
 
-1000	brnp	K		C=0: PC = PC + 1
+1010	brnp	K		C=0: PC = PC + 1
 			C=1: PC = PC + K
 
-1001	brnn	K		C=0: PC = PC + 1
+1011	brnn	K		C=0: PC = PC + 1
 			C=1: PC = PC - K 
+I/O
+8 bit til switches
+8 bits til dioder
+
+1100	rii	Rd		Rd = TG
+1101	rio	Rd		Rd = LD
+1110	sio	Rd		LD = Rd
+1111	sdo	K		LD = K

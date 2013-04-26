@@ -4,7 +4,10 @@ use IEEE.numeric_std.all;
 
 entity test is 
 	port( CLK : in std_logic;
-			RESET : in std_logic );
+			RESET : in std_logic;
+			LD : out std_logic_vector( 7 downto 0 );
+			TG : in std_logic_vector( 7 downto 0 )
+			);
 end test;
 
 architecture behavioural of test is
@@ -44,7 +47,10 @@ architecture behavioural of test is
 				OP_DC  : in std_logic_vector( 3 downto 0 );  -- the code for op_D
 				OP_SC  : in std_logic_vector( 3 downto 0 );  -- same for op_S
 				OP_D_N : out std_logic_vector( 7 downto 0 ); -- content to be put on OP_D register
-				PC_N_O     : out std_logic_vector( 9 downto 0 ) -- Program counter
+				PC_N_O : out std_logic_vector( 9 downto 0 ); -- Program counter
+				
+				TG 	 : in  std_logic_vector( 7 downto 0 ); -- Toggles.
+				LD_EXT : out std_logic_vector( 7 downto 0 ) -- LEDs external signal.
 				);
 	end component;
 	
@@ -90,7 +96,10 @@ architecture behavioural of test is
 					OP_DC => OP_DC,
 					OP_SC => OP_SC,
 					OP_D_N=> OP_D_N,
-					PC_N_O 	=> PC
+					PC_N_O=> PC,
+					
+					TG		=>	TG,
+					LD_EXT=>	LD
 					);	
 	
 end behavioural;
