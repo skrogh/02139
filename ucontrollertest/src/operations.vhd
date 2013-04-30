@@ -28,7 +28,7 @@ architecture behavioural of operations is
 	-- Program counter
 	signal PC_N, PC_INT : std_logic_vector( 9 downto 0 );
 	
-	-- Ungh fuck you vhdl and noninline concatination...
+	-- vhdl and noninline concatination...
 	signal ADDER : std_logic_vector( 8 downto 0 );
 	
 	-- I/O registers
