@@ -16,7 +16,7 @@ entity reg is
 end reg;
 
 architecture behavioural of reg is
-	type mem_type is array(0 to 31) of std_logic_vector(7 downto 0);
+	type mem_type is array(0 to 15) of std_logic_vector(7 downto 0);
 	signal r : mem_type := (others => (others => '0'));
 begin
 	

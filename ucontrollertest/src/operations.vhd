@@ -68,7 +68,7 @@ begin
 	end process;
 	
 	-- Combinatorical logic
-	process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, TG_SS, LD ) begin
+	process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, TG_SS, LD, C ) begin
 		OP_D_N <= OP_D;
 		PC_N <= std_logic_vector( unsigned( PC_INT ) + 1 ); -- Increment program counter pr default;
 		C_N <= (others => '0'); -- Don't care ok?
