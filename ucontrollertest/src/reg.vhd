@@ -15,14 +15,14 @@ entity reg is
             O_0     :   out std_logic_vector( 7 downto 0 );
             O_1     :   out std_logic_vector( 7 downto 0 );
             IO_D    :   out std_logic_vector( 7 downto 0 );
-            IO_S    :   out std_logic_vector 7 downto 0 );
+            IO_S    :   out std_logic_vector( 7 downto 0 );
             OP_D	:	out	std_logic_vector(7 downto 0);
             OP_S	:	out	std_logic_vector(7 downto 0)
         );
 end reg;
 
 architecture behavioural of reg is
-    type mem_type is array(0 to 31) of std_logic_vector(7 downto 0);
+    type mem_type is array(0 to 15) of std_logic_vector(7 downto 0);
     signal r : mem_type := (others => (others => '0'));
     signal io_r : mem_type := (others => (others => '0' ) );
 begin
@@ -50,8 +50,8 @@ begin
     OP_D <= r( to_integer( unsigned( OP_DC ) ) );
     OP_S <= r( to_integer( unsigned( OP_SC ) ) );
 
-    IO_D <= r( to_integer( unsigned( OP_DC ) ) );
-    IO_S <= r( to_integer( unsigned( OP_SC ) ) );
+    IO_D <= io_r( to_integer( unsigned( OP_DC ) ) );
+    IO_S <= io_r( to_integer( unsigned( OP_SC ) ) );
 
     O_0 <= r( 8 );
     O_1 <= r( 9 );
