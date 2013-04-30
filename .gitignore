@@ -56,3 +56,7 @@ Thumbs.db
 .pdf
 */Rapport/tmp/**/*
 !*Rapport/pictures/**/*
+
+# vim swap files #
+# ###########
+*.swp
