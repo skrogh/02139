@@ -1,11 +1,11 @@
-sln r0, 0xF ;with comments
-shn r0, 0xF
-sln r2, 0x1
-shn r2, 0x0
-mov r1, r0
-sub r2, r2
-brnp 3
-sub r2, r2
-jmpa 4
-sln r2, 0xA
-shn r2, 0xA 
+rio r0 r0 ; set r0 switch input
+sio r9 r0 ;set 7 segment register to r0
+sbr 7 ; set r0 to 0111
+sio r8 r0 ; set segment to 0111
+sbr 11 ; set r0 to 1011
+sio r8 r0 ; set segment to 1011
+sbr 13 ; set r0 to 1101
+sio r8 r0 ; set segment to 1101
+sbr 14 ; set r0 to 1110
+sio r8 r0 ; set segment to 1110
+jmpa 0 ; jump to line 1
