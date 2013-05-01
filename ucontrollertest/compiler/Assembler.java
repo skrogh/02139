@@ -38,10 +38,9 @@ public class Assembler {
         opcodes.put( "jmpn", "01001" );
         opcodes.put( "brnp", "01010" );
         opcodes.put( "brnn", "01011" );
-        opcodes.put( "rii", "01100" );
-        opcodes.put( "rio", "01101" );
-        opcodes.put( "sio", "01110" );
-        opcodes.put( "sdo", "01111" );
+        opcodes.put( "rio", "01100" );
+        opcodes.put( "sio", "01101" );
+        opcodes.put( "sbr", "01110" );
     }
 
     private static void makeSyntax() {
@@ -58,10 +57,9 @@ public class Assembler {
         grammar.put( "jmpn", new operand[]{ operand.BYTE } );
         grammar.put( "brnp", new operand[]{ operand.BYTE } );
         grammar.put( "brnn", new operand[]{ operand.BYTE } );
-        grammar.put( "rii", new operand[]{ operand.REG } );
-        grammar.put( "rio", new operand[]{ operand.REG } );
-        grammar.put( "sio", new operand[]{ operand.REG } );
-        grammar.put( "sdo", new operand[]{ operand.BYTE } );
+        grammar.put( "rio", new operand[]{ operand.REG, operand.REG } );
+        grammar.put( "sio", new operand[]{ operand.REG, operand.REG } );
+        grammar.put( "sbr", new operand[]{ operand.BYTE } );
     }
 
     private static void dump( String filename ) {
@@ -110,9 +108,10 @@ public class Assembler {
 
             }
 
-            if ( operands[ 0 ] == operand.IMMEDIATE ||
-                    operands[ 0 ] == operand.BYTE )
+            if ( operands[ 0 ] == operand.IMMEDIATE )
                 romcode += addLine( opc, toNumber( op1 ) );
+            else if ( operands[ 0 ] == operand.BYTE )
+                romcode += addLine( opc, toNumber( op1 ) + toNumber( op2 + "0000" ) );
             else if (operands.length == 1 &&
                     operands[ 0 ] == operand.REG )
                 romcode += addLine( opc, op1 );
