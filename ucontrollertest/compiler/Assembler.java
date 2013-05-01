@@ -111,7 +111,7 @@ public class Assembler {
             if ( operands[ 0 ] == operand.IMMEDIATE )
                 romcode += addLine( opc, toNumber( op1 ) );
             else if ( operands[ 0 ] == operand.BYTE )
-                romcode += addLine( opc, toNumber( op1 ) + toNumber( op2 + "0000" ) );
+                romcode += addLine( opc, toNumber( op1 ) );
             else if (operands.length == 1 &&
                     operands[ 0 ] == operand.REG )
                 romcode += addLine( opc, op1 );
@@ -175,7 +175,9 @@ public class Assembler {
     }
 
     private static int toNumber( String number ) {
-        if ( number.charAt( 0 ) == '0' && number.charAt( 1 ) == 'x' )
+    	if ( number.length() == 1 && number.charAt( 0 ) == '0' )
+    		return Integer.parseInt( number );
+    	else if ( number.charAt( 0 ) == '0' && number.charAt( 1 ) == 'x' )
             return Integer.parseInt( number.substring( 2, number.length() ), 16 );
         else
             return Integer.parseInt( number );

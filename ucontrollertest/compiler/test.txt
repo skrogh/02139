@@ -1,4 +1,4 @@
-sbr 20 ; set r0 to random value for test
+rio r0 r0 ; set r0 switch input
 sio r9 r0 ;set 7 segment register to r0
 sbr 7 ; set r0 to 0111
 sio r8 r0 ; set segment to 0111
@@ -8,4 +8,4 @@ sbr 13 ; set r0 to 1101
 sio r8 r0 ; set segment to 1101
 sbr 14 ; set r0 to 1110
 sio r8 r0 ; set segment to 1110
-jmpa 2 ; jump to line 3
+jmpa 0 ; jump to line 1

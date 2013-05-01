@@ -55,8 +55,8 @@ begin
     IO_D <= io_r( to_integer( unsigned( OP_DC ) ) );
     IO_S <= io_r( to_integer( unsigned( OP_SC ) ) );
 
-    O_0 <= r( 8 );
-    O_1 <= r( 9 );
+    O_0 <= io_r( 8 );
+    O_1 <= io_r( 9 );
 
 end behavioural;
 
