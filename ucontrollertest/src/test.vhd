@@ -60,10 +60,12 @@ architecture behavioural of test is
 	OP_SC <= PRG_LN(3 downto 0);
 
 	--ROM module:
-	process( clk ) 
+	process( clk, RESET ) 
 	begin
-		if rising_edge( clk ) then
-			PC_rom <= PC and not( RESET & RESET & RESET & RESET & RESET & RESET & RESET & RESET & RESET & RESET ); -- synchronius reset
+		if RESET = '1' then
+			PC_rom <= (others => '0');
+		elsif rising_edge( clk ) then
+			PC_rom <= PC; -- and not( RESET & RESET & RESET & RESET & RESET & RESET & RESET & RESET & RESET & RESET ); -- synchronius reset
 		end if;
 	end process;
 	

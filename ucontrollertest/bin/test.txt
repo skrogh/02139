@@ -1,0 +1,11 @@
+sln r0, 0xF ;with comments
+shn r0, 0xF
+sln r2, 0x1
+shn r2, 0x0
+mov r1, r0
+sub r2, r2
+brnp 3
+sub r2, r2
+jmpa 4
+sln r2, 0xA
+shn r2, 0xA 

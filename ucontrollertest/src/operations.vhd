@@ -68,14 +68,14 @@ begin
 	end process;
 	
 	-- Combinatorical logic
-	process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, TG_SS, LD ) begin
+	process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, TG_SS, LD, C ) begin
 		OP_D_N <= OP_D;
 		PC_N <= std_logic_vector( unsigned( PC_INT ) + 1 ); -- Increment program counter pr default;
-		C_N <= (others => '0'); -- Don't care ok?
+		C_N <= (others => '-'); -- Don't care ok?
 		C_E <= '0';
-		LD_N <= (others => '0'); -- Don't care ok?
+		LD_N <= (others => '-'); -- Don't care ok?
 		LD_E <= '0';
-		ADDER <= (others => '0'); -- Don't care ok?
+		ADDER <= (others => '-'); -- Don't care ok?
 		case OP is
 			when  "00000"  => -- NOP no operation
 			when	"00001"	=>	-- ADD add
@@ -94,7 +94,7 @@ begin
 				OP_D_N <= OP_SC & OP_D(3 downto 0);
 			when	"00101"	=>	-- RES set register to all 0's
 				OP_D_N <= "00000000"; -- others => 0 not working
-			when	"00110"	=>	-- MOC set register D to content of S
+			when	"00110"	=>	-- MOV set register D to content of S
 				OP_D_N <= OP_S;	
 			when	"00111"	=>	-- JMPA absolute jump.
 				PC_N <= "00" & OP_DC & OP_SC;
