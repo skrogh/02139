@@ -41,6 +41,11 @@ public class Assembler {
         opcodes.put( "rio", "01100" );
         opcodes.put( "sio", "01101" );
         opcodes.put( "sbr", "01110" );
+        opcodes.put( "sri", "01111" );
+        opcodes.put( "sra", "10000" );
+        opcodes.put( "srvi", "10001" );
+        opcodes.put( "srvr", "10010" );
+        opcodes.put( "rra", "10011" );
     }
 
     private static void makeSyntax() {
@@ -60,6 +65,11 @@ public class Assembler {
         grammar.put( "rio", new operand[]{ operand.REG, operand.REG } );
         grammar.put( "sio", new operand[]{ operand.REG, operand.REG } );
         grammar.put( "sbr", new operand[]{ operand.BYTE } );
+        grammar.put( "sra", new operand[]{ operand.BYTE } );
+        grammar.put( "sri", new operand[]{ operand.REG } );
+        grammar.put( "srvi", new operand[]{ operand.BYTE } );
+        grammar.put( "srvr", new operand[]{ operand.REG } );
+        grammar.put( "rra", new operand[]{ operand.REG } );
     }
 
     private static void dump( String filename ) {
