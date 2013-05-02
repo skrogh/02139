@@ -7,7 +7,8 @@ entity operations is
 
             RESET  : in std_logic;
             CLK    : in std_logic;
-
+            RAM_P  : in std_logic_vector( 7 downto 0 );
+            RAM_D  : in std_logic_vector( 7 downto 0 );
             OP_D   : in std_logic_vector( 7 downto 0 );  -- the content of destiantion operand
             OP_S   : in std_logic_vector( 7 downto 0 );  -- ---||---- og source --||--
             IO_D   : in std_logic_vector( 7 downto 0 );  -- content of IO destination register
@@ -17,6 +18,10 @@ entity operations is
             IO_D_N : out std_logic_vector( 7 downto 0 ); -- content to update IO_D with
             OP_D_N : out std_logic_vector( 7 downto 0 ); -- content to be put on OP_D register
             PC_N_O : out std_logic_vector( 9 downto 0 ); -- Program counter
+            RAM_P_N : out std_logic_vector( 7 downto 0 );
+            RAM_D_N : out std_logic_vector( 7 downto 0 );
+            RAM_W   : out std_logic;
+            RAM_SET : out std_logic;
             byte_set : out std_logic
         );
 end operations;
@@ -58,14 +63,17 @@ begin
     end process;
 
 -- Combinatorical logic
-process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, IO_D, IO_S, C ) begin
+process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, IO_D, IO_S, C, RAM_P, RAM_D ) begin
     OP_D_N <= OP_D;
     IO_D_N <= IO_D;
+    RAM_P_N <= RAM_P;
+    RAM_D_N <= RAM_D;
     PC_N <= std_logic_vector( unsigned( PC_INT ) + 1 ); -- Increment program counter pr default;
     C_N <= (others => '0'); -- Don't care ok?
     C_E <= '0';
     ADDER <= (others => '0'); -- Don't care ok?
     byte_set <= '0';
+    RAM_SET <= '0';
     case OP is
         when  "00000"  => -- NOP no operation
         when	"00001"	=>	-- ADD add
@@ -107,6 +115,20 @@ process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, IO_D, IO_S, C ) begin
         when    "01110" => --set r0 to byte value
             OP_D_N <= OP_DC & OP_SC;
             byte_set <= '1';
+        when    "01111" => --set ram address to byte value
+            RAM_P_N <= OP_DC & OP_SC;
+            RAM_SET <= '1';
+        when    "10000" => --set ram address to register value
+            RAM_P_N <= OP_D;
+            RAM_SET <= '1';
+        when    "10001" => --set ram value to byte value
+            RAM_D_N <= OP_DC & OP_SC;
+            RAM_W <= '1';
+        when    "10010" => --set ram value to register value
+            RAM_D_N <= OP_D;
+            RAM_W <= '1';
+        when    "10011" => --read ram value into OP_D
+            OP_D_N <= RAM_D;
         when others => 
             PC_N <= PC_INT; -- don't continue	
     end case;

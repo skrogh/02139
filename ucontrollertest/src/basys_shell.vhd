@@ -13,11 +13,12 @@ end basys_shell;
 
 architecture structural of basys_shell is
 component operations is 
-	port(    OP		 : in std_logic_vector( 4 downto 0 ); -- operation decoder
+	port(   OP      : in std_logic_vector( 4 downto 0 ); -- operation decoder
 
             RESET  : in std_logic;
             CLK    : in std_logic;
-
+            RAM_P  : in std_logic_vector( 7 downto 0 );
+            RAM_D  : in std_logic_vector( 7 downto 0 );
             OP_D   : in std_logic_vector( 7 downto 0 );  -- the content of destiantion operand
             OP_S   : in std_logic_vector( 7 downto 0 );  -- ---||---- og source --||--
             IO_D   : in std_logic_vector( 7 downto 0 );  -- content of IO destination register
@@ -27,26 +28,33 @@ component operations is
             IO_D_N : out std_logic_vector( 7 downto 0 ); -- content to update IO_D with
             OP_D_N : out std_logic_vector( 7 downto 0 ); -- content to be put on OP_D register
             PC_N_O : out std_logic_vector( 9 downto 0 ); -- Program counter
+            RAM_P_N : out std_logic_vector( 7 downto 0 );
+            RAM_D_N : out std_logic_vector( 7 downto 0 );
+            RAM_W   : out std_logic;
+            RAM_SET : out std_logic;
             byte_set : out std_logic
         );
 		  end component;
 
 component reg is
-	port( CLK	:	in		std_logic;
-            RESET	:	in		std_logic;
+	port(   CLK    :   in      std_logic;
+            RESET   :   in      std_logic;
             I_0     :   in  std_logic_vector( 7 downto 0 );
             I_1     :   in  std_logic_vector( 7 downto 0 );
-            OP_DC :	in		std_logic_vector(3 downto 0);
-            OP_SC :	in		std_logic_vector(3 downto 0);
-            byte_set : in std_logic;			
-            OP_D_N:	in		std_logic_vector(7 downto 0);
+            OP_DC : in      std_logic_vector(3 downto 0);
+            OP_SC : in      std_logic_vector(3 downto 0);
+            byte_set : in std_logic;
+            ram_set : in std_logic; 
+            RAM_P_N   : in std_logic_vector( 7 downto 0 );  
+            OP_D_N: in      std_logic_vector(7 downto 0);
             IO_D_N  :   in  std_logic_vector( 7 downto 0 );
             O_0     :   out std_logic_vector( 7 downto 0 );
             O_1     :   out std_logic_vector( 7 downto 0 );
             IO_D    :   out std_logic_vector( 7 downto 0 );
             IO_S    :   out std_logic_vector( 7 downto 0 );
-            OP_D	:	out	std_logic_vector(7 downto 0);
-            OP_S	:	out	std_logic_vector(7 downto 0)
+            OP_D    :   out std_logic_vector(7 downto 0);
+            RAM_P   :   out std_logic_vector( 7 downto 0 );
+            OP_S    :   out std_logic_vector(7 downto 0)
         );
 	end component;
 	
@@ -54,6 +62,14 @@ component rom is
 	port(   addr : in std_logic_vector( 9 downto 0 );
             do : out std_logic_vector( 12 downto 0 ) );
 	end component;
+
+component ram is
+    port(   clk  : in std_logic;
+            din  : in std_logic_vector( 7 downto 0 );
+            addr : in std_logic_vector( 7 downto 0 );
+            w_en   : in std_logic;
+            do   : out std_logic_vector( 7 downto 0 ) );
+    end component;
 	
 signal OP_D_N, IO_D_N, IO_D, IO_S, OP_D, OP_S : std_logic_vector( 7 downto 0 );
 signal OP_DC, OP_SC : std_logic_vector( 3 downto 0 );
@@ -62,6 +78,9 @@ signal OP : std_logic_vector( 4 downto 0 );
 signal PC_N_O : std_logic_vector( 9 downto 0 );
 signal OP_C : std_logic_vector( 12 downto 0 );
 signal PC : std_logic_vector( 9 downto 0 );
+signal RAM_P_N, RAM_D_N, RAM_D, RAM_P : std_logic_vector( 7 downto 0 );
+
+signal RAM_W, RAM_SET : std_logic;
 
 begin
 
@@ -78,6 +97,7 @@ process( CLK, RESET )
 	port map( 	OP => OP,
 					RESET => RESET,
 					CLK => CLK,
+					RAM_P => RAM_P,
 					OP_D => OP_D,
 					OP_S => OP_S,
 					IO_D => IO_D,
@@ -87,6 +107,12 @@ process( CLK, RESET )
 					IO_D_N => IO_D_N,
 					OP_D_N => OP_D_N,
 					PC_N_O => PC,
+                    RAM_SET => RAM_SET,
+                    
+                    RAM_P_N => RAM_P_N,
+                    RAM_W => RAM_W,
+                    RAM_D => RAM_D,
+                    RAM_D_N => RAM_D_N,
 					byte_set => byte_set );
 	
 	regs : reg
@@ -104,11 +130,21 @@ process( CLK, RESET )
 					IO_D => IO_D,
 					IO_S => IO_S,
 					OP_D => OP_D,
+                    ram_set => RAM_SET,
+                    RAM_P_N => RAM_P_N,
+                    RAM_P => RAM_P,
 					OP_S => OP_S );
 	
 	code : rom
 	port map( 	addr => PC_N_O,
 					do => OP_C );
+
+    rams : ram
+    port map(   clk => clk,
+                din => RAM_D_N,
+                addr => RAM_P,
+                w_en => RAM_W,
+                do => RAM_D );
 	
 	OP <= OP_C( 12 downto 8 );
 	OP_DC <= OP_C( 7 downto 4 );
