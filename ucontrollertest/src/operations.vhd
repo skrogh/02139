@@ -74,6 +74,7 @@ process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, IO_D, IO_S, C, RAM_P, RAM_
     ADDER <= (others => '0'); -- Don't care ok?
     byte_set <= '0';
     RAM_SET <= '0';
+	 RAM_W <= '0';
     case OP is
         when  "00000"  => -- NOP no operation
         when	"00001"	=>	-- ADD add
@@ -129,6 +130,8 @@ process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, IO_D, IO_S, C, RAM_P, RAM_
             RAM_W <= '1';
         when    "10011" => --read ram value into OP_D
             OP_D_N <= RAM_D;
+        when    "10100" => --bitwise and
+            OP_D_N <= OP_D and OP_S;
         when others => 
             PC_N <= PC_INT; -- don't continue	
     end case;

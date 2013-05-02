@@ -1,11 +1,30 @@
-sln r0, 0xF ;with comments
-shn r0, 0xF
-sln r2, 0x1
-shn r2, 0x0
-mov r1, r0
-sub r2, r2
-brnp 3
-sub r2, r2
-jmpa 4
-sln r2, 0xA
-shn r2, 0xA 
+sri 0 ; Set ram address; Put number font in RAM:
+srvi 0x00 ; 0
+sri 1 ;
+srvi 0x01 ; 1
+sri 2 ;
+srvi 0x02 ; 2
+sri 3 ;
+srvi 0x03 ; 3
+sri 4 ;
+srvi 0x04 ; 4
+sri 5 ;
+srvi 0x05 ; 5
+sri 6 ;
+srvi 0x06 ; 6
+sri 7 ;
+srvi 0x07 ; 7
+sri 8 ;
+srvi 0x08 ; 8
+sri 9 ;
+srvi 0x09 ; 9; for lykke for delay
+sbr 0x01 ;
+mov r1 r0 ; flyt 1 til reg 1
+res r3
+res r2
+add r2 r1 ; add 1 to r2
+brnp 2 ; continue
+jmpn 2 ; jump to adder
+add r3 r1 ; add 1 to r3
+brnp 2 ; continue
+jmpn 6 ; jump to res 2
