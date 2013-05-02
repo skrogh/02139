@@ -65,7 +65,7 @@ signal PC : std_logic_vector( 9 downto 0 );
 
 begin
 
-process( clk ) 
+process( CLK, RESET ) 
 	begin
 		if RESET = '1' then
 			PC_N_O <= (others => '0');
