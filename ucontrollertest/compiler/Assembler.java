@@ -26,26 +26,27 @@ public class Assembler {
     }
     private static void makeOpcodes() {
         opcodes = new Hashtable<String, String>();
-        opcodes.put( "nop", "00000" );
-        opcodes.put( "add", "00001" );
-        opcodes.put( "sub", "00010" );
-        opcodes.put( "sln", "00011" );
-        opcodes.put( "shn", "00100" );
-        opcodes.put( "res", "00101" );
-        opcodes.put( "mov", "00110" );
-        opcodes.put( "jmpa", "00111" );
-        opcodes.put( "jmpp", "01000" );
-        opcodes.put( "jmpn", "01001" );
-        opcodes.put( "brnp", "01010" );
-        opcodes.put( "brnn", "01011" );
-        opcodes.put( "rio", "01100" );
-        opcodes.put( "sio", "01101" );
-        opcodes.put( "sbr", "01110" );
-        opcodes.put( "sri", "01111" );
-        opcodes.put( "sra", "10000" );
-        opcodes.put( "srvi", "10001" );
-        opcodes.put( "srvr", "10010" );
-        opcodes.put( "rra", "10011" );
+        opcodes.put( "nop", "00000" ); // No operation
+        opcodes.put( "add", "00001" ); // Add two registers
+        opcodes.put( "sub", "00010" ); // Subtract two registers
+        opcodes.put( "sln", "00011" ); // Set low nibble
+        opcodes.put( "shn", "00100" ); // Set high nibble
+        opcodes.put( "res", "00101" ); // Reset register
+        opcodes.put( "mov", "00110" ); // move one reg to another
+        opcodes.put( "jmpa", "00111" ); // jump absolute
+        opcodes.put( "jmpp", "01000" ); // jump relative positive
+        opcodes.put( "jmpn", "01001" ); // jump relative negative
+        opcodes.put( "brnp", "01010" ); // branch on carry positive
+        opcodes.put( "brnn", "01011" ); // branch negative
+        opcodes.put( "rio", "01100" ); // Read IO register to register
+        opcodes.put( "sio", "01101" ); // Set IO register to register value
+        opcodes.put( "sbr", "01110" ); // set r0 to byte value
+        opcodes.put( "sri", "01111" ); // set ram address to byte V
+        opcodes.put( "sra", "10000" ); // set ram address to reg V
+        opcodes.put( "srvi", "10001" ); // set ram value to byte V
+        opcodes.put( "srvr", "10010" ); // set ram value to register value
+        opcodes.put( "rra", "10011" ); // read ram into OP_D
+        opcodes.put( "and", "10100" ); // bitwise and
     }
 
     private static void makeSyntax() {
@@ -65,11 +66,12 @@ public class Assembler {
         grammar.put( "rio", new operand[]{ operand.REG, operand.REG } );
         grammar.put( "sio", new operand[]{ operand.REG, operand.REG } );
         grammar.put( "sbr", new operand[]{ operand.BYTE } );
-        grammar.put( "sra", new operand[]{ operand.BYTE } );
-        grammar.put( "sri", new operand[]{ operand.REG } );
+        grammar.put( "sra", new operand[]{ operand.REG } );
+        grammar.put( "sri", new operand[]{ operand.BYTE } );
         grammar.put( "srvi", new operand[]{ operand.BYTE } );
         grammar.put( "srvr", new operand[]{ operand.REG } );
         grammar.put( "rra", new operand[]{ operand.REG } );
+        grammar.put( "and", new operand[]{ operand.REG, operand.REG } );
     }
 
     private static void dump( String filename ) {
@@ -87,7 +89,7 @@ public class Assembler {
 
         String progcode = compile();
 
-        String end = "\"000000000000\" when others;\n" +
+        String end = "\"0000000000000\" when others;\n" +
             "end behavioural;\n";
 
         writeFile( filename, init + progcode + end );

@@ -149,4 +149,10 @@ I/O
 
 Set r0 to 8-bit value instead of using 2x nibble ops
 1110    sbr K       r0 = K
-//
+
+RAM ops
+1111 	sri K 		ram address = K
+10000 	sra Rs 		ram adress = valueof(Rs)
+10001	srvi K 		ram value = K
+10010 	srvr Rs 	ram value = valueof(Rs)
+10011 	rra Rd 		read ram value into Rd
