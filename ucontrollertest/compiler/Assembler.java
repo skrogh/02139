@@ -47,6 +47,8 @@ public class Assembler {
         opcodes.put( "srvr", "10010" ); // set ram value to register value
         opcodes.put( "rra", "10011" ); // read ram into OP_D
         opcodes.put( "and", "10100" ); // bitwise and
+        opcodes.put( "addc", "10101" ); //add with carry
+        opcodes.put( "cmp", "10110" ); //compare
     }
 
     private static void makeSyntax() {
@@ -72,6 +74,8 @@ public class Assembler {
         grammar.put( "srvr", new operand[]{ operand.REG } );
         grammar.put( "rra", new operand[]{ operand.REG } );
         grammar.put( "and", new operand[]{ operand.REG, operand.REG } );
+        grammar.put( "addc", new operand[]{ operand.REG, operand.REG } );
+        grammar.put( "cmp", new operand[]{ operand.REG, operand.REG } );
     }
 
     private static void dump( String filename ) {
