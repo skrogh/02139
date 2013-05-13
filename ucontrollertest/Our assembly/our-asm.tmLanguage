@@ -52,6 +52,22 @@
 			<string>string.asm</string>
 		</dict>
 		<dict>
+			<key>PC pointer</key>
+			<string>Goto tag</string>
+			<key>match</key>
+			<string>(^|\s)\{[\w\s\W]*\}($|\s)</string>
+			<key>name</key>
+			<string>string.asm</string>
+		</dict>
+		<dict>
+			<key>RAM adress</key>
+			<string>Fixed adress in the ram</string>
+			<key>match</key>
+			<string>(^|\s)\[[\w\s\W]*\]($|\s)</string>
+			<key>name</key>
+			<string>storage.type.asm</string>
+		</dict>
+		<dict>
 			<key>comment</key>
 			<string>Hex number constant</string>
 			<key>match</key>
@@ -63,7 +79,7 @@
 			<key>comment</key>
 			<string>Dec number constant</string>
 			<key>match</key>
-			<string>\b(0|[1-9]\d+)\b</string>
+			<string>\b(0|1|2|3|4|5|6|7|8|9|\d+)\b</string>
 			<key>name</key>
 			<string>constant.numeric.asm</string>
 		</dict>
