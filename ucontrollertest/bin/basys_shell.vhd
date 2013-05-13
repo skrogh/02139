@@ -8,7 +8,8 @@ entity basys_shell is
 			I_0     :   in  std_logic_vector( 7 downto 0 );
          I_1     :   in  std_logic_vector( 7 downto 0 );
 			O_0     :   out std_logic_vector( 7 downto 0 );
-         O_1     :   out std_logic_vector( 7 downto 0 ) );
+         O_1     :   out std_logic_vector( 7 downto 0 );
+			O_2     :   out std_logic_vector( 7 downto 0 ));
 end basys_shell;
 
 architecture structural of basys_shell is
@@ -50,6 +51,7 @@ component reg is
             IO_D_N  :   in  std_logic_vector( 7 downto 0 );
             O_0     :   out std_logic_vector( 7 downto 0 );
             O_1     :   out std_logic_vector( 7 downto 0 );
+				O_2     :   out std_logic_vector( 7 downto 0 );
             IO_D    :   out std_logic_vector( 7 downto 0 );
             IO_S    :   out std_logic_vector( 7 downto 0 );
             OP_D    :   out std_logic_vector(7 downto 0);
@@ -127,6 +129,7 @@ process( CLK, RESET )
 					IO_D_N => IO_D_N,
 					O_0 => O_0,
 					O_1 => O_1,
+					O_2 => O_2,
 					IO_D => IO_D,
 					IO_S => IO_S,
 					OP_D => OP_D,

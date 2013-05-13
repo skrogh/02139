@@ -16,6 +16,7 @@ entity reg is
             IO_D_N  :   in  std_logic_vector( 7 downto 0 );
             O_0     :   out std_logic_vector( 7 downto 0 );
             O_1     :   out std_logic_vector( 7 downto 0 );
+				O_2     :   out std_logic_vector( 7 downto 0 );
             IO_D    :   out std_logic_vector( 7 downto 0 );
             IO_S    :   out std_logic_vector( 7 downto 0 );
             OP_D	:	out	std_logic_vector(7 downto 0);
@@ -64,6 +65,7 @@ begin
 
     O_0 <= io_r( 8 );
     O_1 <= io_r( 9 );
+	 O_2 <= io_r( 10 );
 
 end behavioural;
 

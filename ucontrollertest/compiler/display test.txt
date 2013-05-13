@@ -1,0 +1,159 @@
+nop ; start loading 7-segment values in ram
+sri 0 ; start 7-segment values at RAMADDR = 0
+srvi 0xFD ; 0 has segment code "11111101"
+sri 1 ; set ram address to 1
+srvi 0x9F ; 1 has segment code "10011111"
+sri 2 ; set ram address to 2
+srvi 0x25 ; 2 has segment code "00100101"
+sri 3 ; set ram address to 3
+srvi 0x0D ; 3 has segment code "00001101"
+sri 4 ; set ram address to 4
+srvi 0x99 ; 4 has segment code "10011001"
+sri 5 ; set ram address to 5
+srvi 0x49 ; 5 has segment code "01001001"
+sri 6 ; set ram address to 6
+srvi 0x41 ; 6 has segment code "01000001"
+sri 7 ; set ram address to 7
+srvi 0x1F ; 7 has segment code "00011111"
+sri 8 ; set ram address to 8
+srvi 0x01 ; 8 has segment code "00000001"
+sri 9 ; set ram address to 9
+srvi 0x19 ; 9 has segment code "00011001"
+sri 10 ; set ram address to A
+srvi 0x11 ; A has segment code "00010001"
+sri 11 ; set ram adress to B
+srvi 0xC1 ; B has segment code "11000001"
+sri 12 ; set ram address to C
+srvi 0x63 ; C has segment code "01100011"
+sri 13 ; set ram address to D
+srvi 0x85 ; D has segment code "10000101"
+sri 14 ; set ram address to E
+srvi 0x61 ; E has segment code "01100001"
+sri 15 ; set ram address to F
+srvi 0x71 ; F has segment code "01110001"
+sri 16 ; set ram address to G
+srvi 0x43 ; G has segment code "01000011"
+sri 17 ; set ram address to H
+srvi 0x91 ; H has segment code "10010001" 
+sri 18 ; set ram address to I
+srvi 0xF3 ; I has segment code "11110011"
+sri 19 ; set ram address to J
+srvi 0x87 ; J has segment code "10000111"
+sri 20 ; set ram address to K
+srvi 0x51 ; K has segment code "01010001"
+sri 21 ; set ram address to L
+srvi 0xE3 ; L has segment code "11100011"
+sri 22 ; set ram address to M
+srvi 0xD5 ; M has segment code "11010101"
+sri 23 ; set ram address to N
+srvi 0xD5 ; N has segment code "11010101"
+sri 24 ; set ram address to O
+srvi 0xC5 ; O has segment code "11000101"
+sri 25 ; set ram address to P
+srvi 0x31 ; P has segment code "00110001"
+sri 26 ; set ram address to Q
+srvi 0x29 ; Q has segment code "00101001"
+sri 27 ; set ram address to R
+srvi 0xF5 ; R has segment code "11110101"
+sri 28 ; set ram address to S
+srvi 0x4B ; S has segment code "01001011"
+sri 29 ; set ram address to T
+srvi 0xE1 ; T has segment code "11100001"
+sri 30 ; set ram address to U
+srvi 0x83 ; U has segment code "10000011"
+sri 31 ; set ram address to V
+srvi 0xAB ; V has segment code "10101011"
+sri 32 ; set ram address to W
+srvi 0x81 ; W has segment code "10000001"
+sri 33 ; set ram address to Y
+srvi 0x89 ; Y has segment code "10001001"
+sri 34 ; set ram address to Z
+srvi 0x27 ; Z has segment code "00100111"
+//
+//put one in r1
+sbr 0x01 ; Make sure there is a one at r1
+mov r1 r0 ; Make sure there is a one at r1
+//
+//Button pooling:
+rio r3 r1 ; Read buttons into r3
+res r2 ; reset r2, used for comparision
+sbr 0x01 ; set r0 to bitmask for first button
+and r0 r3 ; apply bitmask, result in r0
+cmp r2 r0 ; set carry flag, if button was pressed
+brnp ??? ; branch to +??? if button 1 was pressed. r2 and r3 are reserved
+sbr 0x02 ; set r0 to bitmask for second button
+and r0 r3 ; apply bitmask, result in r0
+cmp r2 r0 ; set carry flag, if button was pressed
+brnp ??? ; branch to +??? if button 2 was pressed. r2 and r3 are reserved
+sbr 0x04 ; set r0 to bitmask for third button
+and r0 r3 ; apply bitmask, result in r0
+cmp r2 r0 ; set carry flag, if button was pressed
+brnp ??? ; branch to +??? if button 3 was pressed. r2 and r3 are reserved
+//
+//binary tO bcd, converts r4 into bcd in r12-15. r4 is not altered
+sbr 0xFF ; set r0 to 255/-1
+res r12 r0 ; reset this one, as no thousands
+mov r13 r0 ; set to -1
+mov r14 r0 ; set to -1
+mov r15 r0 ; set to -1
+mov r5 r4 ; copy r4 to r5
+sbr 0x64 ; load 100 into r0
+add r13 r1 ; add one to hundreds
+sub r5 r0 ; subtract 100 from r5
+brnn 0x02 ; subtract 100 untill overflow;
+add r5 r0 ; add 100 to get back to point before overflow (faster than saving)
+sbr 0x0A ; load 10 into r0
+add r14 r1 ; add one to tens
+sub r5 r0 ; subtract 10 from r5
+brnn 0x02 ; subtract 10 untill overflow;
+add r5 r0 ; add 10 to get back to point before overflow (faster than saving)
+mov r15 r5 ; move ones to correct register.
+//
+//display diget
+add r11 r1 ; append display counter
+sbr 0x0F ; setup bitmask
+and r11 r0 ; apply bitmask, this is an easy way to constrain the counter.
+sbr 0x02 ; check if r11 > 2
+cmp r0 r11 ; check
+brnp 0x1F ; jump to display r12
+sbr 0x02 ; check if r11 > 1
+cmp r0 r11 ; check
+brnp 0x14 ; jump to display r13
+sbr 0x02 ; check if r11 > 0
+cmp r0 r11 ; check
+brnp 0x09; jump to display r14
+res r0 ; set r0 to 0. Displaying 15
+sio r9 r0 ; clear 7 segment, to remove "ghosting"
+sbr 0x07 ; set digit 1 to light up
+sio r8 r0 ; set digit 1 to light up
+sra r15 ; get digit/symbol adress from r15
+rra r0 ; get digit/symbol
+sio r9 r0 ; read digit/symbol onto display
+jmpp 0x18 ; jump to end of display-multiplexer
+res r0 ; set r0 to 0. Displaying 14
+sio r9 r0 ; clear 7 segment, to remove "ghosting"
+sbr 0x0B ; set digit 2 to light up
+sio r8 r0 ; set digit 2 to light up
+sra r14 ; get digit/symbol adress from r14
+rra r0 ; get digit/symbol
+sio r9 r0 ; read digit/symbol onto display
+jmpp 0x10 ; jump to end of display-multiplexer
+res r0 ; set r0 to 0. Displaying 13
+sio r9 r0 ; clear 7 segment, to remove "ghosting"
+sbr 0x0D ; set digit 2 to light up
+sio r8 r0 ; set digit 2 to light up
+sra r13 ; get digit/symbol adress from r13
+rra r0 ; get digit/symbol
+sio r9 r0 ; read digit/symbol onto display
+jmpp 0x08 ; jump to end of display-multiplexer
+res r0 ; set r0 to 0. Displaying 12
+sio r9 r0 ; clear 7 segment, to remove "ghosting"
+sbr 0x0E ; set digit 2 to light up
+sio r8 r0 ; set digit 2 to light up
+sra r12 ; get digit/symbol adress from r12
+rra r0 ; get digit/symbol
+sio r9 r0 ; read digit/symbol onto display
+
+
+
+

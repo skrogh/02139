@@ -45,14 +45,14 @@ NET O_0(1) LOC = "J12"; # Bank = 1, Signal name = AN1
 NET O_0(0) LOC = "F12"; # Bank = 1, Signal name = AN0
 
 # Pin assignment for LEDs
-#NET I_0(7) LOC = "G1" ; # Bank = 3, Signal name = LD7
-#NET I_0(6) LOC = "P4" ; # Bank = 2, Signal name = LD6
-#NET I_0(5) LOC = "N4" ;  # Bank = 2, Signal name = LD5
-#NET I_0(4) LOC = "N5" ;  # Bank = 2, Signal name = LD4
-#NET I_0(3) LOC = "P6" ; # Bank = 2, Signal name = LD3
-#NET I_0(2) LOC = "P7" ; # Bank = 3, Signal name = LD2
-#NET I_0(1) LOC = "M11" ; # Bank = 2, Signal name = LD1
-#NET I_0(0) LOC = "M5" ;  # Bank = 2, Signal name = LD0#
+NET O_2(7) LOC = "G1" ; # Bank = 3, Signal name = LD7
+NET O_2(6) LOC = "P4" ; # Bank = 2, Signal name = LD6
+NET O_2(5) LOC = "N4" ;  # Bank = 2, Signal name = LD5
+NET O_2(4) LOC = "N5" ;  # Bank = 2, Signal name = LD4
+NET O_2(3) LOC = "P6" ; # Bank = 2, Signal name = LD3
+NET O_2(2) LOC = "P7" ; # Bank = 3, Signal name = LD2
+NET O_2(1) LOC = "M11" ; # Bank = 2, Signal name = LD1
+NET O_2(0) LOC = "M5" ;  # Bank = 2, Signal name = LD0#
 
 # Pin assignment for SWs
 NET I_0(7) LOC = "N3";  # Bank = 2, Signal name = SW7
