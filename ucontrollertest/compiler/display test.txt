@@ -155,7 +155,8 @@ rra r2 ; read button 1 tick into r2
 cmp r0 r2 ; check if tick is one
 brnp {button1} ; branch if button is pressed
 jmpp {button1f} ; goto finish of button 1 cycle
-sri [conis]  {button1} ; set RAM adress to total value
+: button1
+sri [conis] ; set RAM adress to total value
 rra r2 ; read total coins into r2
 sbr 0x02 ; set r0 to 2
 add r2 r0 ; add 1 to r2

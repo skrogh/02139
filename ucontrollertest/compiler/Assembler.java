@@ -125,6 +125,9 @@ public class Assembler {
             }
             wordScanner.close();
         }
+        // print all labels
+        System.out.println(markers.toString());
+        
         lineScanner.close();
 
         programtext = "";
@@ -135,13 +138,21 @@ public class Assembler {
             Scanner wordScanner = new Scanner( line );
             String firstWord = wordScanner.next();
 
-            if ( firstWord.equals( "goto" ) ) {
+            if ( firstWord.equals( "jmp" ) ) {
                 String marker = wordScanner.next();
                 int displacement = markers.get( marker ) - markerline;
                 if ( displacement < 0 )
                     programtext += "jmpn " + Math.abs(displacement) + "\n";
                 else if ( displacement > 0 )
                     programtext += "jmpp " + displacement + "\n";
+                markerline++;
+            } else if ( firstWord.equals( "brn" ) ) {
+                String marker = wordScanner.next();
+                int displacement = markers.get( marker ) - markerline;
+                if ( displacement < 0 )
+                    programtext += "brnn " + Math.abs(displacement) + "\n";
+                else if ( displacement > 0 )
+                    programtext += "brnp " + displacement + "\n";
                 markerline++;
             } else {
                 markerline++;

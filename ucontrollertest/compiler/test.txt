@@ -1,53 +1,12 @@
+: fo
+nop
+nop
+brn bar
+jmp fo
+: bar
+: jhon
 nop
 nop
 nop
-nop
-sbr 0xFF ;
-sio r10 r0 ;
-sri 0 ; Set ram address; Put number font in RAM:
-srvi 0x01 ; 0
-sri 1 ;
-srvi 0x02 ; 1
-sri 2 ;
-srvi 0x04 ; 2
-sri 3 ;
-srvi 0x08 ; 3
-sri 4 ;
-srvi 0x10 ; 4
-sri 5 ;
-srvi 0x20 ; 5
-sri 6 ;
-srvi 0x40 ; 6
-sri 7 ;
-srvi 0x80 ; 7
-sri 8 ;
-srvi 0xF0 ; 8
-sri 9 ;
-srvi 0x0F ; 9
-res r4 ; ram counter
-sbr 0x01 ; for lykke for delay
-mov r1 r0 ; flyt 1 til reg 1
-res r3
-res r2
-add r2 r1 ; add 1 to r2
-brnp 2 ; continue
-jmpn 2 ; jump to adder
-add r3 r1 ; add 1 to r3
-brnp 2 ; continue
-jmpn 6 ; jump to res 2
-sra r4 ; set ram adress
-add r4 r1 ; append ram adress
-rra r5 ; read ram to r5
-sio r10 r5 ; relay to output
-rio r5 r1 ; read from switches, wait for release
-sbr 0x01 ; set bitmask
-and r5 r0 ; set bitmask
-sub r5 r1 ; subtract 1 from r5, overflow on all but 0
-brnp 2 ; continue
-jmpn 5 ; jump back to button read
-rio r5 r1 ; read from switches, wait for pressed
-sbr 0x01 ; set bitmask
-and r5 r0 ; set bitmask
-sub r5 r1 ; subtract 1 from r5, overflow on all but 0
-brnn 4 ; loop back to read buttons
-jmpn 18 ; jump back to res r3
+jmp jhon
+
