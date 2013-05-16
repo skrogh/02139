@@ -1,0 +1,10 @@
+; comment
+: label
+nop ; op
+nop
+nop
+
+goto label
+goto gohere
+
+: gohere

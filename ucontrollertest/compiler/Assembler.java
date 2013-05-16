@@ -8,14 +8,23 @@ public class Assembler {
     private static Hashtable<String, String> opcodes;
     private enum operand { REG, IMMEDIATE, BYTE }
     private static Hashtable<String, operand[]> grammar;
+    private static Hashtable<String, Integer> markers;
     private static String programtext;
+    private static int markerline = 0;
+    private static String processedtext;
 
     public static void main( String args[] ) {
         programtext = readFile( args[ 0 ] );
         makeRegisters();
+        makeMarkers();
         makeOpcodes();
         makeSyntax();
+        processMarkers();
         dump( args[1] );
+    }
+
+    private static void makeMarkers() {
+        markers = new Hashtable<String, Integer>();
     }
 
     private static void makeRegisters() {
@@ -99,6 +108,52 @@ public class Assembler {
         writeFile( filename, init + progcode + end );
     }
 
+    private static void processMarkers() {
+        processedtext = "";
+        Scanner lineScanner = new Scanner( programtext );
+
+        while ( lineScanner.hasNext() ) {
+            String line = lineScanner.nextLine();
+            Scanner wordScanner = new Scanner( line );
+            String firstWord = wordScanner.next();
+            if ( firstWord.equals( ":" ) ) {
+                markers.put( wordScanner.next(), markerline );
+            } else {
+                markerline += 1;
+                processedtext += line;
+                processedtext += "\n";
+            }
+            wordScanner.close();
+        }
+        lineScanner.close();
+
+        programtext = "";
+        lineScanner = new Scanner( processedtext );
+        markerline = 0;
+        while ( lineScanner.hasNext() ) {
+            String line = lineScanner.nextLine();
+            Scanner wordScanner = new Scanner( line );
+            String firstWord = wordScanner.next();
+
+            if ( firstWord.equals( "goto" ) ) {
+                String marker = wordScanner.next();
+                int displacement = markers.get( marker ) - markerline;
+                if ( displacement < 0 )
+                    programtext += "jmpn " + Math.abs(displacement) + "\n";
+                else if ( displacement > 0 )
+                    programtext += "jmpp " + displacement + "\n";
+                markerline++;
+            } else {
+                markerline++;
+                programtext += line;
+                programtext += "\n";
+            }
+            wordScanner.close();
+        }
+        lineScanner.close();
+            
+    }
+
     private static String compile() {
         String romcode = "";
 
@@ -109,7 +164,7 @@ public class Assembler {
             Scanner wordScanner = new Scanner( line );
             String opc = wordScanner.next();
             if ( opc.equals( "nop" ) ) {
-                addLine( opc, 0 );
+                romcode += addLine( opc, 0 );
                 continue;
             }
             operand[] operands = grammar.get( opc );
@@ -215,10 +270,20 @@ public class Assembler {
             Scanner lineScanner = new Scanner( new File( filename ) );
 
             while( lineScanner.hasNextLine() ) {
-                text += lineScanner.nextLine();
-                text += "\n";
+                String line = lineScanner.nextLine();
+                Scanner commentScanner = new Scanner( line );
+                if ( !commentScanner.hasNext() )
+                    continue;
+                String firstWord = commentScanner.next();
+                if ( !firstWord.equals( ";" ) ) {
+                    text += line;
+                    text += "\n";
+                    commentScanner.close();
+                } else {
+                    commentScanner.close();
+                    continue;
+                }
             }
-
             text = text.replace( ",", "" );
             lineScanner.close();
         }
