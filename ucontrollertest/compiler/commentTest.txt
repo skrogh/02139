@@ -1,0 +1,5 @@
+; this is a comment
+nop ; not a comment
+
+
+; this is another comment

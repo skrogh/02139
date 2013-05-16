@@ -1,3 +1,7 @@
+nop
+nop
+nop
+nop
 sbr 0xFF ;
 sio r10 r0 ;
 sri 0 ; Set ram address; Put number font in RAM:
