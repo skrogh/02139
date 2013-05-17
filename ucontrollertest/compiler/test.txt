@@ -12,6 +12,7 @@
 [but3t] = 246
 [but3c1] = 245
 [but3c2] = 244
+[but6] = 69
 [price] = 243 ; Price for a cola
 [left] = 242 ; Colas left
 [coins] = 241 ; coins entered
@@ -98,7 +99,7 @@ sbr 0x01 ; Make sure there is a one at r1
 mov r1 r0 ; Make sure there is a one at r1
 ; 
 ; Button pooling:
-rio r3 r1 ; Read buttons into r3
+rio r3 r0 ; Read buttons into r3
 res r2 ; reset r2, used for comparision
 ; Check button 1
 sri [but1s]  ; get last state
@@ -111,9 +112,9 @@ sri [but1c1]  ; get counter
 rra r4 ; read button 1 counter
 sri [but1c2]  ; get counter
 rra r5 ; read button 1 counter
-add r4 r1 ; add 1 to timer
 res r0 ; we need a zero
-addc r5 r0 ; add carry t0 r5
+add r4 r1 ; add 1 to timer
+; addc r5 r0 ; add carry t0 r5
 brn button1timerO ; branch on overflow
 sri [but1c1]  ; get counter
 srvr r4 ; set button 1 counter
@@ -133,12 +134,12 @@ sri [but1s]  ; button 1 status reg
 srvi 0x01 ; save status
 : button1deBouF
 res r0 ; wee need a zero for comparision
-sri [but1t]  ; get tick
+sri [but1t]  ; get tick adress
 srvi 0x00 ; reset tick
 cmp r0 r6 ; set carry flag if pressed last time
 brn button1endTick ; branch if pressed last time
 sri [but1s]
-rra r5 ; read in current state
+rra r6 ; read in current state
 cmp r0 r6 ; set carryfalg if pressed now
 brn button1setTick ; set tick if pressed now
 jmp button1endTick
@@ -259,7 +260,7 @@ rra r2 ; put in r2
 sri [timer2]  ; fetch the timer2 vairables
 rra r3 ; put in r3
 add r2 r1 ; add one to r2
-; addc r3 r0 ; add carry to r3
+addc r3 r0 ; add carry to r3
 sri [timer1]  ; set timer 1 variable
 srvr r2 ; put back timer1
 sri [timer2]  ; set timer2 variable

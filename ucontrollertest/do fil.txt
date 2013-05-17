@@ -1,0 +1,10 @@
+restart
+add wave -position insertpoint  \
+sim:/basys_shell/rams/rams
+add wave -position insertpoint  \
+sim:/basys_shell/regs/r
+force reset 1 0, 0 10
+force clk 0 0, 1 1 -repeat 2
+force I_0 00000000
+force I_1 00000000
+run 10000
