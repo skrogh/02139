@@ -145,15 +145,15 @@ public class Assembler {
 			String line = lineScanner.nextLine();
 			Scanner wordScanner = new Scanner( line );
 			String firstWord = wordScanner.next();
-			if ( firstWord.equals( "sri" ) ) {
+			if ( firstWord.equals( "sri" ) || firstWord.equals( "sbr" ) ) {
 				String marker = wordScanner.next();
 				if ( ( marker.length() > 0 ) && ( marker.charAt( 0 ) == '[' ) ) { // Has special stuff
 					marker = marker.split( "\\W" )[1];
-					programtext += "sri " + ram.get( marker ) + "\n";
+					programtext +=  firstWord + " " + ram.get( marker ) + "\n";
 					markerline++;
 					// if error, print where
 					if ( ram.get( marker ) == null ) 
-						System.out.println( line + ": " + marker + "\n" + "sri " + ram.get( marker ) );
+						System.out.println( line + ": " + marker + "\n" + firstWord + " " + ram.get( marker ) );
 				} else { // treat as normal
 					markerline++;
 					programtext += line;

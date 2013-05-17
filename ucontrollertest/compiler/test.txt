@@ -1,18 +1,11 @@
 ; stuff to replace
 ; ram adress:
-[but1s] = 255  ; Button 1 status
-[but1t] = 254  ; Button 1 tick
-[but1c1] = 253  ; Button 1 counter ( used for debounce)
-[but1c2] = 252  ; Button 1 counter ( used for debounce)
-[but2s] = 251
-[but2t] = 250
-[but2c1] = 249
-[but2c2] = 248
-[but3s] = 247
-[but3t] = 246
-[but3c1] = 245
-[but3c2] = 244
-[but6] = 69
+[buts] = 100  ; Button status basse reg
+[butt] = 108  ; Button tick base reg
+[butc1] = 116  ; Button counter base reg ( used for debounce)
+[butc2] = 132  ; Button counter base reg ( used for debounce)
+
+
 [price] = 243 ; Price for a cola
 [left] = 242 ; Colas left
 [coins] = 241 ; coins entered
@@ -101,92 +94,96 @@ mov r1 r0 ; Make sure there is a one at r1
 ; Button pooling:
 rio r3 r0 ; Read buttons into r3
 res r2 ; reset r2, used for comparision
-; Check button 1
-sri [but1s]  ; get last state
+
+; setup loop for all buttons
+res r7 ; reset r7 (put adder here instead)
+mov r8 r1 ; used for bitmasking
+: buttonLoop
+; Check button r7
+sbr [buts]  ; get last state base reg
+add r0 r7 ; get last state[r7]
+sra r0 ; set ram pointer  
 rra r6 ; save it
-sbr 0x01 ; set r0 to bitmask for button 1
-and r0 r3 ; apply bitmask, result in r0
+mov r0 r3 ; copy r3 to r0
+and r0 r8 ; apply bitmask, result in r0
 cmp r2 r0 ; set carry flag, if button was pressed
 brn button1pressed
-sri [but1c1]  ; get counter
+sbr [butc1]  ; get timer 1 base reg
+add r0 r7 ; get timer 1[r7]
+sra r0 ; set ram pointer  
 rra r4 ; read button 1 counter
-sri [but1c2]  ; get counter
+sbr [butc2]  ; get timer 2 base reg
+add r0 r7 ; get timer2[r7]
+sra r0 ; set ram pointer  
 rra r5 ; read button 1 counter
 res r0 ; we need a zero
 add r4 r1 ; add 1 to timer
-; addc r5 r0 ; add carry t0 r5
+addc r5 r0 ; add carry t0 r5
 brn button1timerO ; branch on overflow
-sri [but1c1]  ; get counter
-srvr r4 ; set button 1 counter
-sri [but1c2]  ; get counter
+sbr [butc1]  ; get timer 1 base reg
+add r0 r7 ; get timer 1[r7]
+sra r0 ; set ram pointer  
+srvr r4 ; read button 1 counter
+sbr [butc2]  ; get timer 2 base reg
+add r0 r7 ; get timer2[r7]
+sra r0 ; set ram pointer  
 srvr r5 ; set button 1 counter
 jmp button1deBouF ; jump to end of debounce
 : button1timerO
-sri [but1s]  ; button 1 status reg
+sbr [buts]  ; get button state base reg
+add r0 r7 ; get state[r7]
+sra r0 ; set ram pointer  
 srvi 0x00 
 jmp button1deBouF ; jump to end of debounce
 : button1pressed
-sri [but1c1]  ; 
+sbr [butc1]  ; get timer 1 base reg
+add r0 r7 ; get timer 1[r7]
+sra r0 ; set ram pointer  
 srvi 0x00 ; reset timer
-sri [but1c2]  ; 
+sbr [butc1]  ; get timer 2 base reg
+add r0 r7 ; get timer 1[r7]
+sra r0 ; set ram pointer  
 srvi 0x00 ; reset timer
-sri [but1s]  ; button 1 status reg
+sbr [buts]  ; get button state base reg
+add r0 r7 ; get state[r7]
+sra r0 ; set ram pointer  
 srvi 0x01 ; save status
 : button1deBouF
-res r0 ; wee need a zero for comparision
-sri [but1t]  ; get tick adress
+sbr [butt]  ; get button tick base reg
+add r0 r7 ; get tick[r7]
+sra r0 ; set ram pointer  
 srvi 0x00 ; reset tick
-cmp r0 r6 ; set carry flag if pressed last time
+cmp r2 r6 ; set carry flag if pressed last time
 brn button1endTick ; branch if pressed last time
-sri [but1s]
+sbr [buts]  ; get button state base reg
+add r0 r7 ; get state[r7]
+sra r0 ; set ram pointer  
 rra r6 ; read in current state
-cmp r0 r6 ; set carryfalg if pressed now
+cmp r2 r6 ; set carryfalg if pressed now
 brn button1setTick ; set tick if pressed now
 jmp button1endTick
 : button1setTick
-sri [but1t]
+sbr [butt]  ; get button tick base reg
+add r0 r7 ; get tick[r7]
+sra r0 ; set ram pointer 
 srvi 0x01 ; set tick
 : button1endTick
-; Check button 2
-sbr 0x02 ; set r0 to bitmask for second button
-and r0 r3 ; apply bitmask, result in r0
-cmp r2 r0 ; set carry flag, if button was pressed
-brnp 0x02 ; branch to +??? if button 2 was pressed. r2 and r3 are reserved
-jmpp 0x08 ; zero tick flag
-sri [but2s]  ; set ram-adress to where button 2 status is kept
-rra r4 ; read that into r4
-cmp r2 r4 ; set carry flag, if button was pressed last time
-brnp 0x04 ; jump to set tick to 0
-sri [but2t]  ; set ram-adress to where button 2 tick is kept
-srvi 0x01 ; set to true (one)
-jmpp 0x03 ; skip next two lines
-sri [but2t]  ; set ram-adress to where button 2 tick is kept
-srvi 0x00 ; set to false (zero)
-sri [but2s]  ; set ram-adress to where button 2 status is kept
-srvr r0 ; set button 2 status to corrent status
-; Check button 3
-sbr 0x04 ; set r0 to bitmask for third button
-and r0 r3 ; apply bitmask, result in r0
-cmp r2 r0 ; set carry flag, if button was pressed
-brnp 0x02 ; branch to +??? if button 3 was pressed. r2 and r3 are reserved
-jmpp 0x08 ; zero tick flag
-sri [but3s]  ; set ram-adress to where button 3 status is kept
-rra r4 ; read that into r4
-cmp r2 r4 ; set carry flag, if button was pressed last time
-brnp 0x04 ; jump to set tick to 0
-sri [but3t]  ; set ram-adress to where button 3 tick is kept
-srvi 0x01 ; set to true (one)
-jmpp 0x03 ; skip next two lines
-sri [but3t]  ; set ram-adress to where button 3 tick is kept
-srvi 0x00 ; set to false (zero)
-sri [but3s]  ; set ram-adress to where button 3 status is kept
-srvr r0 ; set button 3 status to corrent status
-; 
+add r7 r1 ; append r7
+add r8 r8 ; set r0 to bitmask for button 1
+brn buttonLoopEnd ; end loop on overflow
+jmp buttonLoop ; else continue
+: buttonLoopEnd
+
 ; do button stuff
 ; button 1
-res r0 ; reset r0, we need a zero
-sri [but1t]  ; set ram adress to where button 1 tick is kept
+
+sbr [butt]  ; get button tick
+mov r7 r0
+sbr 0x00
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
 rra r2 ; read button 1 tick into r2
+res r0 ; reset r0, we need a zero
 cmp r0 r2 ; check if tick is one
 brn button1 ; branch if button is pressed
 jmp button1f ; goto finish of button 1 cycle
@@ -198,9 +195,13 @@ add r2 r0 ; add 1 to r2
 srvr r2 ; put value back in ram
 : button1f 
 ; button2
-res r0 ; reset r0, we need a zero
-sri [but2t]  ; set ram adress to where button 1 tick is kept
+sbr [butt]  ; get button tick
+mov r7 r0
+sbr 0x01
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
 rra r2 ; read button 1 tick into r2
+res r0 ; reset r0, we need a zero
 cmp r0 r2 ; check if tick is one
 brn button2 ; branch if button is pressed
 jmp button2f ; goto finish of button 2 cycle
@@ -212,9 +213,13 @@ add r2 r0 ; add 1 to r2
 srvr r2 ; put value back in ram
 : button2f
 ; button3
-res r0 ; reset r0, we need a zero
-sri [but3t]  ; set ram adress to where button 1 tick is kept
+sbr [butt]  ; get button tick
+mov r7 r0
+sbr 0x02
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
 rra r2 ; read button 1 tick into r2
+res r0 ; reset r0, we need a zero
 cmp r0 r2 ; check if tick is one
 brn button3 ; branch if button is pressed
 jmp button3f ; goto finish of button 3 cycle
@@ -315,22 +320,3 @@ sra r12 ; get digit/symbol adress from r12
 rra r0 ; get digit/symbol
 sio r9 r0 ; read digit/symbol onto display
 jmpa IOLoop ; jump back to IO loop
-
-
-; not used code
-sbr 0x01 ; set r0 to bitmask for first button
-and r0 r3 ; apply bitmask, result in r0
-cmp r2 r0 ; set carry flag, if button was pressed
-brnp 0x02 ; branch to +??? if button 1 was pressed. r2 and r3 are reserved
-jmpp 0x08 ; zero tick flag
-sri [but1s]  ; set ram-adress to where button 1 status is kept
-rra r4 ; read that into r4
-cmp r2 r4 ; set carry flag, if button was pressed last time
-brnp 0x04 ; jump to set tick to 0
-sri [but1t]  ; set ram-adress to where button 1 tick is kept
-srvi 0x01 ; set to true (one)
-jmpp 0x03 ; skip next two lines
-sri [but1t]  ; set ram-adress to where button 1 tick is kept
-srvi 0x00 ; set to false (zero)
-sri [but1s]  ; set ram-adress to where button 1 status is kept
-srvr r0 ; set button 1 status to corrent status
