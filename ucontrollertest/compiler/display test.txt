@@ -1,16 +1,33 @@
 ; stuff to replace
 ; ram adress:
+
+; messages:
+[empty] = 37 	; Empty-	6
+[emptyL] = 6 	; constant
+[emptyEnd] =43 	; constant
+[dispense] = 43 ; Dispense-	9
+[dispenseL] = 6 ; Dispense-	9
+[dispenseEnd] = 52 ; constant
+
+; button status:
 [buts] = 100  ; Button status basse reg
 [butt] = 108  ; Button tick base reg
 [butc1] = 116  ; Button counter base reg ( used for debounce)
 [butc2] = 132  ; Button counter base reg ( used for debounce)
 
+; variables
+[price] = 255 ; Price for a cola
+[left] = 254 ; Colas left
+[coins] = 253 ; coins entered
+[timer1] = 252
+[timer2] = 251
+[timer3] = 250
+[codePoint1] = 249 ; PC MSB
+[codePoint2] = 248
+[scroller] = 247 ; used for scrolling text
 
-[price] = 243 ; Price for a cola
-[left] = 242 ; Colas left
-[coins] = 241 ; coins entered
-[timer1] = 240
-[timer2] = 239
+
+
 
 ; start loading 7-segment values in ram
 sri 0 ; start 7-segment values at RAMADDR = 0
@@ -79,14 +96,261 @@ sri 31 ; set ram address to V
 srvi 0xAB ; V has segment code "10101011"
 sri 32 ; set ram address to W
 srvi 0x81 ; W has segment code "10000001"
-sri 34 ; set ram address to X
+sri 33 ; set ram address to X
 srvi 0x91 ; X has segment code "10010011"
-sri 35 ; set ram address to Y
+sri 34 ; set ram address to Y
 srvi 0x89 ; Y has segment code "10001001"
-sri 36 ; set ram address to Z
+sri 35 ; set ram address to Z
 srvi 0x27 ; Z has segment code "00100111"
-; 
-: IOLoop
+sri 36 ; set ram address to spece
+srvi 0x27 ; space has segment code "11111111"
+
+; load in messages
+; empty
+
+
+; set price
+sri [price]
+srvi 0x07
+; set colas left
+sri [left]
+srvi 0x10 ; 16 colas
+
+: getCoinsLoop
+sbr [butt]  ; get button tick
+mov r7 r0
+sbr 0x00
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
+rra r2 ; read button 1 tick into r2
+res r0 ; reset r0, we need a zero
+cmp r0 r2 ; check if tick is one
+brn button1 ; branch if button is pressed
+jmp button1f ; goto finish of button 1 cycle
+: button1
+sri [coins]  ; set RAM adress to total value
+rra r2 ; read total coins into r2
+sbr 0x02 ; set r0 to 2
+add r2 r0 ; add 1 to r2
+srvr r2 ; put value back in ram
+: button1f 
+; button2
+sbr [butt]  ; get button tick
+mov r7 r0
+sbr 0x01
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
+rra r2 ; read button 1 tick into r2
+res r0 ; reset r0, we need a zero
+cmp r0 r2 ; check if tick is one
+brn button2 ; branch if button is pressed
+jmp button2f ; goto finish of button 2 cycle
+: button2
+sri [coins]  ; set RAM adress to total value
+rra r2 ; read total coins into r2
+sbr 0x05 ; set r0 to 5
+add r2 r0 ; add 1 to r2
+srvr r2 ; put value back in ram
+: button2f
+; button3
+sbr [butt]  ; get button tick
+mov r7 r0
+sbr 0x02
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
+rra r2 ; read button 1 tick into r2
+res r0 ; reset r0, we need a zero
+cmp r0 r2 ; check if tick is one
+brn button3 ; branch if button is pressed
+jmp button3f ; goto finish of button 3 cycle
+: button3
+; check if coins entered is more than price
+; get all variables
+sbr 0x01
+mov r1 r0 ; get a 1 at r1
+sri [coins]
+rra r0
+sri [price]
+rra r2
+sri [left]
+rra r3
+cmp r0 r2 ; set carry if price is bigger than coins
+brn alertLoop ; branch to alert
+sub r3 r1 ; subtract 1 from colas left
+brn emptyLoop ; branch to emply, if no colas. dont save new coin value, or new colas left
+sub r0 r2 ; sub price from coins
+sri [coins]
+srvr r0 ; save coins left
+sri [left]
+srvr r3 ; save colas left
+jmp dispenseLoop ; jump to dispense loop
+: button3f
+
+; set display
+: showTotal
+sbr 0x01
+mov r1 r0 ; get a 1 in r1
+sri [coins]  ; get coins
+rra r4 ; put conins in r4, for BCD conversion
+; binary tO bcd, converts r4 into bcd in r12-15. r4 is not altered
+sbr 0xFF ; set r0 to 255/-1
+res r12 r0 ; reset this one, as no thousands
+mov r13 r0 ; set to -1
+mov r14 r0 ; set to -1
+mov r15 r0 ; set to -1
+mov r5 r4 ; copy r4 to r5
+sbr 0x64 ; load 100 into r0
+: sub100
+add r13 r1 ; add one to hundreds
+sub r5 r0 ; subtract 100 from r5
+brn finish100 ; 
+jmp sub100 ; subtract 100 untill overflow;
+: finish100
+add r5 r0 ; add 100 to get back to point before overflow (faster than saving)
+sbr 0x0A ; load 10 into r0
+: sub10
+add r14 r1 ; add one to tens
+sub r5 r0 ; subtract 10 from r5
+brn finish10 ;
+jmp sub10 ; subtract 10 untill overflow;
+: finish10
+add r5 r0 ; add 10 to get back to point before overflow (faster than saving)
+mov r15 r5 ; move ones to correct register.
+
+; go to main loop
+; save current position
+sri [codePoint1]
+gpch r0
+srvr r0
+sri [codePoint2]
+gpcl r0
+srvr r0
+; jump
+jmp MainLoop
+
+: dispenseLoop
+; in theory more coins can be trown in here, by adding a snippet of code
+; button3
+sbr [buts]  ; get button status
+mov r7 r0
+sbr 0x02
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
+rra r2 ; read button 1 tick into r2
+res r0 ; reset r0, we need a zero
+cmp r0 r2 ; check if tick is one
+brn button3f_d ; branch finish if button is pressed
+jmp getCoinsLoop ; go back to collect coins
+: button3f_d
+
+; set display
+sbr 0x01
+mov r1 r0 ; put a 1 in r1
+sri [scroller]
+rra r2 ; read scrolling value into r2
+sri [timer3]
+rra r3 ; get timer3 in r3
+res r0 ; reset r0
+cmp r0 r3 ; set carry flag if if != 0
+brnp 2 ; only do next line if timer3 == 0
+add r2 r1 ; add 1 to scroller
+sbr [dispenseL]
+cmp r2 r0 ; set carry if r0 > r2
+brnp 2 ; only do next line if r2 >= r0
+res r2 ; reset r2
+sri [scroller]
+srvr r2 ; save scroller position
+
+sri [dispenseEnd]
+rra r3 ; read message endpoint value into r3
+sbr [dispense]  ; get starting point
+add r0 r2 ; add position
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [dispense]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r12 ; set as first letter
+add r0 r1 ; add 1 to pointer
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [dispense]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r13 ; set as first letter
+add r0 r1 ; add 1 to pointer
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [dispense]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r14 ; set as first letter
+add r0 r1 ; add 1 to pointer
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [dispense]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r15 ; set as first letter
+
+
+
+
+
+; go to main loop
+; save current position
+sri [codePoint1]
+gpch r0
+srvr r0
+sri [codePoint2]
+gpcl r0
+srvr r0
+; jump
+jmp MainLoop
+
+: alertLoop
+; in theory more coins can be trown in here, by adding a snippet of code
+; button3
+sbr [buts]  ; get button status
+mov r7 r0
+sbr 0x02
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
+rra r2 ; read button 1 tick into r2
+res r0 ; reset r0, we need a zero
+cmp r0 r2 ; check if tick is one
+brn button3f_a ; branch finish if button is pressed
+jmp getCoinsLoop ; go back to collect coins
+: button3f_a
+
+; set display
+
+; go to main loop
+; save current position
+sri [codePoint1]
+gpch r0
+srvr r0
+sri [codePoint2]
+gpcl r0
+srvr r0
+; jump
+jmp MainLoop
+
+: emptyLoop
+; stay here forever?
+
+; go to main loop
+; save current position
+sri [codePoint1]
+gpch r0
+srvr r0
+sri [codePoint2]
+gpcl r0
+srvr r0
+; jump
+jmp MainLoop
+
+: MainLoop
 ; put one in r1
 sbr 0x01 ; Make sure there is a one at r1
 mov r1 r0 ; Make sure there is a one at r1
@@ -96,8 +360,8 @@ rio r3 r0 ; Read buttons into r3
 res r2 ; reset r2, used for comparision
 
 ; setup loop for all buttons
-res r7 ; reset r7 (put adder here instead)
-mov r8 r1 ; used for bitmasking
+res r7 ; reset r7;
+mov r8 r1 ; used for bitmasking, but a 1 in.
 : buttonLoop
 ; Check button r7
 sbr [buts]  ; get last state base reg
@@ -174,89 +438,14 @@ brn buttonLoopEnd ; end loop on overflow
 jmp buttonLoop ; else continue
 : buttonLoopEnd
 
-; do button stuff
-; button 1
+: functionsHere
+sri [codePoint1]  ; get return point high
+rra r0
+sri [codePoint2]  ; get return point low
+rra r1
+spc r0 r1 ; got to return point
 
-sbr [butt]  ; get button tick
-mov r7 r0
-sbr 0x00
-add r0 r7
-sra r0 ; set ram adress to where button 1 tick is kept
-rra r2 ; read button 1 tick into r2
-res r0 ; reset r0, we need a zero
-cmp r0 r2 ; check if tick is one
-brn button1 ; branch if button is pressed
-jmp button1f ; goto finish of button 1 cycle
-: button1
-sri [coins]  ; set RAM adress to total value
-rra r2 ; read total coins into r2
-sbr 0x02 ; set r0 to 2
-add r2 r0 ; add 1 to r2
-srvr r2 ; put value back in ram
-: button1f 
-; button2
-sbr [butt]  ; get button tick
-mov r7 r0
-sbr 0x01
-add r0 r7
-sra r0 ; set ram adress to where button 1 tick is kept
-rra r2 ; read button 1 tick into r2
-res r0 ; reset r0, we need a zero
-cmp r0 r2 ; check if tick is one
-brn button2 ; branch if button is pressed
-jmp button2f ; goto finish of button 2 cycle
-: button2
-sri [coins]  ; set RAM adress to total value
-rra r2 ; read total coins into r2
-sbr 0x05 ; set r0 to 5
-add r2 r0 ; add 1 to r2
-srvr r2 ; put value back in ram
-: button2f
-; button3
-sbr [butt]  ; get button tick
-mov r7 r0
-sbr 0x02
-add r0 r7
-sra r0 ; set ram adress to where button 1 tick is kept
-rra r2 ; read button 1 tick into r2
-res r0 ; reset r0, we need a zero
-cmp r0 r2 ; check if tick is one
-brn button3 ; branch if button is pressed
-jmp button3f ; goto finish of button 3 cycle
-: button3
-sbr 0x01
-add r12 r0
-: button3f
-; 
-; show total:
-sri [coins]  ; get coins
-rra r4 ; put conins in r4, for BCD conversion
-; binary tO bcd, converts r4 into bcd in r12-15. r4 is not altered
-sbr 0xFF ; set r0 to 255/-1
-; res r12 r0 ; reset this one, as no thousands
-mov r13 r0 ; set to -1
-mov r14 r0 ; set to -1
-mov r15 r0 ; set to -1
-mov r5 r4 ; copy r4 to r5
-sbr 0x64 ; load 100 into r0
-: sub100
-add r13 r1 ; add one to hundreds
-sub r5 r0 ; subtract 100 from r5
-brn finish100 ; 
-jmp sub100 ; subtract 100 untill overflow;
-: finish100
-add r5 r0 ; add 100 to get back to point before overflow (faster than saving)
-sbr 0x0A ; load 10 into r0
-: sub10
-add r14 r1 ; add one to tens
-sub r5 r0 ; subtract 10 from r5
-brn finish10 ;
-jmp sub10 ; subtract 10 untill overflow;
-: finish10
-add r5 r0 ; add 10 to get back to point before overflow (faster than saving)
-mov r15 r5 ; move ones to correct register.
-;
-; loopDis
+: displayDigitSlower
 sbr 0x01 ; put 1 in r1
 mov r1 r0 ; put 1 in r1
 res r0 ; make sure zero in r0
@@ -271,11 +460,9 @@ srvr r2 ; put back timer1
 sri [timer2]  ; set timer2 variable
 srvr r3 ; put timer2 back
 brn displayDigit ; on overflow
-jmpa IOLoop ; Else go back to io loop
-;
+jmp mainLoop ; Else go back to io loop
+
 : displayDigit
-; 
-; display diget
 add r11 r1 ; append display counter
 sbr 0x03 ; setup bitmask
 and r11 r0 ; apply bitmask, this is an easy way to constrain the counter.
@@ -319,4 +506,10 @@ sio r8 r0 ; set digit 2 to light up
 sra r12 ; get digit/symbol adress from r12
 rra r0 ; get digit/symbol
 sio r9 r0 ; read digit/symbol onto display
-jmpa IOLoop ; jump back to IO loop
+; add one to slow timer
+sri [timer3]
+rra r1
+sbr 0x01
+add r1 r0
+srvr r1
+jmp mainLoop ; jump back to IO loop
