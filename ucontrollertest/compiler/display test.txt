@@ -8,6 +8,9 @@
 [dispense] = 43 ; Dispense-	9
 [dispenseL] = 6 ; Dispense-	9
 [dispenseEnd] = 52 ; constant
+[alert] = 52 	; Alert-	6
+[alertL] = 6 	; constant
+[altertEnd] =58 ; constant
 
 ; button status:
 [buts] = 100  ; Button status basse reg
@@ -102,11 +105,43 @@ sri 34 ; set ram address to Y
 srvi 0x89 ; Y has segment code "10001001"
 sri 35 ; set ram address to Z
 srvi 0x27 ; Z has segment code "00100111"
-sri 36 ; set ram address to spece
+sri 36 ; set ram address to space
 srvi 0x27 ; space has segment code "11111111"
 
 ; load in messages
 ; empty
+sri 37
+srvi 14 ; e
+sri 38
+srvi 22 ; m
+sri 39
+srvi 25 ; p
+sri 40
+srvi 29 ; t
+sri 41
+srvi 34 ; y
+sri 42
+srvi 36 ; -
+; dispense
+sri 43
+srvi 13 ; d
+sri 44
+srvi 18 ; i
+sri 45
+srvi 28 ; s
+sri 46
+srvi 25 ; p
+sri 47
+srvi 14 ; e
+sri 48
+srvi 23 ; n
+sri 49
+srvi 28 ; s
+sri 50
+srvi 14 ; e
+sri 51
+srvi 36 ; -
+;
 
 
 ; set price
@@ -226,7 +261,7 @@ sri [codePoint2]
 gpcl r0
 srvr r0
 ; jump
-jmp MainLoop
+jmp mainLoop
 
 : dispenseLoop
 ; in theory more coins can be trown in here, by adding a snippet of code
@@ -293,10 +328,6 @@ sbr [dispense]  ; only on too far
 sra r0 ; set ram adress to that letter
 rra r15 ; set as first letter
 
-
-
-
-
 ; go to main loop
 ; save current position
 sri [codePoint1]
@@ -306,7 +337,7 @@ sri [codePoint2]
 gpcl r0
 srvr r0
 ; jump
-jmp MainLoop
+jmp mainLoop
 
 : alertLoop
 ; in theory more coins can be trown in here, by adding a snippet of code
@@ -334,7 +365,7 @@ sri [codePoint2]
 gpcl r0
 srvr r0
 ; jump
-jmp MainLoop
+jmp mainLoop
 
 : emptyLoop
 ; stay here forever?
@@ -348,9 +379,9 @@ sri [codePoint2]
 gpcl r0
 srvr r0
 ; jump
-jmp MainLoop
+jmp mainLoop
 
-: MainLoop
+: mainLoop
 ; put one in r1
 sbr 0x01 ; Make sure there is a one at r1
 mov r1 r0 ; Make sure there is a one at r1
