@@ -112,6 +112,7 @@ Arithmetics:
 			C = (Rd + Rs) > 0xFF
 10	sub	Rd, Rs		Rd = Rd - Rs		C
 			C = Rs > Rd
+10101 addc Rd, Rs 	Rd = Rd + Rs + C 	C
 
 Nibble manipulation:
 11	sln	Rd, k		Rd(0..3) = k
@@ -133,6 +134,9 @@ Compare:
 
 1011	brnn	K		C=0: PC = PC + 1
 			C=1: PC = PC - K 
+10100 	and 	Rd, Rs 	Rd = Rd & Rs
+10110 	cmp 	Rd, Rs  C = Rs > Rd
+
 //I/O
 //8 bit til switches
 //8 bits til dioder
@@ -149,4 +153,10 @@ I/O
 
 Set r0 to 8-bit value instead of using 2x nibble ops
 1110    sbr K       r0 = K
-//
+
+RAM ops
+1111 	sri K 		ram address = K
+10000 	sra Rs 		ram adress = valueof(Rs)
+10001	srvi K 		ram value = K
+10010 	srvr Rs 	ram value = valueof(Rs)
+10011 	rra Rd 		read ram value into Rd

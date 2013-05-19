@@ -133,9 +133,9 @@ process( CLK, RESET )
 					IO_D => IO_D,
 					IO_S => IO_S,
 					OP_D => OP_D,
-                    ram_set => RAM_SET,
-                    RAM_P_N => RAM_P_N,
-                    RAM_P => RAM_P,
+               ram_set => RAM_SET,
+               RAM_P_N => RAM_P_N,
+               RAM_P => RAM_P,
 					OP_S => OP_S );
 	
 	code : rom
@@ -145,7 +145,7 @@ process( CLK, RESET )
     rams : ram
     port map(   clk => clk,
                 din => RAM_D_N,
-                addr => RAM_P,
+                addr => RAM_P_N, --Added next, since this is clocked internally too
                 w_en => RAM_W,
                 do => RAM_D );
 	
