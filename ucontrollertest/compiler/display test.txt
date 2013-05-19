@@ -152,6 +152,31 @@ sri [left]
 srvi 0x10 ; 16 colas
 
 : getCoinsLoop
+; save current position
+gpcl r1 
+sbr 3 ; line up with high bit
+add r1 r0
+gpch r2
+sbr 9 ; line up with end of this
+add r1 r0
+res r0
+addc r2 r1 ; add with carry, to match highbit too
+sri [codePoint1]
+srvr r2
+sri [codePoint2]
+srvr r1
+
+sri [codePoint2]
+gpcl r1
+sbr 4 ; add 4 to match up with high bit
+add r1 r0
+srvr r1
+sri [codePoint1]
+gpcl r1
+sbr 4 ; add 4 to set returnpoint to just after this
+add r1 r0
+srvr r1
+; main loop
 sbr [butt]  ; get button tick
 mov r7 r0
 sbr 0x00
@@ -253,17 +278,20 @@ add r5 r0 ; add 10 to get back to point before overflow (faster than saving)
 mov r15 r5 ; move ones to correct register.
 
 ; go to main loop
-; save current position
-sri [codePoint1]
-gpch r0
-srvr r0
-sri [codePoint2]
-gpcl r0
-srvr r0
-; jump
 jmp mainLoop
 
 : dispenseLoop
+; save current position
+sri [codePoint1]
+gpch r1
+sbr 9 ; add 9 to set returnpoint to just after this
+add r1 r0
+srvr r1
+sri [codePoint2]
+gpcl r1
+sbr 4 ; add 4 to set returnpoint to just after this
+add r1 r0
+srvr r1
 ; in theory more coins can be trown in here, by adding a snippet of code
 ; button3
 sbr [buts]  ; get button status
@@ -329,17 +357,23 @@ sra r0 ; set ram adress to that letter
 rra r15 ; set as first letter
 
 ; go to main loop
-; save current position
-sri [codePoint1]
-gpch r0
-srvr r0
-sri [codePoint2]
-gpcl r0
-srvr r0
-; jump
 jmp mainLoop
 
 : alertLoop
+; save current position
+gpcl r1 
+sbr 3 ; line up with high bit
+add r1 r0
+gpch r2
+sbr 9 ; line up with end of this
+add r1 r0
+res r0
+addc r2 r1 ; add with carry, to match highbit too
+sri [codePoint1]
+srvr r2
+sri [codePoint2]
+srvr r1
+
 ; in theory more coins can be trown in here, by adding a snippet of code
 ; button3
 sbr [buts]  ; get button status
@@ -357,28 +391,26 @@ jmp getCoinsLoop ; go back to collect coins
 ; set display
 
 ; go to main loop
-; save current position
-sri [codePoint1]
-gpch r0
-srvr r0
-sri [codePoint2]
-gpcl r0
-srvr r0
-; jump
 jmp mainLoop
 
 : emptyLoop
+; save current position
+gpcl r1 
+sbr 3 ; line up with high bit
+add r1 r0
+gpch r2
+sbr 9 ; line up with end of this
+add r1 r0
+res r0
+addc r2 r1 ; add with carry, to match highbit too
+sri [codePoint1]
+srvr r2
+sri [codePoint2]
+srvr r1
+
 ; stay here forever?
 
 ; go to main loop
-; save current position
-sri [codePoint1]
-gpch r0
-srvr r0
-sri [codePoint2]
-gpcl r0
-srvr r0
-; jump
 jmp mainLoop
 
 : mainLoop
@@ -469,13 +501,6 @@ brn buttonLoopEnd ; end loop on overflow
 jmp buttonLoop ; else continue
 : buttonLoopEnd
 
-: functionsHere
-sri [codePoint1]  ; get return point high
-rra r0
-sri [codePoint2]  ; get return point low
-rra r1
-spc r0 r1 ; got to return point
-
 : displayDigitSlower
 sbr 0x01 ; put 1 in r1
 mov r1 r0 ; put 1 in r1
@@ -485,13 +510,13 @@ rra r2 ; put in r2
 sri [timer2]  ; fetch the timer2 vairables
 rra r3 ; put in r3
 add r2 r1 ; add one to r2
-addc r3 r0 ; add carry to r3
+addc r3 r0 ; add carry to r3 - comment for modelsim
 sri [timer1]  ; set timer 1 variable
 srvr r2 ; put back timer1
 sri [timer2]  ; set timer2 variable
 srvr r3 ; put timer2 back
 brn displayDigit ; on overflow
-jmp mainLoop ; Else go back to io loop
+jmp return ; Else go back to io loop
 
 : displayDigit
 add r11 r1 ; append display counter
@@ -543,4 +568,12 @@ rra r1
 sbr 0x01
 add r1 r0
 srvr r1
-jmp mainLoop ; jump back to IO loop
+jmp return ; jump back to IO loop
+
+: return
+sri [codePoint1]  ; get return point high
+rra r0
+sri [codePoint2]  ; get return point low
+rra r1
+spc r0 r1 ; got to return point
+jmp mainLoop
