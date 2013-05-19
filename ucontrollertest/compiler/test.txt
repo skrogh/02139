@@ -6,7 +6,7 @@
 [emptyL] = 6 	; constant
 [emptyEnd] =43 	; constant
 [dispense] = 43 ; Dispense-	9
-[dispenseL] = 6 ; Dispense-	9
+[dispenseL] = 9 ; Dispense-	9
 [dispenseEnd] = 52 ; constant
 [alert] = 52 	; Alert-	6
 [alertL] = 6 	; constant
@@ -160,22 +160,12 @@ gpch r2
 sbr 9 ; line up with end of this
 add r1 r0
 res r0
-addc r2 r1 ; add with carry, to match highbit too
+addc r2 r0 ; add with carry, to match highbit too
 sri [codePoint1]
 srvr r2
 sri [codePoint2]
 srvr r1
 
-sri [codePoint2]
-gpcl r1
-sbr 4 ; add 4 to match up with high bit
-add r1 r0
-srvr r1
-sri [codePoint1]
-gpcl r1
-sbr 4 ; add 4 to set returnpoint to just after this
-add r1 r0
-srvr r1
 ; main loop
 sbr [butt]  ; get button tick
 mov r7 r0
@@ -199,8 +189,8 @@ sbr [butt]  ; get button tick
 mov r7 r0
 sbr 0x01
 add r0 r7
-sra r0 ; set ram adress to where button 1 tick is kept
-rra r2 ; read button 1 tick into r2
+sra r0 ; set ram adress to where button 2 tick is kept
+rra r2 ; read button 2 tick into r2
 res r0 ; reset r0, we need a zero
 cmp r0 r2 ; check if tick is one
 brn button2 ; branch if button is pressed
@@ -217,8 +207,8 @@ sbr [butt]  ; get button tick
 mov r7 r0
 sbr 0x02
 add r0 r7
-sra r0 ; set ram adress to where button 1 tick is kept
-rra r2 ; read button 1 tick into r2
+sra r0 ; set ram adress to where button 3 tick is kept
+rra r2 ; read button 3 tick into r2
 res r0 ; reset r0, we need a zero
 cmp r0 r2 ; check if tick is one
 brn button3 ; branch if button is pressed
@@ -282,16 +272,19 @@ jmp mainLoop
 
 : dispenseLoop
 ; save current position
+gpcl r1 
+sbr 3 ; line up with high bit
+add r1 r0
+gpch r2
+sbr 9 ; line up with end of this
+add r1 r0
+res r0
+addc r2 r0 ; add with carry, to match highbit too
 sri [codePoint1]
-gpch r1
-sbr 9 ; add 9 to set returnpoint to just after this
-add r1 r0
-srvr r1
+srvr r2
 sri [codePoint2]
-gpcl r1
-sbr 4 ; add 4 to set returnpoint to just after this
-add r1 r0
 srvr r1
+
 ; in theory more coins can be trown in here, by adding a snippet of code
 ; button3
 sbr [buts]  ; get button status
@@ -313,9 +306,13 @@ sri [scroller]
 rra r2 ; read scrolling value into r2
 sri [timer3]
 rra r3 ; get timer3 in r3
+; sbr 0x07 ; set mask for fast scrolling - for modelsim
+; and r3 r0 ; add mask for fast scrolling - for modelsim
 res r0 ; reset r0
 cmp r0 r3 ; set carry flag if if != 0
-brnp 2 ; only do next line if timer3 == 0
+brnp 4 ; only do next line if timer3 == 0
+add r3 r1 ; add one to timer, as not to do this again before next overflow
+srvr r3 ; save timer
 add r2 r1 ; add 1 to scroller
 sbr [dispenseL]
 cmp r2 r0 ; set carry if r0 > r2
@@ -324,8 +321,8 @@ res r2 ; reset r2
 sri [scroller]
 srvr r2 ; save scroller position
 
-sri [dispenseEnd]
-rra r3 ; read message endpoint value into r3
+sbr [dispenseEnd]
+mov r3 r0 ; read message endpoint value into r3
 sbr [dispense]  ; get starting point
 add r0 r2 ; add position
 
@@ -368,7 +365,7 @@ gpch r2
 sbr 9 ; line up with end of this
 add r1 r0
 res r0
-addc r2 r1 ; add with carry, to match highbit too
+addc r2 r0 ; add with carry, to match highbit too
 sri [codePoint1]
 srvr r2
 sri [codePoint2]
@@ -402,7 +399,7 @@ gpch r2
 sbr 9 ; line up with end of this
 add r1 r0
 res r0
-addc r2 r1 ; add with carry, to match highbit too
+addc r2 r0 ; add with carry, to match highbit too
 sri [codePoint1]
 srvr r2
 sri [codePoint2]
@@ -510,7 +507,7 @@ rra r2 ; put in r2
 sri [timer2]  ; fetch the timer2 vairables
 rra r3 ; put in r3
 add r2 r1 ; add one to r2
-; addc r3 r0 ; add carry to r3 - comment for modelsim
+; addc r3 r0 ; add carry to r3 - comment for modelsim - coment in general, cause things got a little slow :[
 sri [timer1]  ; set timer 1 variable
 srvr r2 ; put back timer1
 sri [timer2]  ; set timer2 variable
