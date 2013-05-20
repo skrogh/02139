@@ -109,7 +109,7 @@ architecture FSMD of CCPU is
 	--FSM/Datapath I/O
 	--FSM O DP I
 	signal total_en : std_logic;
-	signal sub_price : std_logic_vector( 0 downto 0 );
+	signal sub_price : std_logic;
 	signal add_five : std_logic;
 	--FSM I DP O
 	signal price_comp : std_logic;
@@ -146,7 +146,7 @@ begin
 		release_can <= '0';
 		--Controllers
 		total_en <= '0';
-		sub_price <= "0";
+		sub_price <= '0';
 		add_five <= '0';
 		--Statedefault
 		next_state <= waiting;
@@ -167,7 +167,7 @@ begin
 					if ( price_comp='1' ) then --!(Price >= total)
 						--Subtract price from total
 						total_en <= '1';
-						sub_price <= "1";
+						sub_price <= '1';
 						next_state <= dispense;
 					else
 						next_state <= alarm;
@@ -218,20 +218,24 @@ begin
 	end process;
 	
 	--DataPath
-	process( sub_price, add_five, price, total_reg )
+	process( sub_price, add_five, price, total_reg, adder_out )
 	begin
 		--Adder +2
 		adder_in <= "00010";
-		if ( sub_price = "1" ) then
+		if ( sub_price = '1' ) then
 			--Adder - price - 1
-			adder_in <= std_logic_vector(signed(NOT price)+1);
+			adder_in <= price;
 		elsif ( add_five = '1' ) then
 			--Adder +5
 			adder_in <= "00101";
 		end if;
 		
-		adder_out <= std_logic_vector( signed(total_reg) + signed(adder_in) );
-		total_reg_next <= adder_out( 6 downto 0 );
+		if ( sub_price = '1' ) then
+			adder_out <= std_logic_vector( signed(total_reg) - signed(adder_in) );
+		else
+			adder_out <= std_logic_vector( signed(total_reg) + signed(adder_in) );
+		end if;
+		total_reg_next <= adder_out;
 		--Comparator (can be implimentet with the adder, but has to be used in same clock period. A slower, smaller FSM could be made)
 		if ( signed(total_reg) < signed(price) ) then
 			price_comp <= '0';

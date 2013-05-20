@@ -74,7 +74,7 @@ process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, IO_D, IO_S, C, RAM_P, RAM_
     ADDER <= (others => '0'); -- Don't care ok?
     byte_set <= '0';
     RAM_SET <= '0';
-	RAM_W <= '0';
+	 RAM_W <= '0';
     case OP is
         when  "00000"  => -- NOP no operation
         when	"00001"	=>	-- ADD add
@@ -141,7 +141,13 @@ process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, IO_D, IO_S, C, RAM_P, RAM_
             ADDER <= std_logic_vector( unsigned( "0" & OP_D ) - unsigned( OP_S ) );
             C_E <= '1';
             C_N <= ADDER(8 downto 8);
-        when others => 
+        when    "10111" => --gpcl Rd <= PC(7 downto 0)
+            OP_D_N <= PC_INT(7 downto 0);
+        when    "11000" => --gpch Rd <= PC(7 downto 0)
+            OP_D_N <= "000000" & PC_INT(9 downto 8);
+        when    "11001" => --spc PC = rd(9 downto 8) & rs(7 downto 0)
+            PC_N <= OP_D(1 downto 0) & OP_S;					
+        when others => --will not occur
             PC_N <= PC_INT; -- don't continue	
     end case;
 end process;

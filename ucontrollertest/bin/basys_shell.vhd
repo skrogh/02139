@@ -3,10 +3,10 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 entity basys_shell is
-	port(	RESET  : in std_logic;
+	port(	RESET_ASYNC  : in std_logic;
          CLK    : in std_logic;
-			I_0     :   in  std_logic_vector( 7 downto 0 );
-         I_1     :   in  std_logic_vector( 7 downto 0 );
+			I_0_ASYNC     :   in  std_logic_vector( 7 downto 0 );
+         I_1_ASYNC     :   in  std_logic_vector( 7 downto 0 );
 			O_0     :   out std_logic_vector( 7 downto 0 );
          O_1     :   out std_logic_vector( 7 downto 0 );
 			O_2     :   out std_logic_vector( 7 downto 0 ));
@@ -72,7 +72,17 @@ component ram is
             w_en   : in std_logic;
             do   : out std_logic_vector( 7 downto 0 ) );
     end component;
-	
+
+component InputSynchronizer is
+    port(   clk : in std_logic;
+            reset : in std_logic;
+            I_0_ASYNC : in std_logic_vector( 7 downto 0 );
+            I_1_ASYNC : in std_logic_vector( 7 downto 0 );
+            I_1_SYNC : out std_logic_vector( 7 downto 0 );
+            I_0_SYNC : out std_logic_vector( 7 downto 0 );
+            reset_sync : out std_logic );
+    end component;
+
 signal OP_D_N, IO_D_N, IO_D, IO_S, OP_D, OP_S : std_logic_vector( 7 downto 0 );
 signal OP_DC, OP_SC : std_logic_vector( 3 downto 0 );
 signal byte_set : std_logic;
@@ -81,7 +91,8 @@ signal PC_N_O : std_logic_vector( 9 downto 0 );
 signal OP_C : std_logic_vector( 12 downto 0 );
 signal PC : std_logic_vector( 9 downto 0 );
 signal RAM_P_N, RAM_D_N, RAM_D, RAM_P : std_logic_vector( 7 downto 0 );
-
+signal RESET : std_logic;
+signal I_0, I_1 : std_logic_vector( 7 downto 0 ); 
 signal RAM_W, RAM_SET : std_logic;
 
 begin
@@ -95,6 +106,15 @@ process( CLK, RESET )
 		end if;
 	end process;
 	
+    input : InputSynchronizer
+    port map(   clk => clk,
+                reset => RESET_ASYNC,
+                I_0_ASYNC => I_0_ASYNC,
+                I_1_ASYNC => I_1_ASYNC,
+                I_1_SYNC => I_1,
+                I_0_SYNC => I_0,
+                reset_sync => RESET );
+
 	ops : operations
 	port map( 	OP => OP,
 					RESET => RESET,
@@ -133,9 +153,9 @@ process( CLK, RESET )
 					IO_D => IO_D,
 					IO_S => IO_S,
 					OP_D => OP_D,
-                    ram_set => RAM_SET,
-                    RAM_P_N => RAM_P_N,
-                    RAM_P => RAM_P,
+               ram_set => RAM_SET,
+               RAM_P_N => RAM_P_N,
+               RAM_P => RAM_P,
 					OP_S => OP_S );
 	
 	code : rom
@@ -145,7 +165,7 @@ process( CLK, RESET )
     rams : ram
     port map(   clk => clk,
                 din => RAM_D_N,
-                addr => RAM_P,
+                addr => RAM_P_N, --Added next, since this is clocked internally too
                 w_en => RAM_W,
                 do => RAM_D );
 	
