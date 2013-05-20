@@ -32,6 +32,14 @@ Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 
 -- Compiling entity basys_shell
 -- Compiling architecture structural of basys_shell
 
+} {} {}} Z:/Git/02139/project1/src/BCD4Display.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/BCD4Display.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity BCD4DISPLAY
+-- Compiling architecture structural of BCD4DISPLAY
+
 } {} {}} Z:/Git/02139/project1/src/HexToSevenSegment.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/HexToSevenSegment.vhd
 Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
 -- Loading package STANDARD
@@ -40,14 +48,13 @@ Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 
 -- Compiling entity HexToSevenSegment
 -- Compiling architecture Behavioral of HexToSevenSegment
 
-} {} {}} Z:/Git/02139/ucontrollertest/src/reg.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/reg.vhd
+} {} {}} Z:/Git/02139/project1/src/SegmentMultiplexer.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/SegmentMultiplexer.vhd
 Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity reg
--- Compiling architecture behavioural of reg
+-- Compiling entity SegmentMultiplexer
+-- Compiling architecture Behavioral of SegmentMultiplexer
 
 } {} {}} Z:/Git/02139/ucontrollertest/src/rom.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/rom.vhd
 Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
@@ -57,6 +64,15 @@ Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 
 -- Loading package NUMERIC_STD
 -- Compiling entity rom
 -- Compiling architecture behavioural of rom
+
+} {} {}} Z:/Git/02139/ucontrollertest/src/reg.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/reg.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity reg
+-- Compiling architecture behavioural of reg
 
 } {} {}} Z:/Git/02139/project1/src/SlowClock.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/SlowClock.vhd
 Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
@@ -76,14 +92,14 @@ Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 
 -- Compiling entity ram
 -- Compiling architecture behavioural of ram
 
-} {} {}} Z:/Git/02139/project1/src/TopTest.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/TopTest.vhd
+} {} {}} Z:/Git/02139/project1/src/7BitToBCD.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/7BitToBCD.vhd
 Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity TopTest
--- Compiling architecture Behavioral of TopTest
+-- Compiling entity Bit7ToBCD
+-- Compiling architecture behavioural of Bit7ToBCD
 
 } {} {}} Z:/Git/02139/project1/src/CCPU.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/CCPU.vhd
 Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
@@ -95,6 +111,15 @@ Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 
 -- Compiling architecture ASM of CCPU
 -- Compiling architecture FSMD of CCPU
 -- Loading entity CCPU
+
+} {} {}} Z:/Git/02139/project1/src/TopTest.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/TopTest.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity TopTest
+-- Compiling architecture Behavioral of TopTest
 
 } {} {}} Z:/Git/02139/project1/src/TopSim.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/TopSim.vhd
 Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013

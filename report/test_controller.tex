@@ -1,0 +1,17 @@
+\subsection{Test}
+Testing of the FSMd implementation of the vending machine controller is done with modelsim.
+In order to insure that the design is working as intended, it should be verified that
+all of the requirements from the specification are met. 
+This can be done with the following test sequence.
+\begin{enumerate}
+    \item Assert \textbf{coin2}, verify that the controller adds 2 to \textbf{sum} and waits for \textbf{coin2} to be deasserted.
+    \item Assert \textbf{coin5}, verify that the controller adds 5 to \textbf{sum} and waits for \textbf{coin5} to be deasserted.
+    \item Assert \textbf{buy}, verify that the controller can compare \textbf{sum} and \textbf{price} correctly and assert either \textbf{alarm} or \textbf{release\_can}.
+    \item Assert \textbf{reset}, verify that the controller resets it's state and \textbf{sum}.
+\end{enumerate}
+It can also be verified that the controller shows the correct numbers on the 7-segment display using modelsim, however this is much easier to do 
+visually using the Basys2 board. \\
+
+Since operation of the machine assumes that the \textbf{sum} will never exceed the maximum value the machine can handle, this will not be tested.
+Should it happen, it would cause overflow because of the datapath implementation.
+The manual clock will also not be tested in modelsim since this was provided and is more easily verified on the Basys2 board.
