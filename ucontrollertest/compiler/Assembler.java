@@ -167,12 +167,17 @@ public class Assembler {
 				}
 			} else if ( firstWord.equals( "jmp" ) ) { //relative jump
 				String marker = wordScanner.next();
+				//try {
 				int displacement = markers.get( marker ) - markerline;
 				if ( displacement < 0 )
 					programtext += "jmpn " + Math.abs(displacement) + "\n";
 				else if ( displacement > 0 )
 					programtext += "jmpp " + displacement + "\n";
 				markerline++;
+				/*} catch ( NullPointerException e ) {
+					System.out.println(marker);
+				throw e;
+				}*/
 			} else if ( firstWord.equals( "jmpa" ) ) { //absolute jump
 				String marker = wordScanner.next();
 				int displacement = markers.get( marker );

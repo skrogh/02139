@@ -1,0 +1,116 @@
+Z:/Git/02139/project1/src/InputSynchronizer.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/InputSynchronizer.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity InputSynchronizer
+-- Compiling architecture behavioural of InputSynchronizer
+
+} {} {}} Z:/Git/02139/project1/src/VendingMachine.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/VendingMachine.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity vending_machine
+-- Compiling architecture struct of vending_machine
+
+} {} {}} Z:/Git/02139/ucontrollertest/src/test.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/test.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity test
+-- Compiling architecture behavioural of test
+
+} {} {}} Z:/Git/02139/ucontrollertest/src/basys_shell.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/basys_shell.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity basys_shell
+-- Compiling architecture structural of basys_shell
+
+} {} {}} Z:/Git/02139/project1/src/HexToSevenSegment.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/HexToSevenSegment.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity HexToSevenSegment
+-- Compiling architecture Behavioral of HexToSevenSegment
+
+} {} {}} Z:/Git/02139/ucontrollertest/src/reg.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/reg.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity reg
+-- Compiling architecture behavioural of reg
+
+} {} {}} Z:/Git/02139/ucontrollertest/src/rom.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/rom.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity rom
+-- Compiling architecture behavioural of rom
+
+} {} {}} Z:/Git/02139/project1/src/SlowClock.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/SlowClock.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity SlowClock
+-- Compiling architecture Behavioral of SlowClock
+
+} {} {}} Z:/Git/02139/ucontrollertest/src/ram.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/ram.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity ram
+-- Compiling architecture behavioural of ram
+
+} {} {}} Z:/Git/02139/project1/src/TopTest.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/TopTest.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity TopTest
+-- Compiling architecture Behavioral of TopTest
+
+} {} {}} Z:/Git/02139/project1/src/CCPU.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/CCPU.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity CCPU
+-- Compiling architecture ASM of CCPU
+-- Compiling architecture FSMD of CCPU
+-- Loading entity CCPU
+
+} {} {}} Z:/Git/02139/project1/src/TopSim.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/TopSim.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity TopSim
+-- Compiling architecture Behavioral of TopSim
+
+} {} {}} Z:/Git/02139/ucontrollertest/src/operations.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/operations.vhd
+Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity operations
+-- Compiling architecture behavioural of operations
+
+} {} {}}

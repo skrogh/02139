@@ -1,0 +1,11 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Project Specification}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{FSMd implementation}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Analysis and Design}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Display Driver}{subsection.2.1}% 5
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Vending Machine CPU}{subsection.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.2}{Implementation}{section.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Display Driver}{subsection.2.2}% 8
+\BOOKMARK [1][-]{section.3}{Appendix A - Controller/Datapath VHDL}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Display Driver Code}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.2}{FSMd CPU code}{section.3}% 11

@@ -1,0 +1,639 @@
+m255
+K4
+z2
+13
+cModel Technology
+dC:\Modeltech_pe_edu_10.2a\examples
+!i10d 8192
+!i10e 25
+!i10f 100
+Ebasys_shell
+Z0 w1368985380
+Z1 DPx4 ieee 11 numeric_std 0 22 WES[o8HS0jHV[MIXQk2Ha1
+Z2 DPx3 std 6 textio 0 22 Y8d?=bLj9m4jiPLbo;>GT0
+Z3 DPx4 ieee 14 std_logic_1164 0 22 1bm?@Gd;P>[>_lN8Do9gP3
+Z4 dZ:\Git\02139
+Z5 8Z:/Git/02139/ucontrollertest/src/basys_shell.vhd
+Z6 FZ:/Git/02139/ucontrollertest/src/basys_shell.vhd
+l0
+L5
+V=_e<OOI_k`;Bbl]X<YDLU0
+Z7 OP;C;10.2a;57
+32
+Z8 !s110 1369008516
+Z9 !s108 1369008515.314000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/basys_shell.vhd|
+Z11 !s107 Z:/Git/02139/ucontrollertest/src/basys_shell.vhd|
+Z12 o-work work -2002 -explicit -O0
+Z13 tExplicit 1
+!s100 HUkkZMz13@XbI=336HJaB2
+!i10b 1
+Astructural
+R1
+R2
+R3
+DEx4 work 11 basys_shell 0 22 =_e<OOI_k`;Bbl]X<YDLU0
+l87
+L15
+V@>fSMA<TUiim:hB2VQg^a0
+R7
+32
+R8
+R9
+R10
+R11
+R12
+R13
+!s100 PIEJYQI29NLYm;[9GIfF<0
+!i10b 1
+Ebcd4display
+Z14 w1366916122
+R2
+R3
+R4
+Z15 8Z:/Git/02139/project1/src/BCD4Display.vhd
+Z16 FZ:/Git/02139/project1/src/BCD4Display.vhd
+l0
+L4
+VQDS8HoYXk?F7;T3<lCbDM2
+R7
+32
+Z17 !s110 1369008517
+Z18 !s108 1369008517.517000
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/BCD4Display.vhd|
+Z20 !s107 Z:/Git/02139/project1/src/BCD4Display.vhd|
+R12
+R13
+!s100 Kj[LP3VaJee;U9CTo=o0Z1
+!i10b 1
+Astructural
+R2
+R3
+DEx4 work 11 bcd4display 0 22 QDS8HoYXk?F7;T3<lCbDM2
+l35
+L12
+VUi`=SYSHl=gKb@TVKz=Ed1
+R7
+32
+R17
+R18
+R19
+R20
+R12
+R13
+!s100 b?U[JHTN=E[EfUMmKo8be1
+!i10b 1
+Ebit7tobcd
+Z21 w1368996395
+R1
+R2
+R3
+R4
+Z22 8Z:/Git/02139/project1/src/7BitToBCD.vhd
+Z23 FZ:/Git/02139/project1/src/7BitToBCD.vhd
+l0
+L5
+VfgBGbDbjj2?>2HPCe^3dh2
+R7
+32
+R17
+Z24 !s108 1369008517.377000
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/7BitToBCD.vhd|
+Z26 !s107 Z:/Git/02139/project1/src/7BitToBCD.vhd|
+R12
+R13
+!s100 _72T_:RC1lDd;_>02iX=C2
+!i10b 1
+Abehavioural
+R1
+R2
+R3
+DEx4 work 9 bit7tobcd 0 22 fgBGbDbjj2?>2HPCe^3dh2
+l12
+L10
+V:T]0hTDL38aHnIGm<eDkl3
+R7
+32
+R17
+R24
+R25
+R26
+R12
+R13
+!s100 H@=SoU003JE7[m@VC3z890
+!i10b 1
+Eccpu
+Z27 w1366992166
+R1
+R2
+R3
+R4
+Z28 8Z:/Git/02139/project1/src/CCPU.vhd
+Z29 FZ:/Git/02139/project1/src/CCPU.vhd
+l0
+L5
+VnzB[LYkiV61lY`OZBiO080
+R7
+32
+R17
+Z30 !s108 1369008517.627000
+Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/CCPU.vhd|
+Z32 !s107 Z:/Git/02139/project1/src/CCPU.vhd|
+R12
+R13
+!s100 =L>_BE3TWfFVO1@J4D<=_0
+!i10b 1
+Afsmd
+R1
+R2
+R3
+Z33 DEx4 work 4 ccpu 0 22 nzB[LYkiV61lY`OZBiO080
+l119
+L97
+VjBRKT3>[jB?Hm:FRo@`]U2
+R7
+32
+R17
+R30
+R31
+R32
+R12
+R13
+!s100 ]D>lPPF<2MQAB835A_Dk?3
+!i10b 1
+Aasm
+R1
+R2
+R3
+R33
+l25
+L19
+Vb6<KT0bKTONHZ4Q]?FM>O3
+R7
+32
+R17
+R30
+R31
+R32
+R12
+R13
+!s100 i911n]1X]FLkG3IQJmG^I3
+!i10b 1
+Ehextosevensegment
+Z34 w1368997016
+R2
+R3
+R4
+Z35 8Z:/Git/02139/project1/src/HexToSevenSegment.vhd
+Z36 FZ:/Git/02139/project1/src/HexToSevenSegment.vhd
+l0
+L4
+VaYcdGin6Hi?C?:7OTX^E[0
+R7
+32
+R17
+Z37 !s108 1369008517.752000
+Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/HexToSevenSegment.vhd|
+Z39 !s107 Z:/Git/02139/project1/src/HexToSevenSegment.vhd|
+R12
+R13
+!s100 _IG8g]X9o<iXcdKRX9[O80
+!i10b 1
+Abehavioral
+R2
+R3
+DEx4 work 17 hextosevensegment 0 22 aYcdGin6Hi?C?:7OTX^E[0
+l12
+L10
+VeVhMI;8:lzJi4VdX;0M<b1
+R7
+32
+R17
+R37
+R38
+R39
+R12
+R13
+!s100 kWKeGOkQ:L6n:Mo57d;Cf3
+!i10b 1
+Einputsynchronizer
+R14
+R2
+R3
+R4
+Z40 8Z:/Git/02139/project1/src/InputSynchronizer.vhd
+Z41 FZ:/Git/02139/project1/src/InputSynchronizer.vhd
+l0
+L4
+VVhZ5`eg7bUNS?hiaA6ETa3
+R7
+32
+R17
+Z42 !s108 1369008517.845000
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/InputSynchronizer.vhd|
+Z44 !s107 Z:/Git/02139/project1/src/InputSynchronizer.vhd|
+R12
+R13
+!s100 `MIH;4M]7<6:JlIla`HL53
+!i10b 1
+Abehavioural
+R2
+R3
+DEx4 work 17 inputsynchronizer 0 22 VhZ5`eg7bUNS?hiaA6ETa3
+l21
+L18
+VV2Z>9W^6Xbl[S6G_Zgh5O3
+R7
+32
+R17
+R42
+R43
+R44
+R12
+R13
+!s100 LP:2T0i@UcYnDO<9:C1W;1
+!i10b 1
+Eoperations
+Z45 w1368985380
+R1
+R2
+R3
+R4
+Z46 8Z:/Git/02139/ucontrollertest/src/operations.vhd
+Z47 FZ:/Git/02139/ucontrollertest/src/operations.vhd
+l0
+L5
+Vl>ZizIJmbf``Ek7^cjFI`3
+R7
+32
+R8
+Z48 !s108 1369008516.627000
+Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/operations.vhd|
+Z50 !s107 Z:/Git/02139/ucontrollertest/src/operations.vhd|
+R12
+R13
+!s100 Vbe;PFcRgF6efd><PS`AI1
+!i10b 1
+Abehavioural
+R1
+R2
+R3
+DEx4 work 10 operations 0 22 l>ZizIJmbf``Ek7^cjFI`3
+l42
+L29
+V2:>^BmlR=f8`M9[h>?@Ze3
+R7
+32
+R8
+R48
+R49
+R50
+R12
+R13
+!s100 a0mcz9CC:4VgM5J8im]@m3
+!i10b 1
+Eram
+Z51 w1368666114
+R1
+R2
+R3
+R4
+Z52 8Z:/Git/02139/ucontrollertest/src/ram.vhd
+Z53 FZ:/Git/02139/ucontrollertest/src/ram.vhd
+l0
+L5
+V@T]=nj<NbhTF8l[M=aJR`1
+R7
+32
+R8
+Z54 !s108 1369008516.799000
+Z55 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/ram.vhd|
+Z56 !s107 Z:/Git/02139/ucontrollertest/src/ram.vhd|
+R12
+R13
+!s100 >b]Z6G=eema=CE1?UmJ4U1
+!i10b 1
+Abehavioural
+R1
+R2
+R3
+DEx4 work 3 ram 0 22 @T]=nj<NbhTF8l[M=aJR`1
+l17
+L13
+VIflmJKYm0ChL6zo9ZaZL23
+R7
+32
+R8
+R54
+R55
+R56
+R12
+R13
+!s100 foZB^^Ean@IHjCV563EDL0
+!i10b 1
+Ereg
+R51
+R1
+R2
+R3
+R4
+Z57 8Z:/Git/02139/ucontrollertest/src/reg.vhd
+Z58 FZ:/Git/02139/ucontrollertest/src/reg.vhd
+l0
+L5
+V=SGo8SHk06g<keM2KgmCH3
+R7
+32
+R17
+Z59 !s108 1369008516.970000
+Z60 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/reg.vhd|
+Z61 !s107 Z:/Git/02139/ucontrollertest/src/reg.vhd|
+R12
+R13
+!s100 MoJW1_b4Wga[ME3d9HaXC0
+!i10b 1
+Abehavioural
+R1
+R2
+R3
+DEx4 work 3 reg 0 22 =SGo8SHk06g<keM2KgmCH3
+l34
+L28
+VR0ElHOeIzg8@DQ[L>Pe=C2
+R7
+32
+R17
+R59
+R60
+R61
+R12
+R13
+!s100 ^HmZk6>eF@ThW04a7WRXH0
+!i10b 1
+Erom
+R45
+R1
+R2
+R3
+R4
+Z62 8Z:/Git/02139/ucontrollertest/src/rom.vhd
+Z63 FZ:/Git/02139/ucontrollertest/src/rom.vhd
+l0
+L4
+VUXk8manH5WkzWWC@G2SK`2
+R7
+32
+R17
+Z64 !s108 1369008517.095000
+Z65 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/rom.vhd|
+Z66 !s107 Z:/Git/02139/ucontrollertest/src/rom.vhd|
+R12
+R13
+!s100 eneKAhNDYE9Ye8hjPMOUP3
+!i10b 1
+Abehavioural
+R1
+R2
+R3
+DEx4 work 3 rom 0 22 UXk8manH5WkzWWC@G2SK`2
+l9
+L8
+VHVWd@<aVPO731kU8zCG0F0
+R7
+32
+R17
+R64
+R65
+R66
+R12
+R13
+!s100 @ES=RCGHI>mG_MA79I9M^1
+!i10b 1
+Esegmentmultiplexer
+Z67 w1368996993
+R2
+R3
+R4
+Z68 8Z:/Git/02139/project1/src/SegmentMultiplexer.vhd
+Z69 FZ:/Git/02139/project1/src/SegmentMultiplexer.vhd
+l0
+L5
+V?Lg^=UTOA7RXg;Z=iOLo51
+R7
+32
+Z70 !s110 1369008518
+Z71 !s108 1369008517.986000
+Z72 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/SegmentMultiplexer.vhd|
+Z73 !s107 Z:/Git/02139/project1/src/SegmentMultiplexer.vhd|
+R12
+R13
+!s100 VA=m:XXB:n=a@nbI8fQP13
+!i10b 1
+Abehavioral
+R2
+R3
+DEx4 work 18 segmentmultiplexer 0 22 ?Lg^=UTOA7RXg;Z=iOLo51
+l32
+L19
+Vm@V:NolfP=<:iTfe7G>8^3
+R7
+32
+R70
+R71
+R72
+R73
+R12
+R13
+!s100 F=^2592>QG9KY9jX:P4G63
+!i10b 1
+Eslowclock
+Z74 w1369003417
+R1
+R2
+R3
+R4
+Z75 8Z:/Git/02139/project1/src/SlowClock.vhd
+Z76 FZ:/Git/02139/project1/src/SlowClock.vhd
+l0
+L5
+V<D`T7=VZ`o51cP`khbA411
+R7
+32
+R70
+Z77 !s108 1369008518.080000
+Z78 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/SlowClock.vhd|
+Z79 !s107 Z:/Git/02139/project1/src/SlowClock.vhd|
+R12
+R13
+!s100 T]`KDVlD=G`3eTYi=1YUK2
+!i10b 1
+Abehavioral
+R1
+R2
+R3
+DEx4 work 9 slowclock 0 22 <D`T7=VZ`o51cP`khbA411
+l21
+L14
+V9eRKdm:d7V3[0a1g7c0o^1
+R7
+32
+R70
+R77
+R78
+R79
+R12
+R13
+!s100 <gF@jYFJK3`4Z2NQDDT7b3
+!i10b 1
+Etest
+R51
+R1
+R2
+R3
+R4
+Z80 8Z:/Git/02139/ucontrollertest/src/test.vhd
+Z81 FZ:/Git/02139/ucontrollertest/src/test.vhd
+l0
+L5
+V@:8;OokHKmS`dRHe?Re?W2
+R7
+32
+R17
+Z82 !s108 1369008517.252000
+Z83 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/test.vhd|
+Z84 !s107 Z:/Git/02139/ucontrollertest/src/test.vhd|
+R12
+R13
+!s100 m^>LNBn;<zFjhVoKO:COn0
+!i10b 1
+Abehavioural
+R1
+R2
+R3
+DEx4 work 4 test 0 22 @:8;OokHKmS`dRHe?Re?W2
+l57
+L13
+VY5zAez58:cOQAL54JHAg@0
+R7
+32
+R17
+R82
+R83
+R84
+R12
+R13
+!s100 ?_MJmPA8n=7L6564l=hgW3
+!i10b 1
+Etopsim
+Z85 w1368997031
+R2
+R3
+R4
+Z86 8Z:/Git/02139/project1/src/TopSim.vhd
+Z87 FZ:/Git/02139/project1/src/TopSim.vhd
+l0
+L5
+VMJMoE[SNi7>4D8Fj43;<:0
+R7
+32
+R70
+Z88 !s108 1369008518.189000
+Z89 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/TopSim.vhd|
+Z90 !s107 Z:/Git/02139/project1/src/TopSim.vhd|
+R12
+R13
+!s100 Vo>Y8RdI9?BE7A]`:mi[[3
+!i10b 1
+Abehavioral
+R2
+R3
+DEx4 work 6 topsim 0 22 MJMoE[SNi7>4D8Fj43;<:0
+l34
+L8
+VWIZocoPWd^kVzJYgWlKL10
+R7
+32
+R70
+R88
+R89
+R90
+R12
+R13
+!s100 m;P>Uo_942T]@g1:6Z<8Y3
+!i10b 1
+Etoptest
+Z91 w1369004148
+R1
+R2
+R3
+R4
+Z92 8Z:/Git/02139/project1/src/TopTest.vhd
+Z93 FZ:/Git/02139/project1/src/TopTest.vhd
+l0
+L6
+V;KkRa;<mJaF[fOe2clGeH3
+R7
+32
+R70
+Z94 !s108 1369008518.299000
+Z95 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/TopTest.vhd|
+Z96 !s107 Z:/Git/02139/project1/src/TopTest.vhd|
+R12
+R13
+!s100 ]c[fbob4;ig_h7`3XK]E90
+!i10b 1
+Abehavioral
+R1
+R2
+R3
+DEx4 work 7 toptest 0 22 ;KkRa;<mJaF[fOe2clGeH3
+l32
+L18
+V]G5D2UD_NkSZ>BH`UK3]<3
+R7
+32
+R70
+R94
+R95
+R96
+R12
+R13
+!s100 X80MOEg4@7jPf?0Kn_e<92
+!i10b 1
+Evending_machine
+R14
+R2
+R3
+R4
+Z97 8Z:/Git/02139/project1/src/VendingMachine.vhd
+Z98 FZ:/Git/02139/project1/src/VendingMachine.vhd
+l0
+L12
+VejHfmkg8>4hcSTOmFFjJg2
+!s100 7N^]EN>jAUS6bf3X75FKS0
+R7
+32
+R70
+!i10b 1
+Z99 !s108 1369008518.424000
+Z100 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/VendingMachine.vhd|
+Z101 !s107 Z:/Git/02139/project1/src/VendingMachine.vhd|
+R12
+R13
+Astruct
+R2
+R3
+DEx4 work 15 vending_machine 0 22 ejHfmkg8>4hcSTOmFFjJg2
+l94
+L29
+VXK_InL9P:a4F;_JXZh?SF0
+!s100 QkTY2kUA9U9m`KhXPI`ki2
+R7
+32
+R70
+!i10b 1
+R99
+R100
+R101
+R12
+R13
