@@ -1,0 +1,43 @@
+\section{Microcontroller Implementation}
+Instead of using the FSMd approach to add more than the basic features to the vending machine controller,
+we decided to build a simple programmable softcore microcontroller to avoid having to modify the datapath
+and FSM every time we wanted to add a feature. We wanted the microcontroller to be able to run
+on the Basys2 board, but not be limited to it. Thus some design decisions have been made that
+may seem strange for the Basys2 board.
+This section covers how the microcontroller was designed
+and implemented.
+
+\subsection{Analysis and Design}
+The microcontroller in it's finished state must be able to run a program, that simulates a vending machine, just like the FSMd
+implementation of the vending machine controller. Therefore it must have enough output and input pins to control the
+LEDs, and take input from the toggleswitches and pushbuttons on the Basys2 board. It must also be fast enough 
+to multiplex the 7-segment display, since we did not want to have an external display driver in parallel, thus making
+the ucontroller as pure as possible. The onboard 50MHz clock was deemed fast enough for this. This leaves a 
+minimum I/O specification of
+\begin{itemize}
+    \item 20 output pins, 8 segment cathodes, 4 segment anodes, 8 LEDs.
+    \item 12 input pins, 4 debounced pushbuttons, 8 toggle switches.
+\end{itemize}
+Because of simplicity we decided to let the CPU at the heart of the microcontroller be an 8-bit CPU. This also fits well with limited
+amount of memory on the Basys2 board. To further minimize the amount of memory used, the CPU has only 16 internal
+registers r0 through r15, addressable with 4 bits, and a limit of 32 opcodes, which can be encoded in 5 bits. Letting all the
+registers double as accumulators also saves space. This means that
+instructions that operate on 2 registers, need 8-bit for the register addressing and 5 bit for the opcode, totaling 13 bits. 
+This instruction size allows for a sizeable amount of program code, 5000+ instructions on the Spartan-3E residing on the
+Basys2 board. \\
+
+To simplify the logic needed to decode the instructions, every instruction consists of, in order, 5 opcode bits,
+4 destination register bits and 4 source register bits. From here on, opcodes will be denoted as opc, destination registers as
+rd/Rd and source registers as rs/Rs. \\
+
+For I/O, 16 registers are available, the first eight of which are input registers and the last eight output registers.
+These can be set or read using special opcodes.\\
+
+The microcontroller also includes 256 bytes of ram, which can be accessed with associated opcodes.
+
+\subsubsection{Opcodes}
+The instruction set for the processor is seen below together with its assembly mnemonics. It was created
+with a focus being simple, while still having the capability of doing most common operations
+in a single clock cycle. All operations shown below are single clock cycle operations.
+%spec listing
+\lstinputlisting[caption={Instruction set for the soft core microcontroller}, label={spec}]{clean_spec.txt} 

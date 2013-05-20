@@ -8,6 +8,9 @@
 \BOOKMARK [3][-]{subsubsection.2.2.1}{Display Driver}{subsection.2.2}% 8
 \BOOKMARK [3][-]{subsubsection.2.2.2}{Vending Machine CPU}{subsection.2.2}% 9
 \BOOKMARK [2][-]{subsection.2.3}{Test}{section.2}% 10
-\BOOKMARK [1][-]{section.3}{Appendix A - Controller/Datapath VHDL}{}% 11
-\BOOKMARK [2][-]{subsection.3.1}{Display Driver Code}{section.3}% 12
-\BOOKMARK [2][-]{subsection.3.2}{FSMd CPU code}{section.3}% 13
+\BOOKMARK [1][-]{section.3}{Microcontroller Implementation}{}% 11
+\BOOKMARK [2][-]{subsection.3.1}{Analysis and Design}{section.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Opcodes}{subsection.3.1}% 13
+\BOOKMARK [1][-]{section.4}{Appendix A - Controller/Datapath VHDL}{}% 14
+\BOOKMARK [2][-]{subsection.4.1}{Display Driver Code}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.2}{FSMd CPU code}{section.4}% 16
