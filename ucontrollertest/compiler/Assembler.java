@@ -181,15 +181,20 @@ public class Assembler {
 			} else if ( firstWord.equals( "jmpa" ) ) { //absolute jump
 				String marker = wordScanner.next();
 				int displacement = markers.get( marker );
-					programtext += "jmpa " + displacement + "\n";
+				programtext += "jmpa " + displacement + "\n";
 				markerline++;
 			} else if ( firstWord.equals( "brn" ) ) { //relative branch
 				String marker = wordScanner.next();
-				int displacement = markers.get( marker ) - markerline;
-				if ( displacement < 0 )
-					programtext += "brnn " + Math.abs(displacement) + "\n";
-				else if ( displacement > 0 )
-					programtext += "brnp " + displacement + "\n";
+				try {
+					int displacement = markers.get( marker ) - markerline;
+					if ( displacement < 0 )
+						programtext += "brnn " + Math.abs(displacement) + "\n";
+					else if ( displacement > 0 )
+						programtext += "brnp " + displacement + "\n";
+				} catch ( NullPointerException e ) {
+					System.out.println( marker );
+					throw e;
+				}
 				markerline++;
 			} else {
 				markerline++;
