@@ -8,8 +8,8 @@ entity InputSynchronizer is
             I_1_ASYNC : in std_logic_vector( 7 downto 0 );
             I_1_SYNC : out std_logic_vector( 7 downto 0 );
             I_0_SYNC : out std_logic_vector( 7 downto 0 );
-            reset_sync : out std_logic_vector( 7 downto 0 ) );
-end InputSynchronizer
+            reset_sync : out std_logic );
+end InputSynchronizer;
 
 architecture behavioural of InputSynchronizer is
     signal reset_r : std_logic;

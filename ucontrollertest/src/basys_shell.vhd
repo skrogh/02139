@@ -73,14 +73,14 @@ component ram is
             do   : out std_logic_vector( 7 downto 0 ) );
     end component;
 
-component inputsync is
+component InputSynchronizer is
     port(   clk : in std_logic;
             reset : in std_logic;
             I_0_ASYNC : in std_logic_vector( 7 downto 0 );
             I_1_ASYNC : in std_logic_vector( 7 downto 0 );
             I_1_SYNC : out std_logic_vector( 7 downto 0 );
             I_0_SYNC : out std_logic_vector( 7 downto 0 );
-            reset_sync : out std_logic_vector( 7 downto 0 ) );
+            reset_sync : out std_logic );
     end component;
 
 signal OP_D_N, IO_D_N, IO_D, IO_S, OP_D, OP_S : std_logic_vector( 7 downto 0 );
@@ -106,7 +106,7 @@ process( CLK, RESET )
 		end if;
 	end process;
 	
-    input : inputsync
+    input : InputSynchronizer
     port map(   clk => clk,
                 reset => RESET_ASYNC,
                 I_0_ASYNC => I_0_ASYNC,
