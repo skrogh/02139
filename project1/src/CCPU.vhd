@@ -164,7 +164,7 @@ begin
 					add_five <= '0'; --Redundant
 					next_state <= add2;
 				elsif buy = '1' then
-					if ( not(price_comp)='1' ) then --!(Price > total)
+					if ( price_comp='1' ) then --!(Price >= total)
 						--Subtract price from total
 						total_en <= '1';
 						sub_price <= '1';
@@ -218,22 +218,26 @@ begin
 	end process;
 	
 	--DataPath
-	process( sub_price, add_five, price, total_reg )
+	process( sub_price, add_five, price, total_reg, adder_out )
 	begin
 		--Adder +2
 		adder_in <= "00010";
 		if ( sub_price = '1' ) then
 			--Adder - price - 1
-			adder_in <= NOT price;
+			adder_in <= price;
 		elsif ( add_five = '1' ) then
 			--Adder +5
 			adder_in <= "00101";
 		end if;
 		
-		adder_out <= std_logic_vector( unsigned(total_reg) + unsigned( "00000" & sub_price ) + unsigned(adder_in) );
-		total_reg_next <= adder_out( 6 downto 0 );
+		if ( sub_price = '1' ) then
+			adder_out <= std_logic_vector( signed(total_reg) - signed(adder_in) );
+		else
+			adder_out <= std_logic_vector( signed(total_reg) + signed(adder_in) );
+		end if;
+		total_reg_next <= adder_out;
 		--Comparator (can be implimentet with the adder, but has to be used in same clock period. A slower, smaller FSM could be made)
-		if ( unsigned(total_reg) < unsigned(not price) ) then
+		if ( signed(total_reg) < signed(price) ) then
 			price_comp <= '0';
 		else
 			price_comp <= '1';
