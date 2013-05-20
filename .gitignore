@@ -36,6 +36,8 @@
 *.sql
 *.sqlite
 *.mti
+*.qpg
+*.qdb
 
 # OS generated files #
 ######################
