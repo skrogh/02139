@@ -114,7 +114,7 @@ begin  -- struct
               sync_coin5 => sync_coin5,
               sync_price => sync_price);
 
-  CPU : CCPU
+  CPU : CCPU(FSMD)
     port map( coin2 => sync_coin2,
               coin5 => sync_coin5,
               reset => sync_reset,

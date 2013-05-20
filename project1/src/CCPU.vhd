@@ -230,7 +230,7 @@ begin
 			adder_in <= "00101";
 		end if;
 		
-		adder_out <= std_logic_vector( unsigned(total_reg) + ( 1 => sub_price ) + unsigned(adder_in) );
+		adder_out <= std_logic_vector( unsigned(total_reg) + unsigned( "00000" & sub_price ) + unsigned(adder_in) );
 		total_reg_next <= adder_out( 6 downto 0 );
 		--Comparator (can be implimentet with the adder, but has to be used in same clock period. A slower, smaller FSM could be made)
 		if ( unsigned(total_reg) < unsigned(not price) ) then
