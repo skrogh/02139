@@ -1,3 +1,6 @@
+--Top level module of the display driver
+--Connects the segment multiplexer FSM
+--and the binary to BCD entities
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
