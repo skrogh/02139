@@ -116,8 +116,8 @@ architecture FSMD of CCPU is
 	
 	--Datapath
 	--Registers
-	signal total_reg : std_logic_vector( 6 downto 0 );
-	signal total_reg_next : std_logic_vector( 6 downto 0 );	
+	signal total_reg : std_logic_vector( 6 downto 0 ) := ( others => '0');
+	signal total_reg_next : std_logic_vector( 6 downto 0 ) := ( others => '0' );	
 	--Internal
 	signal adder_out : std_logic_vector( 6 downto 0 );
 	signal adder_in : std_logic_vector( 4 downto 0 );

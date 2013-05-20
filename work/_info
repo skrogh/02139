@@ -20,8 +20,8 @@ L5
 VId`ajX[]IkIBLn?Db@1c^2
 Z7 OP;C;10.2a;57
 32
-Z8 !s110 1369061864
-Z9 !s108 1369061864.736000
+Z8 !s110 1369067096
+Z9 !s108 1369067096.223000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/basys_shell.vhd|
 Z11 !s107 Z:/Git/02139/ucontrollertest/src/basys_shell.vhd|
 Z12 o-work work -2002 -explicit -O0
@@ -58,8 +58,8 @@ L7
 V1e;naoEMOJ<@P[CbOU]O10
 R7
 32
-Z17 !s110 1369061865
-Z18 !s108 1369061865.783000
+Z17 !s110 1369067097
+Z18 !s108 1369067097.051000
 Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/BCD4Display.vhd|
 Z20 !s107 Z:/Git/02139/project1/src/BCD4Display.vhd|
 R12
@@ -96,8 +96,8 @@ L8
 VmcJVYZ`U7f5KjS_;dA[L[2
 R7
 32
-R17
-Z23 !s108 1369061865.658000
+R8
+Z23 !s108 1369067096.942000
 Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/7BitToBCD.vhd|
 Z25 !s107 Z:/Git/02139/project1/src/7BitToBCD.vhd|
 R12
@@ -114,7 +114,7 @@ L13
 V09K<WmPiVljD3iol@DIm]1
 R7
 32
-R17
+R8
 R23
 R24
 R25
@@ -123,7 +123,7 @@ R13
 !s100 H6ZJa7kl@T2d[<f7hRfoh3
 !i10b 1
 Eccpu
-Z26 w1369057896
+Z26 w1369067064
 R1
 R2
 R3
@@ -136,7 +136,7 @@ VYVkjUOmK9PZa_JRLbafSh3
 R7
 32
 R17
-Z29 !s108 1369061865.893000
+Z29 !s108 1369067097.426000
 Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/CCPU.vhd|
 Z31 !s107 Z:/Git/02139/project1/src/CCPU.vhd|
 R12
@@ -150,7 +150,7 @@ R3
 Z32 DEx4 work 4 ccpu 0 22 YVkjUOmK9PZa_JRLbafSh3
 l125
 L103
-V1EG;kl[oGF4I@JePBI3IE3
+VzVeeRGn>;[1U3BjzWCDB_1
 R7
 32
 R17
@@ -159,7 +159,7 @@ R30
 R31
 R12
 R13
-!s100 hO=bc:GJzck1BEdlK@g^J2
+!s100 5zGm`g=M`Cd1bzhmDg>nT1
 !i10b 1
 Aasm
 R1
@@ -191,10 +191,10 @@ L4
 VaYcdGin6Hi?C?:7OTX^E[0
 R7
 32
-Z35 !s110 1369061866
-Z36 !s108 1369061866.002000
-Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/HexToSevenSegment.vhd|
-Z38 !s107 Z:/Git/02139/project1/src/HexToSevenSegment.vhd|
+R17
+Z35 !s108 1369067097.567000
+Z36 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/HexToSevenSegment.vhd|
+Z37 !s107 Z:/Git/02139/project1/src/HexToSevenSegment.vhd|
 R12
 R13
 !s100 _IG8g]X9o<iXcdKRX9[O80
@@ -208,30 +208,30 @@ L10
 VeVhMI;8:lzJi4VdX;0M<b1
 R7
 32
+R17
 R35
 R36
 R37
-R38
 R12
 R13
 !s100 kWKeGOkQ:L6n:Mo57d;Cf3
 !i10b 1
 Einputsynchronizer
-Z39 w1366916122
+Z38 w1366916122
 R2
 R3
 R4
-Z40 8Z:/Git/02139/project1/src/InputSynchronizer.vhd
-Z41 FZ:/Git/02139/project1/src/InputSynchronizer.vhd
+Z39 8Z:/Git/02139/project1/src/InputSynchronizer.vhd
+Z40 FZ:/Git/02139/project1/src/InputSynchronizer.vhd
 l0
 L4
 VVhZ5`eg7bUNS?hiaA6ETa3
 R7
 32
-R35
-Z42 !s108 1369061866.111000
-Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/InputSynchronizer.vhd|
-Z44 !s107 Z:/Git/02139/project1/src/InputSynchronizer.vhd|
+R17
+Z41 !s108 1369067097.676000
+Z42 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/InputSynchronizer.vhd|
+Z43 !s107 Z:/Git/02139/project1/src/InputSynchronizer.vhd|
 R12
 R13
 !s100 `MIH;4M]7<6:JlIla`HL53
@@ -245,31 +245,31 @@ L18
 VV2Z>9W^6Xbl[S6G_Zgh5O3
 R7
 32
-R35
+R17
+R41
 R42
 R43
-R44
 R12
 R13
 !s100 LP:2T0i@UcYnDO<9:C1W;1
 !i10b 1
 Eoperations
-Z45 w1368985380
+Z44 w1368985380
 R1
 R2
 R3
 R4
-Z46 8Z:/Git/02139/ucontrollertest/src/operations.vhd
-Z47 FZ:/Git/02139/ucontrollertest/src/operations.vhd
+Z45 8Z:/Git/02139/ucontrollertest/src/operations.vhd
+Z46 FZ:/Git/02139/ucontrollertest/src/operations.vhd
 l0
 L5
 Vl>ZizIJmbf``Ek7^cjFI`3
 R7
 32
 R8
-Z48 !s108 1369061864.846000
-Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/operations.vhd|
-Z50 !s107 Z:/Git/02139/ucontrollertest/src/operations.vhd|
+Z47 !s108 1369067096.348000
+Z48 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/operations.vhd|
+Z49 !s107 Z:/Git/02139/ucontrollertest/src/operations.vhd|
 R12
 R13
 !s100 Vbe;PFcRgF6efd><PS`AI1
@@ -285,30 +285,30 @@ V2:>^BmlR=f8`M9[h>?@Ze3
 R7
 32
 R8
+R47
 R48
 R49
-R50
 R12
 R13
 !s100 a0mcz9CC:4VgM5J8im]@m3
 !i10b 1
 Eram
-Z51 w1368666114
+Z50 w1368666114
 R1
 R2
 R3
 R4
-Z52 8Z:/Git/02139/ucontrollertest/src/ram.vhd
-Z53 FZ:/Git/02139/ucontrollertest/src/ram.vhd
+Z51 8Z:/Git/02139/ucontrollertest/src/ram.vhd
+Z52 FZ:/Git/02139/ucontrollertest/src/ram.vhd
 l0
 L5
 V@T]=nj<NbhTF8l[M=aJR`1
 R7
 32
-R17
-Z54 !s108 1369061864.971000
-Z55 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/ram.vhd|
-Z56 !s107 Z:/Git/02139/ucontrollertest/src/ram.vhd|
+R8
+Z53 !s108 1369067096.473000
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/ram.vhd|
+Z55 !s107 Z:/Git/02139/ucontrollertest/src/ram.vhd|
 R12
 R13
 !s100 >b]Z6G=eema=CE1?UmJ4U1
@@ -323,31 +323,31 @@ L13
 VIflmJKYm0ChL6zo9ZaZL23
 R7
 32
-R17
+R8
+R53
 R54
 R55
-R56
 R12
 R13
 !s100 foZB^^Ean@IHjCV563EDL0
 !i10b 1
 Ereg
-R51
+R50
 R1
 R2
 R3
 R4
-Z57 8Z:/Git/02139/ucontrollertest/src/reg.vhd
-Z58 FZ:/Git/02139/ucontrollertest/src/reg.vhd
+Z56 8Z:/Git/02139/ucontrollertest/src/reg.vhd
+Z57 FZ:/Git/02139/ucontrollertest/src/reg.vhd
 l0
 L5
 V=SGo8SHk06g<keM2KgmCH3
 R7
 32
-R17
-Z59 !s108 1369061865.080000
-Z60 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/reg.vhd|
-Z61 !s107 Z:/Git/02139/ucontrollertest/src/reg.vhd|
+R8
+Z58 !s108 1369067096.583000
+Z59 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/reg.vhd|
+Z60 !s107 Z:/Git/02139/ucontrollertest/src/reg.vhd|
 R12
 R13
 !s100 MoJW1_b4Wga[ME3d9HaXC0
@@ -362,31 +362,31 @@ L28
 VR0ElHOeIzg8@DQ[L>Pe=C2
 R7
 32
-R17
+R8
+R58
 R59
 R60
-R61
 R12
 R13
 !s100 ^HmZk6>eF@ThW04a7WRXH0
 !i10b 1
 Erom
-Z62 w1369056853
+Z61 w1369056853
 R1
 R2
 R3
 R4
-Z63 8Z:/Git/02139/ucontrollertest/src/rom.vhd
-Z64 FZ:/Git/02139/ucontrollertest/src/rom.vhd
+Z62 8Z:/Git/02139/ucontrollertest/src/rom.vhd
+Z63 FZ:/Git/02139/ucontrollertest/src/rom.vhd
 l0
 L4
 VUXk8manH5WkzWWC@G2SK`2
 R7
 32
-R17
-Z65 !s108 1369061865.205000
-Z66 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/rom.vhd|
-Z67 !s107 Z:/Git/02139/ucontrollertest/src/rom.vhd|
+R8
+Z64 !s108 1369067096.692000
+Z65 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/rom.vhd|
+Z66 !s107 Z:/Git/02139/ucontrollertest/src/rom.vhd|
 R12
 R13
 !s100 eneKAhNDYE9Ye8hjPMOUP3
@@ -401,10 +401,10 @@ L8
 VI_WL@_8QIoa0GNlkHZD?60
 R7
 32
-R17
+R8
+R64
 R65
 R66
-R67
 R12
 R13
 !s100 GVTc_^B:`8c:GM4zRb]>C3
@@ -414,17 +414,17 @@ R14
 R2
 R3
 R4
-Z68 8Z:/Git/02139/project1/src/SegmentMultiplexer.vhd
-Z69 FZ:/Git/02139/project1/src/SegmentMultiplexer.vhd
+Z67 8Z:/Git/02139/project1/src/SegmentMultiplexer.vhd
+Z68 FZ:/Git/02139/project1/src/SegmentMultiplexer.vhd
 l0
 L8
 VaffiHCfNUA3@i5Z=fg@B]0
 R7
 32
-R35
-Z70 !s108 1369061866.221000
-Z71 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/SegmentMultiplexer.vhd|
-Z72 !s107 Z:/Git/02139/project1/src/SegmentMultiplexer.vhd|
+R17
+Z69 !s108 1369067097.786000
+Z70 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/SegmentMultiplexer.vhd|
+Z71 !s107 Z:/Git/02139/project1/src/SegmentMultiplexer.vhd|
 R12
 R13
 !s100 3k=nb=@=LHjoAYWY;3K_31
@@ -438,10 +438,10 @@ L22
 VL`_=eNG8zY1T<GE^W[DhO3
 R7
 32
-R35
+R17
+R69
 R70
 R71
-R72
 R12
 R13
 !s100 [BQOZYCm<f<Wb4[MzzW]z3
@@ -452,17 +452,17 @@ R1
 R2
 R3
 R4
-Z73 8Z:/Git/02139/project1/src/SlowClock.vhd
-Z74 FZ:/Git/02139/project1/src/SlowClock.vhd
+Z72 8Z:/Git/02139/project1/src/SlowClock.vhd
+Z73 FZ:/Git/02139/project1/src/SlowClock.vhd
 l0
 L5
 V<D`T7=VZ`o51cP`khbA411
 R7
 32
-R35
-Z75 !s108 1369061866.330000
-Z76 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/SlowClock.vhd|
-Z77 !s107 Z:/Git/02139/project1/src/SlowClock.vhd|
+R17
+Z74 !s108 1369067097.895000
+Z75 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/SlowClock.vhd|
+Z76 !s107 Z:/Git/02139/project1/src/SlowClock.vhd|
 R12
 R13
 !s100 T]`KDVlD=G`3eTYi=1YUK2
@@ -477,31 +477,31 @@ L14
 V9eRKdm:d7V3[0a1g7c0o^1
 R7
 32
-R35
+R17
+R74
 R75
 R76
-R77
 R12
 R13
 !s100 <gF@jYFJK3`4Z2NQDDT7b3
 !i10b 1
 Etest
-R51
+R50
 R1
 R2
 R3
 R4
-Z78 8Z:/Git/02139/ucontrollertest/src/test.vhd
-Z79 FZ:/Git/02139/ucontrollertest/src/test.vhd
+Z77 8Z:/Git/02139/ucontrollertest/src/test.vhd
+Z78 FZ:/Git/02139/ucontrollertest/src/test.vhd
 l0
 L5
 V@:8;OokHKmS`dRHe?Re?W2
 R7
 32
-R17
-Z80 !s108 1369061865.315000
-Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/test.vhd|
-Z82 !s107 Z:/Git/02139/ucontrollertest/src/test.vhd|
+R8
+Z79 !s108 1369067096.817000
+Z80 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/ucontrollertest/src/test.vhd|
+Z81 !s107 Z:/Git/02139/ucontrollertest/src/test.vhd|
 R12
 R13
 !s100 m^>LNBn;<zFjhVoKO:COn0
@@ -516,10 +516,10 @@ L13
 VY5zAez58:cOQAL54JHAg@0
 R7
 32
-R17
+R8
+R79
 R80
 R81
-R82
 R12
 R13
 !s100 ?_MJmPA8n=7L6564l=hgW3
@@ -529,15 +529,15 @@ R14
 R2
 R3
 R4
-Z83 8Z:/Git/02139/project1/src/TopSim.vhd
-Z84 FZ:/Git/02139/project1/src/TopSim.vhd
+Z82 8Z:/Git/02139/project1/src/TopSim.vhd
+Z83 FZ:/Git/02139/project1/src/TopSim.vhd
 l0
 L5
 VMJMoE[SNi7>4D8Fj43;<:0
 R7
 32
-R35
-Z85 !s108 1369061866.440000
+Z84 !s110 1369067098
+Z85 !s108 1369067098.005000
 Z86 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/TopSim.vhd|
 Z87 !s107 Z:/Git/02139/project1/src/TopSim.vhd|
 R12
@@ -553,7 +553,7 @@ L8
 VWIZocoPWd^kVzJYgWlKL10
 R7
 32
-R35
+R84
 R85
 R86
 R87
@@ -574,8 +574,8 @@ L6
 V;KkRa;<mJaF[fOe2clGeH3
 R7
 32
-R35
-Z90 !s108 1369061866.549000
+R84
+Z90 !s108 1369067098.161000
 Z91 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/TopTest.vhd|
 Z92 !s107 Z:/Git/02139/project1/src/TopTest.vhd|
 R12
@@ -593,7 +593,7 @@ V]G5D2UD_NkSZ>BH`UK3]<3
 !s100 X80MOEg4@7jPf?0Kn_e<92
 R7
 32
-R35
+R84
 R90
 R91
 R92
@@ -601,7 +601,7 @@ R12
 R13
 !i10b 1
 Evending_machine
-R39
+R38
 R2
 R3
 R4
@@ -613,9 +613,9 @@ VejHfmkg8>4hcSTOmFFjJg2
 !s100 7N^]EN>jAUS6bf3X75FKS0
 R7
 32
-R35
+R84
 !i10b 1
-Z95 !s108 1369061866.674000
+Z95 !s108 1369067098.270000
 Z96 !s90 -reportprogress|300|-work|work|-2002|-explicit|Z:/Git/02139/project1/src/VendingMachine.vhd|
 Z97 !s107 Z:/Git/02139/project1/src/VendingMachine.vhd|
 R12
@@ -630,7 +630,7 @@ Z99 VXK_InL9P:a4F;_JXZh?SF0
 Z100 !s100 QkTY2kUA9U9m`KhXPI`ki2
 R7
 32
-R35
+R84
 !i10b 1
 R95
 R96

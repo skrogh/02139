@@ -101,17 +101,6 @@ Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 
 -- Compiling entity Bit7ToBCD
 -- Compiling architecture behavioural of Bit7ToBCD
 
-} {} {}} Z:/Git/02139/project1/src/CCPU.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/CCPU.vhd
-Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity CCPU
--- Compiling architecture ASM of CCPU
--- Compiling architecture FSMD of CCPU
--- Loading entity CCPU
-
 } {} {}} Z:/Git/02139/project1/src/TopTest.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/TopTest.vhd
 Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
 -- Loading package STANDARD
