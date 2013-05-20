@@ -1,3 +1,7 @@
+--Cola CPU
+--Contains an ASM architecture with a direct translation of
+--the vending machine asm chart to VHDL and an FSMd architecture
+--with a distinct controller and datapath.
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
@@ -23,10 +27,11 @@ architecture ASM of CCPU is
 	signal total_reg : std_logic_vector( 6 downto 0 );
 	signal total_reg_next : std_logic_vector( 6 downto 0 );
 begin
-
+    --Moore outputs
 	total_out <= total_reg;
 	price_out <= price;
 	
+    --Register process
 	process( clk, reset )
 	begin	
 		if reset = '1' then
@@ -38,6 +43,7 @@ begin
 		end if;
 	end process;
 	
+    --asm chart translation process.
 	process( coin2, coin5, buy, price, state_reg, total_reg )
 	begin
 		alarm_signal <= '0';
