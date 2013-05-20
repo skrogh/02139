@@ -6,14 +6,6 @@ Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 
 -- Compiling entity InputSynchronizer
 -- Compiling architecture behavioural of InputSynchronizer
 
-} {} {}} Z:/Git/02139/project1/src/VendingMachine.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/VendingMachine.vhd
-Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity vending_machine
--- Compiling architecture struct of vending_machine
-
 } {} {}} Z:/Git/02139/ucontrollertest/src/test.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/test.vhd
 Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
 -- Loading package STANDARD
@@ -73,15 +65,6 @@ Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 
 -- Loading package NUMERIC_STD
 -- Compiling entity reg
 -- Compiling architecture behavioural of reg
-
-} {} {}} Z:/Git/02139/project1/src/SlowClock.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/project1/src/SlowClock.vhd
-Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity SlowClock
--- Compiling architecture Behavioral of SlowClock
 
 } {} {}} Z:/Git/02139/ucontrollertest/src/ram.vhd {1 {vcom -work work -2002 -explicit Z:/Git/02139/ucontrollertest/src/ram.vhd
 Model Technology ModelSim PE Student Edition vcom 10.2a Compiler 2013.03 Mar 15 2013
