@@ -1,3 +1,6 @@
+--Splits a 7 bit binary signal into 2
+--BCD coded signals
+--
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
@@ -10,6 +13,7 @@ end Bit7ToBCD;
 architecture behavioural of Bit7ToBCD is
 
 begin
+    --Generated with BCDgen.java 
 	with BIn select
 	MSD <= "0000" WHEN "0000000",
 			"0000" WHEN "0000001",

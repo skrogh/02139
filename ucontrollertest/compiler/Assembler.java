@@ -60,6 +60,9 @@ public class Assembler {
 		opcodes.put( "and", "10100" ); // bitwise and
 		opcodes.put( "addc", "10101" ); //add with carry
 		opcodes.put( "cmp", "10110" ); //compare
+		opcodes.put( "gpcl", "10111" ); //get PC low-bit
+		opcodes.put( "gpch", "11000" ); //get PC high-bit
+		opcodes.put( "spc", "11001" ); //set PC
 	}
 
 	private static void makeSyntax() {
@@ -87,6 +90,9 @@ public class Assembler {
 		grammar.put( "and", new operand[]{ operand.REG, operand.REG } );
 		grammar.put( "addc", new operand[]{ operand.REG, operand.REG } );
 		grammar.put( "cmp", new operand[]{ operand.REG, operand.REG } );
+		grammar.put( "gpcl", new operand[]{ operand.REG } );
+		grammar.put( "gpch", new operand[]{ operand.REG } );
+		grammar.put( "spc", new operand[]{ operand.REG, operand.REG } );
 	}
 
 	private static void dump( String filename ) {
@@ -161,12 +167,17 @@ public class Assembler {
 				}
 			} else if ( firstWord.equals( "jmp" ) ) { //relative jump
 				String marker = wordScanner.next();
+				//try {
 				int displacement = markers.get( marker ) - markerline;
 				if ( displacement < 0 )
 					programtext += "jmpn " + Math.abs(displacement) + "\n";
 				else if ( displacement > 0 )
 					programtext += "jmpp " + displacement + "\n";
 				markerline++;
+				/*} catch ( NullPointerException e ) {
+					System.out.println(marker);
+				throw e;
+				}*/
 			} else if ( firstWord.equals( "jmpa" ) ) { //absolute jump
 				String marker = wordScanner.next();
 				int displacement = markers.get( marker );
