@@ -88,9 +88,8 @@ signal OP_D_N, IO_D_N, IO_D, IO_S, OP_D, OP_S : std_logic_vector( 7 downto 0 );
 signal OP_DC, OP_SC : std_logic_vector( 3 downto 0 );
 signal byte_set : std_logic;
 signal OP : std_logic_vector( 4 downto 0 );
-signal PC_N_O : std_logic_vector( 9 downto 0 );
+signal PC_N : std_logic_vector( 9 downto 0 );
 signal OP_C : std_logic_vector( 12 downto 0 );
-signal PC : std_logic_vector( 9 downto 0 );
 signal RAM_P_N, RAM_D_N, RAM_D, RAM_P : std_logic_vector( 7 downto 0 );
 signal RESET : std_logic;
 signal I_0, I_1 : std_logic_vector( 7 downto 0 ); 
@@ -120,7 +119,7 @@ begin
 					OP_SC => OP_SC,
 					IO_D_N => IO_D_N,
 					OP_D_N => OP_D_N,
-					PC_N_O => PC_N_O,
+					PC_N_O => PC_N,
                     RAM_SET => RAM_SET,
                     
                     RAM_P_N => RAM_P_N,
@@ -145,21 +144,21 @@ begin
 					IO_D => IO_D,
 					IO_S => IO_S,
 					OP_D => OP_D,
-               ram_set => RAM_SET,
-               RAM_P_N => RAM_P_N,
-               RAM_P => RAM_P,
+                    ram_set => RAM_SET,
+                    RAM_P_N => RAM_P_N,
+                    RAM_P => RAM_P,
 					OP_S => OP_S );
 	
 	code : rom
 	port map( 	clk => CLK,
-                addr => PC_N_O,
+                addr => PC_N,
 				do => OP_C );
 
     rams : ram
     port map(   clk => clk,
                 din => RAM_D_N,
                 addr => RAM_P_N, --Added next, since this is clocked internally too
-                w_en => RAM_W,
+                w_en => ram_w,
                 do => RAM_D );
 	
 	OP <= OP_C( 12 downto 8 );

@@ -106,7 +106,7 @@ srvi 0x89 ; Y has segment code "10001001"
 sri 35 ; set ram address to Z
 srvi 0x27 ; Z has segment code "00100111"
 sri 36 ; set ram address to space
-srvi 0x00 ; space has segment code "11111111"
+srvi 0xFF ; space has segment code "11111111"
 
 ; load in messages
 ; empty
