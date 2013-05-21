@@ -69,10 +69,32 @@ In accordance with the specification, the asm chart seen in figure \ref{cola_asm
 describes the operation of the vending machine cpu. The Mealy-outputs seen on the asm chart cannot cause metastability since the inputs are synchronized.
 Our FSMd implementation of the vending machine controller only needs to keep track of one value, the \textbf{sum}.
 This means that the datapath will only need a single register, since the \textbf{price} is an input and not a stored value.
-Along with this, the datapath needs to be capable of doing the following operations, as seen on the asm chart.
+Along with this, the datapath needs to be capable of doing the following operations, as seen on the asm chart. \\
+
+
 \begin{itemize}
     \item Add 2 and 5 to the \textbf{sum} register
     \item Compare the \textbf{sum} register and \textbf{price}
     \item Subtract the \textbf{price} from the \textbf{sum}
 \end{itemize}
-%ADD FANCY DIAGRAMS OF DATAPATH DESIGN
+
+The datapath seen in figure \ref{fsmd_datapath} meets all of these requirements.
+\begin{figure}
+    \center
+    \includegraphics[scale=0.5]{pictures/datapath_cola.png}
+    \caption{Datapath for the vending machine FSMd}
+    \label{fsmd_datapath}
+\end{figure}
+
+To control the datapath, an FSM is needed. This FSM has the same states as
+shown in the ASM chart, but it's outputs are logic signals instead of complex operations.
+An FSM that, in conjuction with the datapath realises the ASM chart in figure \ref{cola_asm}, can be seen in figure \ref{cola_fsm}.
+
+\begin{figure}
+    \center
+    \includegraphics[scale=0.5]{pictures/fsm1_cola.png}
+    \caption{FSM controller of the datapath seen in figure \ref{fsmd_datapath}}
+    \label{cola_fsm}
+\end{figure}
+
+

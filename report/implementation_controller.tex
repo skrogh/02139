@@ -1,7 +1,8 @@
 \subsection{Implementation}
-This section contains the implementation details regarding the FSMd implemenmation of the vending machine controller.
-Again, this will not cover the inputsyncronizer and clock manager since these are already provided.
+This section contains the implementation details regarding the FSMd implemenmation of the vending machine controller all the listings referred to in this section can be found in appendix A.
+Again, this will not cover the inputsyncronizer and clock manager since these are already provided. \\
 
+The top level module can be seen in listing \ref{fsmd_top}.
 \subsubsection{Display Driver}
 All of the VHDL code relating to the FSMd implementation of the vending machine controller can be found in Appendix A. \\
 
@@ -12,4 +13,11 @@ This VHDL code shows the connections between the BINARY TO BCD modules and the s
 The top level display entity does not contain the HexToSevenSegment entity, since this is connected directly to the segment multiplexer.
 
 \subsubsection{Vending Machine CPU}
-The FSMd cpu
+The VHDL code describing the vending machine CPU can be found in listing \ref{CCPU}.
+Two architectures have been created, one that directly translates the ASM chart in figure \ref{cola_asm}, and one that realises the FSM and datapath in figure \ref{cola_fsm} and \ref{fsmd_datapath} respectively.
+
+
+\subsubsection{Resource Consumption}
+The resource consumption of this design is somewhat high compared to the functionality of the controller.
+When synthesized, the design takes up 125 LUTs on the FPGA according to the synthesis report which can also be found in appendix A.
+However, must of these resources go to the lookup tables for binary to BCD conversion, and the clock management.

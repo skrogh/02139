@@ -1,3 +1,8 @@
+Rd = destination register
+Rs = source register
+PC = program counter
+K = Byte, as decimal or hex
+k = nibble, as decimal or hex
 Misc:
 0	nop
 
@@ -18,8 +23,8 @@ Moving:
 
 Jumps n calls:
 111	jmpa	K		PC = K
-1000	jmpp	K		PC = +K
-1001	jmpn	K		PC = -K
+1000	jmpp	K		PC += K
+1001	jmpn	K		PC -= K
 10111   gpcl    Rd      Rd = PC( 7 downto 0 )
 11000   gpch    Rd      Rd = "000000" & PC( 9 downto 8 )
 11001   spc     Rd, Rs  PC = Rd( 1 downto 0 ) & Rs
