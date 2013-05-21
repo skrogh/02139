@@ -74,7 +74,7 @@ process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, IO_D, IO_S, C, RAM_P, RAM_
     ADDER <= (others => '0'); -- Don't care ok?
     byte_set <= '0';
     RAM_SET <= '0';
-	 RAM_W <= '0';
+	RAM_W <= '0';
     case OP is
         when  "00000"  => -- NOP no operation
         when	"00001"	=>	-- ADD add

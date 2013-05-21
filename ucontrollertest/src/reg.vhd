@@ -7,21 +7,21 @@ entity reg is
             RESET	:	in		std_logic;
             I_0     :   in  std_logic_vector( 7 downto 0 );
             I_1     :   in  std_logic_vector( 7 downto 0 );
-            OP_DC :	in		std_logic_vector(3 downto 0);
-            OP_SC :	in		std_logic_vector(3 downto 0);
+            OP_DC :	in		std_logic_vector( 3 downto 0 );
+            OP_SC :	in		std_logic_vector( 3 downto 0 );
             byte_set : in std_logic;
             ram_set : in std_logic;	
             RAM_P_N   : in std_logic_vector( 7 downto 0 );	
-            OP_D_N:	in		std_logic_vector(7 downto 0);
+            OP_D_N:	in		std_logic_vector( 7 downto 0 );
             IO_D_N  :   in  std_logic_vector( 7 downto 0 );
             O_0     :   out std_logic_vector( 7 downto 0 );
             O_1     :   out std_logic_vector( 7 downto 0 );
-				O_2     :   out std_logic_vector( 7 downto 0 );
+            O_2     :   out std_logic_vector( 7 downto 0 );
             IO_D    :   out std_logic_vector( 7 downto 0 );
             IO_S    :   out std_logic_vector( 7 downto 0 );
-            OP_D	:	out	std_logic_vector(7 downto 0);
+            OP_D	:	out	std_logic_vector( 7 downto 0 );
             RAM_P   :   out std_logic_vector( 7 downto 0 );
-            OP_S	:	out	std_logic_vector(7 downto 0)
+            OP_S	:	out	std_logic_vector( 7 downto 0 )
         );
 end reg;
 
@@ -40,18 +40,18 @@ begin
             r <= (others => (others => '0'));
             RAM_REG <= ( others => '0' );
         elsif rising_edge( CLK ) then
+            if ram_set = '1' then
+                    RAM_REG <= RAM_P_N;
+            end if;
             if byte_set = '1' then
                 r( 0 ) <= OP_D_N;
-            elsif ram_set = '1' then
-                RAM_REG <= RAM_P_N;
             else
             --use 32 enables, or hope this will be infered as demux?
                 r( to_integer( unsigned( OP_DC ) ) ) <= OP_D_N;
                 io_r( to_integer( unsigned( OP_DC ) ) ) <= IO_D_N;
-
-                io_r( 0 ) <= I_0;
-                io_r( 1 ) <= I_1;
             end if;
+            io_r( 0 ) <= I_0;
+            io_r( 1 ) <= I_1;
         end if;
     end process;
 
@@ -65,7 +65,7 @@ begin
 
     O_0 <= io_r( 8 );
     O_1 <= io_r( 9 );
-	 O_2 <= io_r( 10 );
+	O_2 <= io_r( 10 );
 
 end behavioural;
 

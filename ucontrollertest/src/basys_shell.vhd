@@ -3,13 +3,13 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 entity basys_shell is
-	port(	RESET_ASYNC  : in std_logic;
-         CLK    : in std_logic;
-			I_0_ASYNC     :   in  std_logic_vector( 7 downto 0 );
-         I_1_ASYNC     :   in  std_logic_vector( 7 downto 0 );
-			O_0     :   out std_logic_vector( 7 downto 0 );
-         O_1     :   out std_logic_vector( 7 downto 0 );
-			O_2     :   out std_logic_vector( 7 downto 0 ));
+    port(   RESET_ASYNC : in std_logic;
+            CLK         : in std_logic;
+            I_0_ASYNC   :   in  std_logic_vector( 7 downto 0 );
+            I_1_ASYNC   :   in  std_logic_vector( 7 downto 0 );
+            O_0         :   out std_logic_vector( 7 downto 0 );
+            O_1         :   out std_logic_vector( 7 downto 0 );
+            O_2         :   out std_logic_vector( 7 downto 0 ));
 end basys_shell;
 
 architecture structural of basys_shell is
@@ -61,7 +61,8 @@ component reg is
 	end component;
 	
 component rom is
-	port(   addr : in std_logic_vector( 9 downto 0 );
+	port(   	clk	: in std_logic;
+				addr : in std_logic_vector( 9 downto 0 );
             do : out std_logic_vector( 12 downto 0 ) );
 	end component;
 
@@ -97,15 +98,6 @@ signal RAM_W, RAM_SET : std_logic;
 
 begin
 
-process( CLK, RESET ) 
-	begin
-		if RESET = '1' then
-			PC_N_O <= (others => '0');
-		elsif rising_edge( clk ) then
-			PC_N_O <= PC;
-		end if;
-	end process;
-	
     input : InputSynchronizer
     port map(   clk => clk,
                 reset => RESET_ASYNC,
@@ -128,7 +120,7 @@ process( CLK, RESET )
 					OP_SC => OP_SC,
 					IO_D_N => IO_D_N,
 					OP_D_N => OP_D_N,
-					PC_N_O => PC,
+					PC_N_O => PC_N_O,
                     RAM_SET => RAM_SET,
                     
                     RAM_P_N => RAM_P_N,
@@ -159,8 +151,9 @@ process( CLK, RESET )
 					OP_S => OP_S );
 	
 	code : rom
-	port map( 	addr => PC_N_O,
-					do => OP_C );
+	port map( 	clk => CLK,
+                addr => PC_N_O,
+				do => OP_C );
 
     rams : ram
     port map(   clk => clk,

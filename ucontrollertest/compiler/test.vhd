@@ -2,12 +2,19 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 entity rom is
-port( addr : in std_logic_vector( 9 downto 0 );
+port( clk : in std_logic;
+addr : in std_logic_vector( 9 downto 0 );
 do : out std_logic_vector( 12 downto 0 ) );
 end rom;
 architecture behavioural of rom is
+signal addr_clkd : std_logic_vector( 9 downto 0 );
 begin
-with addr select
+process( CLK ) begin
+if rising_edge( CLK ) then
+addr_clkd <= addr;
+end if;
+end process;
+with addr_clkd select
 do <= "0111100000000" WHEN "0000000000",
 "1000100000011" WHEN "0000000001",
 "0111100000001" WHEN "0000000010",
@@ -81,7 +88,7 @@ do <= "0111100000000" WHEN "0000000000",
 "0111100100011" WHEN "0001000110",
 "1000100100111" WHEN "0001000111",
 "0111100100100" WHEN "0001001000",
-"1000100100111" WHEN "0001001001",
+"1000100000000" WHEN "0001001001",
 "0111100100101" WHEN "0001001010",
 "1000100001110" WHEN "0001001011",
 "0111100100110" WHEN "0001001100",

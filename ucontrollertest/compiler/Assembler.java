@@ -100,12 +100,19 @@ public class Assembler {
 				"use IEEE.std_logic_1164.all;\n" +
 				"use IEEE.numeric_std.all;\n" +
 				"entity rom is\n" +
-				"port( addr : in std_logic_vector( 9 downto 0 );\n" +
+				"port( clk : in std_logic;\n" +
+				"addr : in std_logic_vector( 9 downto 0 );\n" +
 				"do : out std_logic_vector( 12 downto 0 ) );\n" +
 				"end rom;\n" +
 				"architecture behavioural of rom is\n" +
+				"signal addr_clkd : std_logic_vector( 9 downto 0 );\n" +
 				"begin\n" +
-				"with addr select\n" +
+				"process( CLK ) begin\n" +
+				"if rising_edge( CLK ) then\n" +
+				"addr_clkd <= addr;\n" +
+				"end if;\n" +
+				"end process;\n" +
+				"with addr_clkd select\n" +
 				"do <= ";
 
 		String progcode = compile();
