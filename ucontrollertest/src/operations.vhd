@@ -22,7 +22,7 @@ entity operations is
             RAM_D_N : out std_logic_vector( 7 downto 0 );
             RAM_W   : out std_logic;
             RAM_SET : out std_logic;
-            byte_set : out std_logic
+            BYTE_SET : out std_logic
         );
 end operations;
 
@@ -48,10 +48,6 @@ begin
         if RESET = '1' then
             -- Carry
             C <= (others => '0');
-
-            -- I/O
-
-
             -- Program counter internal
             PC_INT <= (others => '0');
         elsif rising_edge( CLK ) then
