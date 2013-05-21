@@ -13,4 +13,21 @@ It can also be verified that the controller shows the correct numbers on the 7-s
 visually using the Basys2 board. \\
 
 Since operation of the machine assumes that the \textbf{sum} will never exceed the maximum value the machine can handle, this will not be tested.
-Should it happen, it would cause overflow because of the datapath implementation.
+Should it happen, it would cause overflow because of the datapath implementation. \\
+
+To test the FSMd implementation, the following .do file seen in listing \ref{fsmd_do} was used. The result of the simulation can be seen 
+in figure \ref{fsmd_sim}.
+
+\lstinputlisting[caption={.do file for testing the vending machine FSMd}, label={fsmd_do}]{../project1/src/controllertest.do}
+
+\begin{figure}
+    \center
+    \includegraphics[scale=0.5]{pictures/FSMd_test.png}
+    \caption{Modelsim simulation of the vending machine FSMd using the .do file from listing \ref{fsmd_do} }
+    \label{fsmd_sim}
+\end{figure}
+
+The timing diagram in figure \ref{fsmd_sim} shows that the vending machine controller correctly multiplexes the display,
+accepts input and waits for inputs to be deasserted before continuing, and can perform a transaction provided that
+the \textbf{sum} is larger than the price. It can also be seen that \textbf{release\_can} is asserted for as long
+as \textbf{buy} is pressed and that \textbf{reset} works as specified.
