@@ -21,7 +21,7 @@ begin
     reset_sync <= reset_r;
 
     --ff buffer
-    process( clk, reset )
+    process( clk )
     begin
         if rising_edge( clk ) then
             reset_r <= reset;
