@@ -42,8 +42,7 @@ begin
         elsif rising_edge( CLK ) then
             if ram_set = '1' then
                     RAM_REG <= RAM_P_N;
-            end if;
-            if byte_set = '1' then
+            elsif byte_set = '1' then
                 r( 0 ) <= OP_D_N;
             else
             --use 32 enables, or hope this will be infered as demux?
