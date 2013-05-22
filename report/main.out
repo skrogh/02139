@@ -1,39 +1,40 @@
-\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [2][-]{subsection.1.1}{Project Specification}{section.1}% 2
-\BOOKMARK [1][-]{section.2}{FSMd implementation}{}% 3
-\BOOKMARK [2][-]{subsection.2.1}{Analysis and Design}{section.2}% 4
-\BOOKMARK [3][-]{subsubsection.2.1.1}{Display Driver}{subsection.2.1}% 5
-\BOOKMARK [3][-]{subsubsection.2.1.2}{Vending Machine CPU}{subsection.2.1}% 6
-\BOOKMARK [2][-]{subsection.2.2}{Implementation}{section.2}% 7
-\BOOKMARK [3][-]{subsubsection.2.2.1}{Display Driver}{subsection.2.2}% 8
-\BOOKMARK [3][-]{subsubsection.2.2.2}{Vending Machine CPU}{subsection.2.2}% 9
-\BOOKMARK [3][-]{subsubsection.2.2.3}{Resource Consumption}{subsection.2.2}% 10
-\BOOKMARK [2][-]{subsection.2.3}{Test}{section.2}% 11
-\BOOKMARK [1][-]{section.3}{Microcontroller Implementation}{}% 12
-\BOOKMARK [2][-]{subsection.3.1}{Analysis and Design}{section.3}% 13
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Opcodes}{subsection.3.1}% 14
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Architecture}{subsection.3.1}% 15
-\BOOKMARK [2][-]{subsection.3.2}{Implementation}{section.3}% 16
-\BOOKMARK [2][-]{subsection.3.3}{Assembly code and assembler}{section.3}% 17
-\BOOKMARK [2][-]{subsection.3.4}{Test}{section.3}% 18
-\BOOKMARK [1][-]{section.4}{Coding the microcontroller}{}% 19
-\BOOKMARK [2][-]{subsection.4.1}{Analysis and design}{section.4}% 20
-\BOOKMARK [2][-]{subsection.4.2}{Implementation}{section.4}% 21
-\BOOKMARK [2][-]{subsection.4.3}{Result}{section.4}% 22
-\BOOKMARK [2][-]{subsection.4.4}{Resource consumption}{section.4}% 23
-\BOOKMARK [1][-]{section.5}{Discussion}{}% 24
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 25
-\BOOKMARK [1][-]{section.7}{Appendix A - Controller/Datapath VHDL}{}% 26
-\BOOKMARK [2][-]{subsection.7.1}{Top level module}{section.7}% 27
-\BOOKMARK [2][-]{subsection.7.2}{Display Driver Code}{section.7}% 28
-\BOOKMARK [2][-]{subsection.7.3}{FSMd CPU code}{section.7}% 29
-\BOOKMARK [2][-]{subsection.7.4}{Synthesis report}{section.7}% 30
-\BOOKMARK [1][-]{section.8}{Appendix B - Microcontroller VHDL}{}% 31
-\BOOKMARK [2][-]{subsection.8.1}{Top level module}{section.8}% 32
-\BOOKMARK [2][-]{subsection.8.2}{Input synchronizer}{section.8}% 33
-\BOOKMARK [2][-]{subsection.8.3}{Operations}{section.8}% 34
-\BOOKMARK [2][-]{subsection.8.4}{RAM}{section.8}% 35
-\BOOKMARK [2][-]{subsection.8.5}{Reg}{section.8}% 36
-\BOOKMARK [2][-]{subsection.8.6}{ROM}{section.8}% 37
-\BOOKMARK [2][-]{subsection.8.7}{Vending machine code}{section.8}% 38
-\BOOKMARK [2][-]{subsection.8.8}{Synthesis report}{section.8}% 39
+\BOOKMARK [2][-]{section*.2}{Preface}{}% 1
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 2
+\BOOKMARK [2][-]{subsection.1.1}{Project Specification}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{FSMd implementation}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Analysis and Design}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Display Driver}{subsection.2.1}% 6
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Vending Machine CPU}{subsection.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Implementation}{section.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Display Driver}{subsection.2.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Vending Machine CPU}{subsection.2.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Resource Consumption}{subsection.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.3}{Test}{section.2}% 12
+\BOOKMARK [1][-]{section.3}{Microcontroller Implementation}{}% 13
+\BOOKMARK [2][-]{subsection.3.1}{Analysis and Design}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Opcodes}{subsection.3.1}% 15
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Architecture}{subsection.3.1}% 16
+\BOOKMARK [2][-]{subsection.3.2}{Implementation}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.3}{Assembly code and assembler}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.4}{Test}{section.3}% 19
+\BOOKMARK [1][-]{section.4}{Coding the microcontroller}{}% 20
+\BOOKMARK [2][-]{subsection.4.1}{Analysis and design}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.2}{Implementation}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.3}{Result}{section.4}% 23
+\BOOKMARK [2][-]{subsection.4.4}{Resource consumption}{section.4}% 24
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 25
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 26
+\BOOKMARK [1][-]{section.7}{Appendix A - Controller/Datapath VHDL}{}% 27
+\BOOKMARK [2][-]{subsection.7.1}{Top level module}{section.7}% 28
+\BOOKMARK [2][-]{subsection.7.2}{Display Driver Code}{section.7}% 29
+\BOOKMARK [2][-]{subsection.7.3}{FSMd CPU code}{section.7}% 30
+\BOOKMARK [2][-]{subsection.7.4}{Synthesis report}{section.7}% 31
+\BOOKMARK [1][-]{section.8}{Appendix B - Microcontroller VHDL}{}% 32
+\BOOKMARK [2][-]{subsection.8.1}{Top level module}{section.8}% 33
+\BOOKMARK [2][-]{subsection.8.2}{Input synchronizer}{section.8}% 34
+\BOOKMARK [2][-]{subsection.8.3}{Operations}{section.8}% 35
+\BOOKMARK [2][-]{subsection.8.4}{RAM}{section.8}% 36
+\BOOKMARK [2][-]{subsection.8.5}{Reg}{section.8}% 37
+\BOOKMARK [2][-]{subsection.8.6}{ROM}{section.8}% 38
+\BOOKMARK [2][-]{subsection.8.7}{Vending machine code}{section.8}% 39
+\BOOKMARK [2][-]{subsection.8.8}{Synthesis report}{section.8}% 40

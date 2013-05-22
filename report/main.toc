@@ -1,47 +1,49 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}Introduction}{4}{section.1}
-\contentsline {subsection}{\numberline {1.1}Project Specification}{4}{subsection.1.1}
-\contentsline {section}{\numberline {2}FSMd implementation}{6}{section.2}
-\contentsline {subsection}{\numberline {2.1}Analysis and Design}{6}{subsection.2.1}
-\contentsline {subsubsection}{\numberline {2.1.1}Display Driver}{6}{subsubsection.2.1.1}
-\contentsline {paragraph}{Display Multiplexing}{6}{section*.5}
-\contentsline {paragraph}{Hexadecimal to BCD conversion}{7}{section*.8}
-\contentsline {subsubsection}{\numberline {2.1.2}Vending Machine CPU}{7}{subsubsection.2.1.2}
-\contentsline {subsection}{\numberline {2.2}Implementation}{10}{subsection.2.2}
-\contentsline {subsubsection}{\numberline {2.2.1}Display Driver}{10}{subsubsection.2.2.1}
-\contentsline {subsubsection}{\numberline {2.2.2}Vending Machine CPU}{10}{subsubsection.2.2.2}
-\contentsline {subsubsection}{\numberline {2.2.3}Resource Consumption}{10}{subsubsection.2.2.3}
+\contentsline {subsection}{Preface}{3}{section*.2}
+\contentsline {paragraph}{Distribution of work}{3}{section*.3}
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}
+\contentsline {subsection}{\numberline {1.1}Project Specification}{5}{subsection.1.1}
+\contentsline {section}{\numberline {2}FSMd implementation}{7}{section.2}
+\contentsline {subsection}{\numberline {2.1}Analysis and Design}{7}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Display Driver}{7}{subsubsection.2.1.1}
+\contentsline {paragraph}{Display Multiplexing}{7}{section*.7}
+\contentsline {paragraph}{Hexadecimal to BCD conversion}{8}{section*.10}
+\contentsline {subsubsection}{\numberline {2.1.2}Vending Machine CPU}{8}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}Implementation}{11}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Display Driver}{11}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Vending Machine CPU}{11}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Resource Consumption}{11}{subsubsection.2.2.3}
 \contentsline {subsection}{\numberline {2.3}Test}{11}{subsection.2.3}
-\contentsline {section}{\numberline {3}Microcontroller Implementation}{13}{section.3}
-\contentsline {subsection}{\numberline {3.1}Analysis and Design}{13}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Opcodes}{13}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}Architecture}{14}{subsubsection.3.1.2}
-\contentsline {paragraph}{Input Synchronizer: Figur~ref{fig:uSync}}{14}{section*.14}
-\contentsline {paragraph}{ROM/Program space: Figur~ref{fig:uROM}}{15}{section*.16}
-\contentsline {paragraph}{RAM: Figur~ref{fig:uRAM}}{15}{section*.18}
-\contentsline {paragraph}{Reg: Figur~ref{fig:uReg}}{16}{section*.20}
-\contentsline {paragraph}{Operations: Figur~ref{fig:uOperations}}{16}{section*.22}
-\contentsline {subsection}{\numberline {3.2}Implementation}{18}{subsection.3.2}
+\contentsline {section}{\numberline {3}Microcontroller Implementation}{14}{section.3}
+\contentsline {subsection}{\numberline {3.1}Analysis and Design}{14}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Opcodes}{14}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Architecture}{15}{subsubsection.3.1.2}
+\contentsline {paragraph}{Input Synchronizer: Figur~ref{fig:uSync}}{15}{section*.16}
+\contentsline {paragraph}{ROM/Program space: Figur~ref{fig:uROM}}{16}{section*.18}
+\contentsline {paragraph}{RAM: Figur~ref{fig:uRAM}}{16}{section*.20}
+\contentsline {paragraph}{Reg: Figur~ref{fig:uReg}}{17}{section*.22}
+\contentsline {paragraph}{Operations: Figur~ref{fig:uOperations}}{17}{section*.24}
+\contentsline {subsection}{\numberline {3.2}Implementation}{19}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Assembly code and assembler}{19}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Test}{20}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.4}Test}{19}{subsection.3.4}
 \contentsline {section}{\numberline {4}Coding the microcontroller}{22}{section.4}
 \contentsline {subsection}{\numberline {4.1}Analysis and design}{22}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Implementation}{24}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Result}{25}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Resource consumption}{25}{subsection.4.4}
-\contentsline {section}{\numberline {5}Discussion}{26}{section.5}
-\contentsline {section}{\numberline {6}Conclusion}{27}{section.6}
-\contentsline {section}{\numberline {7}Appendix A - Controller/Datapath VHDL}{28}{section.7}
-\contentsline {subsection}{\numberline {7.1}Top level module}{28}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Display Driver Code}{30}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}FSMd CPU code}{33}{subsection.7.3}
-\contentsline {subsection}{\numberline {7.4}Synthesis report}{37}{subsection.7.4}
-\contentsline {section}{\numberline {8}Appendix B - Microcontroller VHDL}{38}{section.8}
-\contentsline {subsection}{\numberline {8.1}Top level module}{38}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Input synchronizer}{40}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}Operations}{41}{subsection.8.3}
-\contentsline {subsection}{\numberline {8.4}RAM}{43}{subsection.8.4}
-\contentsline {subsection}{\numberline {8.5}Reg}{44}{subsection.8.5}
-\contentsline {subsection}{\numberline {8.6}ROM}{45}{subsection.8.6}
-\contentsline {subsection}{\numberline {8.7}Vending machine code}{45}{subsection.8.7}
-\contentsline {subsection}{\numberline {8.8}Synthesis report}{57}{subsection.8.8}
+\contentsline {subsection}{\numberline {4.3}Result}{24}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Resource consumption}{24}{subsection.4.4}
+\contentsline {section}{\numberline {5}Discussion}{25}{section.5}
+\contentsline {section}{\numberline {6}Conclusion}{26}{section.6}
+\contentsline {section}{\numberline {7}Appendix A - Controller/Datapath VHDL}{27}{section.7}
+\contentsline {subsection}{\numberline {7.1}Top level module}{27}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Display Driver Code}{29}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}FSMd CPU code}{32}{subsection.7.3}
+\contentsline {subsection}{\numberline {7.4}Synthesis report}{36}{subsection.7.4}
+\contentsline {section}{\numberline {8}Appendix B - Microcontroller VHDL}{37}{section.8}
+\contentsline {subsection}{\numberline {8.1}Top level module}{37}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Input synchronizer}{39}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Operations}{40}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}RAM}{42}{subsection.8.4}
+\contentsline {subsection}{\numberline {8.5}Reg}{43}{subsection.8.5}
+\contentsline {subsection}{\numberline {8.6}ROM}{44}{subsection.8.6}
+\contentsline {subsection}{\numberline {8.7}Vending machine code}{44}{subsection.8.7}
+\contentsline {subsection}{\numberline {8.8}Synthesis report}{56}{subsection.8.8}

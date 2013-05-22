@@ -1,0 +1,38 @@
+add wave -position insertpoint  \
+sim:/basys_shell/CLK \
+sim:/basys_shell/RESET_ASYNC \
+sim:/basys_shell/RESET \
+sim:/basys_shell/I_0_ASYNC \
+sim:/basys_shell/I_1_ASYNC \
+sim:/basys_shell/I_0 \
+sim:/basys_shell/I_1 \
+sim:/basys_shell/O_0 \
+sim:/basys_shell/O_1 \
+sim:/basys_shell/O_2 \
+sim:/basys_shell/PC_N \
+sim:/basys_shell/ops/PC_INT \
+sim:/basys_shell/ops/OP \
+sim:/basys_shell/ops/C \
+sim:/basys_shell/ops/C_N \
+sim:/basys_shell/regs/r(0) \
+sim:/basys_shell/regs/r(1) \
+sim:/basys_shell/regs/r(2) \
+sim:/basys_shell/regs/r(3) \
+sim:/basys_shell/regs/r(4) \
+sim:/basys_shell/rams/rams(0) \
+sim:/basys_shell/rams/rams(1) \
+sim:/basys_shell/rams/rams(2) \
+sim:/basys_shell/byte_set \
+sim:/basys_shell/code/addr_clkd
+
+
+
+restart
+force reset_async 1 0, 0 4, 1 120, 0 122
+force clk 0 0, 1 1 -repeat 2
+force I_0_async 0 0, 8 20
+force I_1_async 0
+run 130
+
+
+
