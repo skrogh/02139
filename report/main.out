@@ -18,7 +18,7 @@
 \BOOKMARK [2][-]{subsection.3.4}{Test}{section.3}% 18
 \BOOKMARK [1][-]{section.4}{Coding the microcontroller}{}% 19
 \BOOKMARK [2][-]{subsection.4.1}{Analysis and design}{section.4}% 20
-\BOOKMARK [2][-]{subsection.4.2}{Implimentation}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.2}{Implementation}{section.4}% 21
 \BOOKMARK [2][-]{subsection.4.3}{Result}{section.4}% 22
 \BOOKMARK [1][-]{section.5}{Appendix A - Controller/Datapath VHDL}{}% 23
 \BOOKMARK [2][-]{subsection.5.1}{Top level module}{section.5}% 24

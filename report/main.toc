@@ -26,7 +26,7 @@
 \contentsline {subsection}{\numberline {3.4}Test}{20}{subsection.3.4}
 \contentsline {section}{\numberline {4}Coding the microcontroller}{22}{section.4}
 \contentsline {subsection}{\numberline {4.1}Analysis and design}{22}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Implimentation}{24}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.2}Implementation}{24}{subsection.4.2}
 \contentsline {subsection}{\numberline {4.3}Result}{25}{subsection.4.3}
 \contentsline {section}{\numberline {5}Appendix A - Controller/Datapath VHDL}{26}{section.5}
 \contentsline {subsection}{\numberline {5.1}Top level module}{26}{subsection.5.1}
