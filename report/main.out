@@ -20,15 +20,20 @@
 \BOOKMARK [2][-]{subsection.4.1}{Analysis and design}{section.4}% 20
 \BOOKMARK [2][-]{subsection.4.2}{Implementation}{section.4}% 21
 \BOOKMARK [2][-]{subsection.4.3}{Result}{section.4}% 22
-\BOOKMARK [1][-]{section.5}{Appendix A - Controller/Datapath VHDL}{}% 23
-\BOOKMARK [2][-]{subsection.5.1}{Top level module}{section.5}% 24
-\BOOKMARK [2][-]{subsection.5.2}{Display Driver Code}{section.5}% 25
-\BOOKMARK [2][-]{subsection.5.3}{FSMd CPU code}{section.5}% 26
-\BOOKMARK [1][-]{section.6}{Appendix B - Microcontroller VHDL}{}% 27
-\BOOKMARK [2][-]{subsection.6.1}{Top level module}{section.6}% 28
-\BOOKMARK [2][-]{subsection.6.2}{Input synchronizer}{section.6}% 29
-\BOOKMARK [2][-]{subsection.6.3}{Operations}{section.6}% 30
-\BOOKMARK [2][-]{subsection.6.4}{RAM}{section.6}% 31
-\BOOKMARK [2][-]{subsection.6.5}{Reg}{section.6}% 32
-\BOOKMARK [2][-]{subsection.6.6}{ROM}{section.6}% 33
-\BOOKMARK [2][-]{subsection.6.7}{Vending machine code}{section.6}% 34
+\BOOKMARK [2][-]{subsection.4.4}{Resource consumption}{section.4}% 23
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 24
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 25
+\BOOKMARK [1][-]{section.7}{Appendix A - Controller/Datapath VHDL}{}% 26
+\BOOKMARK [2][-]{subsection.7.1}{Top level module}{section.7}% 27
+\BOOKMARK [2][-]{subsection.7.2}{Display Driver Code}{section.7}% 28
+\BOOKMARK [2][-]{subsection.7.3}{FSMd CPU code}{section.7}% 29
+\BOOKMARK [2][-]{subsection.7.4}{Synthesis report}{section.7}% 30
+\BOOKMARK [1][-]{section.8}{Appendix B - Microcontroller VHDL}{}% 31
+\BOOKMARK [2][-]{subsection.8.1}{Top level module}{section.8}% 32
+\BOOKMARK [2][-]{subsection.8.2}{Input synchronizer}{section.8}% 33
+\BOOKMARK [2][-]{subsection.8.3}{Operations}{section.8}% 34
+\BOOKMARK [2][-]{subsection.8.4}{RAM}{section.8}% 35
+\BOOKMARK [2][-]{subsection.8.5}{Reg}{section.8}% 36
+\BOOKMARK [2][-]{subsection.8.6}{ROM}{section.8}% 37
+\BOOKMARK [2][-]{subsection.8.7}{Vending machine code}{section.8}% 38
+\BOOKMARK [2][-]{subsection.8.8}{Synthesis report}{section.8}% 39

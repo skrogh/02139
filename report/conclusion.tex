@@ -1,0 +1,14 @@
+\section{Conclusion}
+We have designed and implemented a controller for a simulated vending machine in two different ways. First as
+an FSMd and secondly as a microcontroller running a program written in assembly and compiled to bitcode. 
+The FSMd implementation is fairly limited and can only perform the most basic functions outlined in the
+requirements in the exercise manual. The vending machine program running on the microcontroller however, has 
+added functionality such as scrolling messages and the ability to show more than two digits of the 
+\textbf{price} and \textbf{sum}. This was possible because the implementation time for new complicated features such as scrolĺing messages is much faster on the microcontroller. \\
+
+The resource consumption of the respective designs were 125 LUTs for the FSMd implementation and 500LUTs for the microcontroller implementation, however the figure for the microcontroller is not stable
+because the synthesis tool performs optimizations that we cannot control. \\
+
+A video of the microcontroller running the vending machine program can be found at:
+\url{http://www.youtube.com/watch?v=-0lI2AP21xc}
+

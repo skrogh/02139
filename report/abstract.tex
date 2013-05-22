@@ -1,4 +1,10 @@
 \begin{abstract}
-Your abstract goes here...
-...
+    In this report we design and implement a controller for a simulated vending machine running on the Basys2 board.
+    We implement the controller in two ways, as an application specific FSMd and as a programmable microcontroller running a vending machine program written in assembly.
+    The microcontroller contains an 8-bit microprocessor with 16 internal
+    accumulators that double as general purpose registers, support for
+    16 by 8 GPIO pins, 256 bytes of single cycle RAM and ROM which contains the program for the microprocessor.
+    After describing the design process of both the microcontroller and the FSMd, we conclude that adding complex features is harder in the FSMd
+    implementation than in the microcontroller implementation, however
+    testing is easier for the FSMd and the resource consumption is lower.
 \end{abstract}

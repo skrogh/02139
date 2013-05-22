@@ -1,0 +1,23 @@
+\section{Discussion}
+The two different ways of simulating the vending machine both have their pros and cons.
+The FSMd implementation is very optimal since it is designed with a specific implementation in mind.
+This results in a minimum amount of VHDL and testing required to verify that the design performs as
+expected. However, if a new feature is required, the design process must often be started from scratch.
+This was the reason for implementing a programmable microcontroller. Even though the initial design
+burden was fairly large, when the initial design was implemented and the compiler was up and running.
+The speed at which new features could be added was much greater than the FSMd approach, however the resource
+consumption and amount of testing necessary to verify the design was much greater. \\
+
+If the design platform and intended application  is taken into account, an FSMd implementation is most likely the optimal choice.
+This is because an FPGA can be reprogrammed so easily, that the cost of changing the FSMd design is
+practically zero apart from the time spent on adding features to the design and because the vending machine application is fairly
+fixed in it's requirements.\\
+
+The microcontroller can however be used for different applications than the one outlined in this report, with a simple
+reprogramming that does not change the hardware implementation, but only the executed code. This means that the amount
+of hardware testing down the line is neglible, but the software will require testing, which is also costly. \\
+
+Thus we can, not surprisingly, conclude that for a fixed application where design time and monetary resources are not
+an issue, but physical resources are, an FSMd is the optimal design choice. On the other hand, when the application
+does not have fixed requirements or there are time or money constraints, but physical resources are not an issue, 
+a microcontroller might be more cost effective.

@@ -4,4 +4,15 @@ testing in \emph{modelsim} would therefore not be very effective,
 furthermore the debounce feature takes quite a while to simulate.
 Instead we have chosen to link to a video showing the processor vending machine.
 
-\url{oengroaeg}
+\url{http://www.youtube.com/watch?v=-0lI2AP21xc}
+
+
+\subsection{Resource consumption}
+According to the synthesis report found in appendix B, the microcontroller uses 500 LUTs when running the vending machine program. 
+This figure is not stable, since the microcontroller is programmed by resynthesizing the design with a different ROM.
+This results in the synthesis tool performing optimizations on the design that we cannot control which leads to unpredictable resource consumption.
+The maximum amount of resources we have seen the microcontroller use after synthesis is around 1300 LUTs.
+The only theoretical resource consumption we can calculate is the number
+of memory bits being used which is around 16Kbits with a filled ROM and RAM.
+This is well below the limits of the Spartan-3E residing on the Basys2 board
+which contains about 88Kbits of memory according to it's datasheet.
