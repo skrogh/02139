@@ -7,49 +7,49 @@ Misc:
 0	nop
 
 Arithmetics:
-01	add	Rd, Rs		Rd = Rd + Rs		C
-			C = (Rd + Rs) > 0xFF
-10	sub	Rd, Rs		Rd = Rd - Rs		C
-			C = Rs > Rd
-10101 addc Rd, Rs 	Rd = Rd + Rs + C 	C
+01		add		Rd, Rs		Rd = Rd + Rs		C
+							C = (Rd + Rs) > 0xFF
+10		sub		Rd, Rs		Rd = Rd - Rs		C
+							C = Rs > Rd
+10101 	addc 	Rd, Rs 		Rd = Rd + Rs + C 	C
 
 Nibble manipulation:
-11	sln	Rd, k		Rd(0..3) = k
-100	shn	Rd, k		Rd(4..7) = k
-101	res	Rd		Rd = 0
+11		sln		Rd, k		Rd(0..3) = k
+100		shn		Rd, k		Rd(4..7) = k
+101		res		Rd			Rd = 0
 
 Moving:
-110	mov	Rd, Rs		Rd = Rs
+110		mov 	Rd, Rs		Rd = Rs
 
 Jumps n calls:
-111	jmpa	K		PC = K
-1000	jmpp	K		PC += K
-1001	jmpn	K		PC -= K
-10111   gpcl    Rd      Rd = PC( 7 downto 0 )
-11000   gpch    Rd      Rd = "000000" & PC( 9 downto 8 )
-11001   spc     Rd, Rs  PC = Rd( 1 downto 0 ) & Rs
+111		jmpa	K			PC = K
+1000	jmpp	K			PC += K
+1001	jmpn	K			PC -= K
+10111	gpcl	Rd			Rd = PC( 7 downto 0 )
+11000	gpch	Rd			Rd = "000000" & PC( 9 downto 8 )
+11001	spc		Rd, Rs		PC = Rd( 1 downto 0 ) & Rs
 
 Compare:
 
-1010	brnp	K		C=0: PC = PC + 1
-			C=1: PC = PC + K
+1010	brnp	K			C=0: PC = PC + 1
+							C=1: PC = PC + K
 
-1011	brnn	K		C=0: PC = PC + 1
-			C=1: PC = PC - K 
-10100 	and 	Rd, Rs 	Rd = Rd & Rs
-10110 	cmp 	Rd, Rs  C = Rs > Rd
+1011	brnn	K			C=0: PC = PC + 1
+							C=1: PC = PC - K 
+10100 	and 	Rd, Rs 		Rd = Rd & Rs
+10110 	cmp 	Rd, Rs  	C = Rs > Rd
 
 I/O
 16 8-bit I/O regs separate from internal regs
-1100    rio Rd, Rs  Rd = IO(RS)
-1101    sio Rd, Rs  IO(Rd) = Rs
+1100    rio 	Rd, Rs 		Rd = IO(RS)
+1101    sio 	Rd, Rs 		IO(Rd) = Rs
 
 Set r0 to 8-bit value instead of using 2x nibble ops
-1110    sbr K       r0 = K
+1110    sbr 	K      		r0 = K
 
 RAM ops
-1111 	sri K 		ram address = K
-10000 	sra Rs 		ram adress = valueof(Rs)
-10001	srvi K 		ram value = K
-10010 	srvr Rs 	ram value = valueof(Rs)
-10011 	rra Rd 		read ram value into Rd
+1111 	sri 	K 			ram address = K
+10000 	sra 	Rs 			ram adress = valueof(Rs)
+10001	srvi 	K 			ram value = K
+10010 	srvr 	Rs 			ram value = valueof(Rs)
+10011 	rra 	Rd 			read ram value into Rd

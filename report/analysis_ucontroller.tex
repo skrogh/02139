@@ -40,6 +40,55 @@ The microcontroller also includes 256 bytes of ram, which can be accessed with a
 \subsubsection{Opcodes}
 The instruction set for the processor is seen below together with its assembly mnemonics. It was created
 with a focus being simple, while still having the capability of doing most common operations
-in a single clock cycle. All operations shown below are single clock cycle operations.
+in a single clock cycle. All operations shown below are single clock cycle
+operations. It is worth mentioning that reading and writing to/from the RAM
+takes two cyckles in realty, one for setting the adress and one for
+reading/writing. It is also worth mentioning that there is a bit redundancy in
+having bith the set nibbles and set byte operations - we simply forgot to remove
+the nibble operation.
 %spec listing
 \lstinputlisting[caption={Instruction set for the soft core microcontroller}, label={spec}]{clean_spec.txt} 
+
+\subsubsection{Architecture}
+The processor is divided into 4 main entities and an input synchronizer, a
+genereal overview of the interconnection of these blocks is described in
+figure~\ref{fig:uOverview} a detailing description of each entity will be given
+later.
+\stdfig{1}{Overview}{An overview of the architecture used for
+ the microcontroler}{fig:uOverview}
+ 
+\paragraph{Input Synchronizer: Figur~ref{fig:uSync}}
+As asyncronius reset is used on registers throughout the dessign, due to the
+hardware-support for this on many FPGAs, at least the \emph{Spartan 3} we are
+using, it is important to synchronize this signal. If the reset signal is not
+syncronized with the clock de-assertion may give metastabillity.
+
+The inputsignals from switches are synchromized here as well, so they end up as
+double syncronized (due to registers in the \emph{reg} enitity)
+\stdfig{1}{Input_sync}{Datapath for the input synchronizer}{fig:uSync}
+
+\paragraph{ROM/Program space: Figur~ref{fig:uROM}}
+The binary-code of the processor is kept in a ROM block. Snice the adress is
+clocked internally a register in the \emp{operations} entity keeps track of the
+current adress.
+\stdfig{1}{ROM}{Datapath for the ROM/program space}{fig:uROM}
+
+\paragraph{RAM: Figur~ref{fig:uRAM}}
+Like the ROM the adress on the ram is clocked internally, so a register is kept
+in the \emph{reg} entity that keeps track of the current adress.
+\stdfig{1}{RAM}{Datapath for the RAM}{fig:uRAM}
+
+\paragraph{Reg: Figur~ref{fig:uReg}}
+This entity contains the utility registers, the IO registers and a register for
+storing the current RAM adress.
+\stdfig{1}{Registers}{Datapath for the \emph{reg} entity}{fig:uReg}
+
+\paragraph{Operations: Figur~ref{fig:uOperations}}
+This entity contains a register for keeping track of the program line counter
+PC - the adress for the ROM that is. furthermore there is a block containing the
+operations themself.
+\stdfig{1}{Operations}{Datapath for the \emph{opeartions}
+entity}{fig:uOperations}
+
+
+

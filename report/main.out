@@ -12,7 +12,8 @@
 \BOOKMARK [1][-]{section.3}{Microcontroller Implementation}{}% 12
 \BOOKMARK [2][-]{subsection.3.1}{Analysis and Design}{section.3}% 13
 \BOOKMARK [3][-]{subsubsection.3.1.1}{Opcodes}{subsection.3.1}% 14
-\BOOKMARK [1][-]{section.4}{Appendix A - Controller/Datapath VHDL}{}% 15
-\BOOKMARK [2][-]{subsection.4.1}{Top level module}{section.4}% 16
-\BOOKMARK [2][-]{subsection.4.2}{Display Driver Code}{section.4}% 17
-\BOOKMARK [2][-]{subsection.4.3}{FSMd CPU code}{section.4}% 18
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Architecture}{subsection.3.1}% 15
+\BOOKMARK [1][-]{section.4}{Appendix A - Controller/Datapath VHDL}{}% 16
+\BOOKMARK [2][-]{subsection.4.1}{Top level module}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.2}{Display Driver Code}{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.3}{FSMd CPU code}{section.4}% 19

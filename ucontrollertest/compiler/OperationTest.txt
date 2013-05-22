@@ -1,0 +1,39 @@
+; define constants
+
+; test set bit opeartions
+sbr 0x4F ; set r0 to 0x4F
+shn r1 6 ; set r1 to 0x60
+sln r1 4 ; set r1 to 0x64
+
+; test copying
+mov r2 r0 ; copy r0 to r2
+
+; test athrtmics
+addc r0 r1 ; add r1 to r0 in r0, result: B3, no carry
+add r0 r1 ; add r1 to r0 in r0, result: 17, carry set
+addc r0 r1 ; add r1 + carry to r0 in r0, result: 7C
+sub r0 r1 ; subtract r1 from r0 result in r0, result 18, no carry
+res r0 ; reset r0
+sub r0 r1 ; subtract r1 from r0 result in r0, result 9C, carry set
+
+; test jumping
+nop ; no operation
+jmpa absJump ; absolue jump to somewhere
+jmpp 2 ; fo is here. jump to bar
+: absJump
+jmpn 1 ; somewhere. jumps back to fo
+nop ; this is bar. end of jumps
+gpcl r3 ; get program counter low bits into r3
+gpch r4 ; get program counter high bits into r4
+sbr 0x01 ; set r0 to 1
+add r3 r0 ; allign lowbit with high bit
+sbr 0x08 ; set r0 to 7
+add r3 r0 ; allign lowbit with line "sbr 0xFF"
+res r0 ; zero for adding carry
+addc r4 r0 ; add the carry - both programcounters now mach the next, next line
+jmp continue
+sbr 0xFF ; this is our return point - we will go here when the program finishes
+jmpn 1 ; loop that forever
+: continue
+
+; test comparision

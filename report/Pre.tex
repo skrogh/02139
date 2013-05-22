@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[a4paper]{article}
 \usepackage{fancyhdr}
 \usepackage[top=3cm, bottom=2cm, left=2cm, right=4cm]{geometry}
 \usepackage[english]{babel}
@@ -7,13 +7,14 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{amsthm}
 \newtheorem{thm}{Sætning}
 \newtheorem{dfn}{Definition}
 \usepackage{lmodern}
-\graphicspath{{pictures/}}
+\graphicspath{{./pictures/}}
 %\usepackage{textpos}
 \usepackage{color}
 \usepackage{xcolor}
@@ -21,6 +22,7 @@
 \usepackage{courier}
 \usepackage{epstopdf}
 \usepackage{fixltx2e}
+
 %\epstopdfsetup{update,prepend,verbose,suffix=-generated} % use suffix because you don't want to accidentally overwrite a file that might have been a pdf source. The epstopdf package manual has more on that.
 
  
@@ -126,3 +128,15 @@
 \rhead{Carsten Nielsen s123161, \\ Søren Krogh Andersen s123369}
 
 \cfoot[\thepage]{\thepage}
+
+%Macros
+%By s�ren:
+\newcommand\stdfig[4]{ %width,img,cap,label
+\begin{figure}[h!]
+\centering
+\includegraphics[width=#1\textwidth]{#2}
+\caption{#3} \label{#4}
+\end{figure}
+}
+\newcommand\diff{\dot}
+\newcommand\ddiff{\ddot}
