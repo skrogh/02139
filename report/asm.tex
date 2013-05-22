@@ -1,0 +1,18 @@
+\subsection{Assembly code and assembler}
+Since writing binary code is a bit tiresome we wrote an assember,
+so that coding the microprocessor would be a bit more managable.
+
+The assebler has support for lables, when doing jumps
+and constans can be declared in [bracets], these work for the \emph{sbr} and
+\emph{sri} operations. Both binary and hexadecimal inpus are accepted
+
+Registers r0-r15 are replaced by binary numbers and operations are replaced by
+their respective binary codes. The whole thing is wrapped insinde the
+\emph{VHDL} fund in listing~\ref{lst:uContROM}
+
+This is a rather lenghty Java-application so it will not be included in the
+appendix but the newest version can be found at:
+\url{https://github.com/TheExplosiveSheep/02139/blob/master/ucontrollertest/compiler/Assembler.java}
+
+A syntax highlighting file for the \emph{Sublime text2} editor lies in the same
+repository.

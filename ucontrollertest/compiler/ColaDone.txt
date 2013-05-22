@@ -31,7 +31,7 @@
 
 
 
-
+nop ; skip 0
 ; start loading 7-segment values in ram
 sri 0 ; start 7-segment values at RAMADDR = 0
 srvi 0x03 ; 0 has segment code "00000011"

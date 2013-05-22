@@ -1,0 +1,37 @@
+\subsection{Test}
+A small testing program going through all operations is written for the
+micrcontroller. Each line also describes the desired output and contains the
+line number in hexcode for easy verification in the figures.
+
+
+\lstinputlisting[caption={Assembly code for the testing of the microprocessor,
+}, label={lst:uContTestCode}]{../ucontrollertest/compiler/OperationTest.txt}
+
+In figure~\ref{fig:uContTest1} and figure~\ref{fig:uContTest2} the result of the
+test is shown, the easiest way to check, that everything works as expected is to
+cross check the assembly-code comments and the figures. Note that the processor
+is reset during code execution to show that the RAM maintains its values.
+
+\stdfig{1}{uControllerTestP1}{The microprocessor being testet
+with the code from listin~\ref{lst:uContTestCode}. Note that not all signals
+are shown, as there are way too many. Page 1/2}{fig:uContTest1}
+\stdfig{1}{uControllerTestP2}{The microprocessor being testet
+with the code from listin~\ref{lst:uContTestCode}. Note that not all signals
+are shown, as there are way too many. Page 2/2}{fig:uContTest2}
+
+A minor bug was found during testing. Code line 0 is skipped, and line 1
+repeated for as long as reset is held. Looking at the \emph{VHDL} it is quite
+apparent why this is so, it would not be hard to rewrite, but for now the fix is
+simply to use the \emph{nop} command on line 0.
+
+The do file used during testing can be found in listing~\ref{lst:uContTestDo}
+
+\begin{lstlisting}[caption={Do file for the test of the microcontroller},
+label={lst:uContTestDo}]
+restart
+force reset_async 1 0, 0 4, 1 120, 0 122
+force clk 0 0, 1 1 -repeat 2
+force I_0_async 0 0, 8 20
+force I_1_async 0
+run 130
+\end{lstlisting}

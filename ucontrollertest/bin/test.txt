@@ -10,7 +10,7 @@
 [dispenseEnd] = 52 ; constant
 [alert] = 52 	; Alert-	6
 [alertL] = 6 	; constant
-[altertEnd] =58 ; constant
+[alertEnd] =58 ; constant
 
 ; button status:
 [buts] = 100  ; Button status basse reg
@@ -106,7 +106,7 @@ srvi 0x89 ; Y has segment code "10001001"
 sri 35 ; set ram address to Z
 srvi 0x27 ; Z has segment code "00100111"
 sri 36 ; set ram address to space
-srvi 0x27 ; space has segment code "11111111"
+srvi 0x00 ; space has segment code "11111111"
 
 ; load in messages
 ; empty
@@ -141,6 +141,19 @@ sri 50
 srvi 14 ; e
 sri 51
 srvi 36 ; -
+; alert
+sri 52
+srvi 10 ; a
+sri 53
+srvi 21 ; l
+sri 54
+srvi 14 ; e
+sri 55
+srvi 27 ; r
+sri 56
+srvi 29 ; t
+sri 57
+srvi 36 ; -
 ;
 
 
@@ -150,6 +163,9 @@ srvi 0x07
 ; set colas left
 sri [left]
 srvi 0x10 ; 16 colas
+; set total
+sri [coins]
+srvi 0x00 ; empty of coins
 
 : getCoinsLoop
 ; save current position
@@ -167,9 +183,71 @@ sri [codePoint2]
 srvr r1
 
 ; main loop
-sbr [butt]  ; get button tick
+; update price
+res r3 ; used for price
+sbr [buts]  ; get button tick
 mov r7 r0
 sbr 0x00
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
+rra r2 ; read button 1 tick into r2
+sbr 0x01 ; set to 1
+cmp r2 r0 ; check if state is not
+brnp 3 ; branch if button is no pressed
+sbr 0x01
+add r3 r0
+sbr [buts]  ; get button tick
+mov r7 r0
+sbr 0x01
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
+rra r2 ; read button 1 tick into r2
+sbr 0x01 ; set to 1
+cmp r2 r0 ; check if state is not
+brnp 3 ; branch if button is no pressed
+sbr 0x02
+add r3 r0
+sbr [buts]  ; get button tick
+mov r7 r0
+sbr 0x02
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
+rra r2 ; read button 1 tick into r2
+sbr 0x01 ; set to 1
+cmp r2 r0 ; check if state is not
+brnp 3 ; branch if button is no pressed
+sbr 0x04
+add r3 r0
+sbr [buts]  ; get button tick
+mov r7 r0
+sbr 0x03
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
+rra r2 ; read button 1 tick into r2
+sbr 0x01 ; set to 1
+cmp r2 r0 ; check if state is not
+brnp 3 ; branch if button is no pressed
+sbr 0x08
+add r3 r0
+sbr [buts]  ; get button tick
+mov r7 r0
+sbr 0x04
+add r0 r7
+sra r0 ; set ram adress to where button 1 tick is kept
+rra r2 ; read button 1 tick into r2
+sbr 0x01 ; set to 1
+cmp r2 r0 ; check if state is not
+brnp 3 ; branch if button is no pressed
+sbr 0x10
+add r3 r0
+
+sri [price]  ; save price
+srvr r3 ; save it
+
+
+sbr [butt]  ; get button tick
+mov r7 r0
+sbr 0x05
 add r0 r7
 sra r0 ; set ram adress to where button 1 tick is kept
 rra r2 ; read button 1 tick into r2
@@ -187,7 +265,7 @@ srvr r2 ; put value back in ram
 ; button2
 sbr [butt]  ; get button tick
 mov r7 r0
-sbr 0x01
+sbr 0x06
 add r0 r7
 sra r0 ; set ram adress to where button 2 tick is kept
 rra r2 ; read button 2 tick into r2
@@ -205,7 +283,7 @@ srvr r2 ; put value back in ram
 ; button3
 sbr [butt]  ; get button tick
 mov r7 r0
-sbr 0x02
+sbr 0x07
 add r0 r7
 sra r0 ; set ram adress to where button 3 tick is kept
 rra r2 ; read button 3 tick into r2
@@ -236,15 +314,48 @@ srvr r3 ; save colas left
 jmp dispenseLoop ; jump to dispense loop
 : button3f
 
+
+
 ; set display
-: showTotal
 sbr 0x01
-mov r1 r0 ; get a 1 in r1
+mov r1 r0 ; put a 1 in r1
+sri [scroller]
+rra r2 ; read scrolling value into r2
+sri [timer3]
+rra r3 ; get timer3 in r3
+; sbr 0x07 ; set mask for fast scrolling - for modelsim
+; and r3 r0 ; add mask for fast scrolling - for modelsim
+res r0 ; reset r0
+cmp r0 r3 ; set carry flag if if != 0
+brnp 6 ; only do next lines if timer3 == 0
+add r3 r1 ; add one to timer, as not to do this again before next overflow
+srvr r3 ; save timer
+add r2 r1 ; add 1 to scroller
+sri [scroller]
+srvr r2 ; save scroller position
+sbr 0x04 ; mask for slow switching
+and r2 r0 ; apply
+res r0
+cmp r0 r2 ; set carry if r2>0
+brn showTotal ; show total
+: showPrice
+sri [price]  ; get coins
+rra r4 ; put conins in r4, for BCD conversion
+sbr 25 ; set to letter p
+mov r12 r0
+jmp BCD
+: showTotal
 sri [coins]  ; get coins
 rra r4 ; put conins in r4, for BCD conversion
+sbr 29 ; set to letter t for total
+mov r12 r0
+: BCD
+sbr 0x01
+mov r1 r0 ; get a 1 in r1
+; BCD convertion
 ; binary tO bcd, converts r4 into bcd in r12-15. r4 is not altered
 sbr 0xFF ; set r0 to 255/-1
-res r12 r0 ; reset this one, as no thousands
+; res r12 r0 ; reset this one, as no thousands
 mov r13 r0 ; set to -1
 mov r14 r0 ; set to -1
 mov r15 r0 ; set to -1
@@ -270,6 +381,11 @@ mov r15 r5 ; move ones to correct register.
 ; go to main loop
 jmp mainLoop
 
+; midway
+: getCoinsLoopM
+jmp getCoinsLoop
+
+
 : dispenseLoop
 ; save current position
 gpcl r1 
@@ -289,7 +405,7 @@ srvr r1
 ; button3
 sbr [buts]  ; get button status
 mov r7 r0
-sbr 0x02
+sbr 0x07
 add r0 r7
 sra r0 ; set ram adress to where button 1 tick is kept
 rra r2 ; read button 1 tick into r2
@@ -375,17 +491,69 @@ srvr r1
 ; button3
 sbr [buts]  ; get button status
 mov r7 r0
-sbr 0x02
+sbr 0x07
 add r0 r7
 sra r0 ; set ram adress to where button 1 tick is kept
 rra r2 ; read button 1 tick into r2
 res r0 ; reset r0, we need a zero
 cmp r0 r2 ; check if tick is one
 brn button3f_a ; branch finish if button is pressed
-jmp getCoinsLoop ; go back to collect coins
+jmp getCoinsLoopM ; go back to collect coins
 : button3f_a
 
 ; set display
+sbr 0x01
+mov r1 r0 ; put a 1 in r1
+sri [scroller]
+rra r2 ; read scrolling value into r2
+sri [timer3]
+rra r3 ; get timer3 in r3
+; sbr 0x07 ; set mask for fast scrolling - for modelsim
+; and r3 r0 ; add mask for fast scrolling - for modelsim
+res r0 ; reset r0
+cmp r0 r3 ; set carry flag if if != 0
+brnp 4 ; only do next line if timer3 == 0
+add r3 r1 ; add one to timer, as not to do this again before next overflow
+srvr r3 ; save timer
+add r2 r1 ; add 1 to scroller
+sbr [alertL]
+cmp r2 r0 ; set carry if r0 > r2
+brnp 2 ; only do next line if r2 >= r0
+res r2 ; reset r2
+sri [scroller]
+srvr r2 ; save scroller position
+
+sbr [alertEnd]
+mov r3 r0 ; read message endpoint value into r3
+sbr [alert]  ; get starting point
+add r0 r2 ; add position
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [alert]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r12 ; set as first letter
+add r0 r1 ; add 1 to pointer
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [alert]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r13 ; set as first letter
+add r0 r1 ; add 1 to pointer
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [alert]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r14 ; set as first letter
+add r0 r1 ; add 1 to pointer
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [alert]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r15 ; set as first letter
 
 ; go to main loop
 jmp mainLoop
@@ -404,6 +572,60 @@ sri [codePoint1]
 srvr r2
 sri [codePoint2]
 srvr r1
+
+; set display
+sbr 0x01
+mov r1 r0 ; put a 1 in r1
+sri [scroller]
+rra r2 ; read scrolling value into r2
+sri [timer3]
+rra r3 ; get timer3 in r3
+; sbr 0x07 ; set mask for fast scrolling - for modelsim
+; and r3 r0 ; add mask for fast scrolling - for modelsim
+res r0 ; reset r0
+cmp r0 r3 ; set carry flag if if != 0
+brnp 4 ; only do next line if timer3 == 0
+add r3 r1 ; add one to timer, as not to do this again before next overflow
+srvr r3 ; save timer
+add r2 r1 ; add 1 to scroller
+sbr [emptyL]
+cmp r2 r0 ; set carry if r0 > r2
+brnp 2 ; only do next line if r2 >= r0
+res r2 ; reset r2
+sri [scroller]
+srvr r2 ; save scroller position
+
+sbr [emptyEnd]
+mov r3 r0 ; read message endpoint value into r3
+sbr [empty]  ; get starting point
+add r0 r2 ; add position
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [empty]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r12 ; set as first letter
+add r0 r1 ; add 1 to pointer
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [empty]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r13 ; set as first letter
+add r0 r1 ; add 1 to pointer
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [empty]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r14 ; set as first letter
+add r0 r1 ; add 1 to pointer
+
+cmp r0 r3 ; set carry flag if r3 > r0
+brnp 2 ; skip next line
+sbr [empty]  ; only on too far
+sra r0 ; set ram adress to that letter
+rra r15 ; set as first letter
 
 ; stay here forever?
 

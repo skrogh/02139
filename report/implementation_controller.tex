@@ -1,11 +1,11 @@
 \subsection{Implementation}
 This section contains the implementation details regarding the FSMd implemenmation of the vending machine controller all the listings referred to in this section can be found in appendix A.
-Again, this will not cover the inputsyncronizer and clock manager since these are already provided. \\
+Again, this will not cover the inputsyncronizer and clock manager since these are already provided. 
 
 The top level module can be seen in listing \ref{fsmd_top}.
 \subsubsection{Display Driver}
-All of the VHDL code relating to the FSMd implementation of the vending machine controller can be found in Appendix A. \\
-
+All of the VHDL code relating to the FSMd implementation of the vending machine controller can be found in Appendix A. 
+%
 
 The VHDL implementation of display driver design seen in figure \ref{display_sch} is found in listing 
 \ref{display_top}.
@@ -15,7 +15,7 @@ The top level display entity does not contain the HexToSevenSegment entity, sinc
 \subsubsection{Vending Machine CPU}
 The VHDL code describing the vending machine CPU can be found in listing \ref{CCPU}.
 Two architectures have been created, one that directly translates the ASM chart in figure \ref{cola_asm}, and one that realises the FSM and datapath in figure \ref{cola_fsm} and \ref{fsmd_datapath} respectively.
-
+%
 
 \subsubsection{Resource Consumption}
 The resource consumption of this design is somewhat high compared to the functionality of the controller.

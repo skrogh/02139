@@ -104,7 +104,7 @@ popr	Rd		Rd = ST(SP)
 
 For first test:
 
-Mic:
+Misc:
 0	nop
 
 Arithmetics:
@@ -126,7 +126,9 @@ Jumps n calls:
 111	jmpa	K		PC = K
 1000	jmpp	K		PC = +K
 1001	jmpn	K		PC = -K
-
+10111   gpcl    Rd      Rd = PC( 7 downto 0 )
+11000   gpch    Rd      Rd = "000000" & PC( 9 downto 8 )
+11001   spc     Rd, Rs  PC = Rd( 1 downto 0 ) & Rs
 Compare:
 
 1010	brnp	K		C=0: PC = PC + 1
@@ -136,15 +138,6 @@ Compare:
 			C=1: PC = PC - K 
 10100 	and 	Rd, Rs 	Rd = Rd & Rs
 10110 	cmp 	Rd, Rs  C = Rs > Rd
-
-//I/O
-//8 bit til switches
-//8 bits til dioder
-
-//1100	rii	Rd		Rd = TG
-//1101	rio	Rd		Rd = LD
-//1110	sio	Rd		LD = Rd
-//1111	sdo	K		LD = K
 
 I/O
 16 8-bit I/O regs separate from internal regs

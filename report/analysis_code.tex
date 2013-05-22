@@ -1,0 +1,52 @@
+\section{Coding the microcontroller}
+Since this was a cource in hardware dessign and not software dessign, this
+section will be rather brief.
+
+For the fun of it we decided to impliment the vending mashine with a lot of
+extra features. We also changed the specifications for this microcontroller
+vending machine a bit.
+\begin{itemize}
+  \item Added software debounce of the toggles.
+  \item The buttons are no longer used for coin and user input,
+  instead the three leftmost toggles serve this purpose. This was done to demo
+  the debounce.
+  \item Price and entered coins are no longer displayed side by side, but one at
+  a time, blinking. A \emph{t} predecessing the number indicates total, a
+  \emph{p} price.
+  \item Alert and dispense are no longer displayed by green LEDs but scrolling
+  messages.
+  \item The price can still be set via switches.
+  \item The vending machine will freeze and display \emph{empty} after 16 cans
+  of soda.
+\end{itemize}
+
+\subsection{Analysis and design}
+The vending machine program contains a main loop,
+resposible for display multiplexing and debouncing buttons:
+
+The content of $r12-15$ will be used to lookup in the RAM for a number/letter to
+be displayed on the four displays.
+The debounced button state is kept in one place of the RAM,
+while a variable, ticking high for one loop on a rising edge from a button is
+kept another place in the RAM.
+
+once the main loop finishes it returns to one of the action loops,
+there are four of these:
+\begin{itemize}
+  \item getCoinsLoop/wait: This is where the vending machine starts.
+  The price is updated and if the machine is empty you will go to that loop.
+   Entering coins will add to total. pressing buy will send you to either one of the two
+  following states. The screen will alternate between showing the price and the
+  total.
+  \item dispenseLoop: This is were you end during purchase of a can, if you can
+  afford it, once buy is lifted you return to getCoinsLoop.
+  \item alertLoop: This is were you end during purchase of a can, if you can't
+  afford it, once buy is lifted you return to getCoinsLoop.
+  \item emptyLoop: This is where you end if the machine is empty, you can not
+  get away from here without a reset.
+\end{itemize}
+each loop puts some value in the $r12-15$ registers to be shown to the screen.
+
+A flowchart over the program can be found in figure~\ref{fig:progFolw}
+\stdfig{0.8}{programFlow}{Flowchart over the program for the vending machine
+microcontroller}{fig:progFlow}

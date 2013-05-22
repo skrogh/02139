@@ -1,39 +1,76 @@
 ; define constants
-
+[someAddress] = 1
+; nop, since program line 0 is not executed after a reset
+nop ; 000
 ; test set bit opeartions
-sbr 0x4F ; set r0 to 0x4F
-shn r1 6 ; set r1 to 0x60
-sln r1 4 ; set r1 to 0x64
+sbr 0x4F ; 001 ; set r0 to 0x4F
+shn r1 6 ; 002 ;set r1 to 0x60
+sln r1 4 ; 003 ;set r1 to 0x64
 
 ; test copying
-mov r2 r0 ; copy r0 to r2
+mov r2 r0 ; 004 ; copy r0 to r2
 
 ; test athrtmics
-addc r0 r1 ; add r1 to r0 in r0, result: B3, no carry
-add r0 r1 ; add r1 to r0 in r0, result: 17, carry set
-addc r0 r1 ; add r1 + carry to r0 in r0, result: 7C
-sub r0 r1 ; subtract r1 from r0 result in r0, result 18, no carry
-res r0 ; reset r0
-sub r0 r1 ; subtract r1 from r0 result in r0, result 9C, carry set
+addc r0 r1 ; 005 ; add r1 to r0 in r0, result: B3, no carry
+add r0 r1 ; 006 ; add r1 to r0 in r0, result: 17, carry set
+addc r0 r1 ; 007 ;add r1 + carry to r0 in r0, result: 7C
+sub r0 r1 ; 008 ;subtract r1 from r0 result in r0, result 18, no carry
+res r0 ; 009 ;reset r0
+sub r0 r1 ; 00A ; subtract r1 from r0 result in r0, result 9C, carry set
 
 ; test jumping
-nop ; no operation
-jmpa absJump ; absolue jump to somewhere
-jmpp 2 ; fo is here. jump to bar
+nop ; 00B ;no operation
+jmpa absJump ; 00C; absolue jump to somewhere
+jmpp 2 ; 00D; fo is here. jump to bar
 : absJump
-jmpn 1 ; somewhere. jumps back to fo
-nop ; this is bar. end of jumps
-gpcl r3 ; get program counter low bits into r3
-gpch r4 ; get program counter high bits into r4
-sbr 0x01 ; set r0 to 1
-add r3 r0 ; allign lowbit with high bit
-sbr 0x08 ; set r0 to 7
-add r3 r0 ; allign lowbit with line "sbr 0xFF"
-res r0 ; zero for adding carry
-addc r4 r0 ; add the carry - both programcounters now mach the next, next line
+jmpn 1 ; 00E ; somewhere. jumps back to fo
+nop ; 00F ; this is bar. end of jumps
+gpcl r3 ; 010 ; get program counter low bits into r3
+gpch r4 ; 011 ; get program counter high bits into r4
+sbr 0x01 ; 012 ; set r0 to 1
+add r3 r0 ; 013 ; allign lowbit with high bit
+sbr 0x08 ; 014 ; set r0 to 7
+add r3 r0 ; 015 ; allign lowbit with line "sbr 0xFF"
+res r0 ; 016 ; zero for adding carry
+addc r4 r0 ; 017 ; add the carry - both programcounters now mach the next, next line
 jmp continue
-sbr 0xFF ; this is our return point - we will go here when the program finishes
-jmpn 1 ; loop that forever
+sbr 0xFF ; 018 ; this is our return point - we will go here when the program finishes
+jmpn 1 ; 019 ; loop that forever
 : continue
 
 ; test comparision
+sbr 0x01 ; 01A ; set to 1
+mov r1 r0 ; 01B ; set r1 to 1
+cmp r1 r0 ; 01C ; this gives no carry
+brnp 0xFF ; 01D ; does not jump
+cmp r0 r0 ; 01E ; this gives no carry
+brnn 0xFF ; 01F ; does not jump
+cmp r0 r1 ; 020 ; this gives a carry
+brnp 5 ; 021 ; does jump
+nop ; 022 ; not executed
+nop ; 023 ; not executed
+nop ; 024 ; not executed
+jmpp 2 ; 025 ; jump over the branch
+brnn 1 ; 026 ; does branch	
+
+; test IO
+sbr 0xFF ; 027 ; set to something
+sio r0 r0 ; 028 ; try setting input (nothing happens)
+sio r7 r0 ; 029 ; set O_0 to 0xFF
+res r0 ; 02A ; reset r0
+rio r0 r7 ; 02B ; read output (this is ok, and quite ussable; think bitmasking)
+rio r0 r0 ; 02C ; read in I_0
+
+; test ram
+sri [someAddress]  ; 02D ; set ram address to something (1)
+srvi 0xF0 ; 02E ; set ram value til 0xF0
+sbr 0x0F ; 02F ; set r0 to 0x0F
+srvr r0 ; 030 ; set ram value to content of r0, 0x0F
+sbr 0x02 ; 031 ; set r0 to 2
+sra r0 ; 032 ; set ram address to 2
+srvr r0 ; 033 ; set ram value to 2
+rra r1 ; 034 ; read that into r1
+
+; jump to end
+spc r4 r3 ; 035 ; jump to the infinite loop
+; after this the processor will be reset to sow the ram is not reset

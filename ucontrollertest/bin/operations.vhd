@@ -22,7 +22,7 @@ entity operations is
             RAM_D_N : out std_logic_vector( 7 downto 0 );
             RAM_W   : out std_logic;
             RAM_SET : out std_logic;
-            byte_set : out std_logic
+            BYTE_SET : out std_logic
         );
 end operations;
 
@@ -48,10 +48,6 @@ begin
         if RESET = '1' then
             -- Carry
             C <= (others => '0');
-
-            -- I/O
-
-
             -- Program counter internal
             PC_INT <= (others => '0');
         elsif rising_edge( CLK ) then
@@ -74,7 +70,7 @@ process( OP, OP_D, OP_S, PC_INT, OP_SC, OP_DC, ADDER, IO_D, IO_S, C, RAM_P, RAM_
     ADDER <= (others => '0'); -- Don't care ok?
     byte_set <= '0';
     RAM_SET <= '0';
-	 RAM_W <= '0';
+	RAM_W <= '0';
     case OP is
         when  "00000"  => -- NOP no operation
         when	"00001"	=>	-- ADD add
